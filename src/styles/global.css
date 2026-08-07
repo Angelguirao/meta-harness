@@ -277,18 +277,100 @@ main {
 .define,
 .bundle,
 .field,
-.lifeos {
+.lifeos,
+.sources {
   margin-bottom: 3.1rem;
   scroll-margin-top: 3.5rem;
 }
 
 .open {
   scroll-margin-top: 3.5rem;
+  margin-bottom: 3.1rem;
+}
+
+.define-list {
+  margin: 0 0 1rem;
+  padding-left: 1.15rem;
+  max-width: var(--measure);
+  color: color-mix(in srgb, var(--ink) 90%, var(--muted));
+}
+
+.define-list li {
+  margin-bottom: 0.55rem;
+}
+
+.lane {
+  margin-bottom: 2rem;
+}
+
+.lane-head {
+  margin-bottom: 0.75rem;
+}
+
+.lane-title {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 0.35rem;
+}
+
+.lane-blurb {
+  margin: 0;
+  max-width: var(--measure);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.lane-blurb a {
+  color: var(--ink);
+  text-underline-offset: 0.15em;
+}
+
+.by {
+  color: var(--dim);
+  font-weight: 400;
+}
+
+.sources h2,
+.open h2 {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 0 0 1rem;
+}
+
+.sources-lead {
+  margin: 0 0 1rem;
+  max-width: var(--measure);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.sources-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  max-width: 48rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.sources-list li {
+  margin-bottom: 0.55rem;
+}
+
+.sources-list a {
+  color: var(--ink);
+  text-underline-offset: 0.15em;
 }
 
 .scene h2,
-.define h2,
-.open h2 {
+.define h2 {
   font-family: var(--font-mono);
   font-weight: 500;
   font-size: 0.7rem;

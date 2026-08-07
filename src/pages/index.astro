@@ -1,19 +1,38 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { PARTS, PEERS, ownsLabel } from "../data/landscape.js";
+import {
+  PARTS,
+  PEERS,
+  LANES,
+  ownsLabel,
+  peersInLane,
+} from "../data/landscape.js";
 
 const organIds = PARTS.map((p) => p.id);
+const fieldLanes = LANES.filter((l) =>
+  PEERS.some((p) => p.lane === l.id && !p.self),
+);
+const tbd = PEERS.find((p) => p.self);
+
+/** @param {string} blurb */
+function laneBlurbHtml(blurb) {
+  return blurb.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noreferrer">$1</a>',
+  );
+}
 ---
 
 <BaseLayout>
   <header class="top">
-    <span class="top-meta">lifeos · research · v0</span>
+    <span class="top-meta">research notes · v0</span>
     <nav class="top-nav" aria-label="On this page">
       <a href="#scene">scene</a>
+      <a href="#define">define</a>
       <a href="#bundle">organs</a>
       <a href="#field">field</a>
-      <a href="#lifeos">lifeos</a>
-      <a href="#open">open</a>
+      <a href="#tbd">tbd</a>
+      <a href="#sources">sources</a>
       <a class="top-source" href="https://github.com/Angelguirao/meta-harness"
         >source</a
       >
@@ -25,65 +44,81 @@ const organIds = PARTS.map((p) => p.id);
       <div class="hero-copy">
         <h1 id="brand" class="brand">meta-harness</h1>
         <p class="lede">
-          Working name for the shop above the coding agent — what survives when
-          the chat dies.
+          Notes on the layer above coding agents — researched against what
+          people are actually shipping.
         </p>
         <p class="dek">
-          Not a pitch. Field notes from
-          <a href="https://github.com/Angelguirao/personal-ai-os">LifeOS</a>
-          against everyone shipping this layer.
+          Working vocabulary, not a product. Peers cited from primary sources.
+          Our own stack stays <a href="#tbd">TBD</a> and private.
         </p>
       </div>
       <div class="hero-schematic" aria-hidden="true">
         <pre class="schematic"><code><span class="sch-shop">shop</span>  continuity · scope · constraint · work · retrieve · swap
   │
   ▼
-<span class="sch-muscle">muscle</span>  claude code · codex · deep agents</code></pre>
+<span class="sch-muscle">muscle</span>  claude code · codex · open code · pi · …</code></pre>
       </div>
     </section>
 
     <section class="scene" id="scene" aria-labelledby="scene-title">
-      <h2 id="scene-title">Tuesday, still broken</h2>
+      <h2 id="scene-title">The gap people keep describing</h2>
       <p>
-        Ticket: cancel a stuck order. Needs the payments API, the customer web
-        app, and a design-system confirm dialog. Three repos. The coding agent
-        edits one tree at a time. You clone, branch, paste context, babysit
-        three PRs so they land in the same deploy.
+        Cancel an order end-to-end: payments API, customer web, design-system
+        dialog. Three repos. A coding harness (Claude Code, Codex, …) still
+        thinks in one tree. Someone has to clone the rest, route context, and
+        land three PRs together —
+        <a href="https://metaharness.tools/">metaharness.tools</a> walks this
+        failure in detail; it matches what operators feel every week.
       </p>
       <p>
-        Last Thursday you already decided retries belong in the gateway — in a
-        chat that is gone. The branch has the patch. Nothing queryable has the
-        decision. Your other laptop burned the same afternoon yesterday.
+        Second gap: git keeps the what. The session keeps the why. When the
+        chat ends, the agent that “quit” takes the decision with it. Next
+        Tuesday you re-discover the same dead end.
       </p>
       <p class="punch">
-        That gap is the category. Better prompts are not it.
+        That layer — not better prompts — is what this notebook is trying to
+        name.
       </p>
     </section>
 
     <section class="define" id="define" aria-labelledby="define-title">
       <h2 id="define-title">Working definition</h2>
       <p>
-        A <strong>harness</strong> is one agent loop in one session. A
-        <strong>meta-harness</strong>, here, is not a SKU — it is a
-        <strong>bundle of organs</strong> that make those loops usable across
-        time, repos, and risk.
+        A <strong>harness</strong> runs one agent loop in one session (usually
+        one repo): Claude Code, Codex, Pi, OpenCode, and kin.
       </p>
       <p>
-        Two different jobs share the name: <em>orchestration</em> (shop above
-        the muscle) and <em>optimization</em> (outer loop that searches harness
-        code — Stanford). This notebook is about the shop.
+        <strong>Meta-harness</strong> is overloaded. Two jobs share the word
+        (see
+        <a href="https://metaharness.tools/">Meta-Harness 101</a>):
       </p>
+      <ul class="define-list">
+        <li>
+          <strong>Orchestration</strong> — control above many harnesses:
+          cross-repo work, session memory, swap/composition, sandboxing,
+          policy.
+        </li>
+        <li>
+          <strong>Optimization</strong> — outer loop that searches over harness
+          <em>code</em> around a frozen model (Stanford Meta-Harness; open
+          takes like SuperagenticAI’s library).
+        </li>
+      </ul>
       <p>
-        <a href="https://metaharness.tools">metaharness.tools</a> maps the
-        conversation. It is not our dictionary. We learn the label by placing
-        LifeOS in the field.
+        This site focuses on orchestration. Our own cut: treat the shop as a
+        <strong>bundle of organs</strong>, not one SKU. Peers ship different
+        subsets hard. A retrieve system or an issue graph can be an organ
+        inside a stack without being “the meta-harness.”
       </p>
     </section>
 
     <section class="bundle" id="bundle" aria-labelledby="bundle-title">
       <div class="section-head">
         <h2 id="bundle-title">If this organ is missing</h2>
-        <p>Failure modes — not feature slogans.</p>
+        <p>
+          Our frame for reading the field — failure modes, not a vendor feature
+          sheet.
+        </p>
       </div>
       <ul class="matrix">
         {
@@ -100,127 +135,182 @@ const organIds = PARTS.map((p) => p.id);
     <section class="field" id="field" aria-labelledby="field-title">
       <div class="section-head">
         <h2 id="field-title">Field</h2>
-        <p>Who owns which organ hard. Dot = center of gravity, not a score.</p>
+        <p>
+          Grouped by job. Dots mark center of gravity in <em>our</em> organ
+          frame — not a scorecard, and not the vendor’s self-label.
+        </p>
       </div>
 
-      <div class="coverage-wrap" role="region" aria-label="Organ coverage by peer">
-        <table class="coverage">
-          <thead>
-            <tr>
-              <th scope="col" class="coverage-name">Name</th>
-              {
-                PARTS.map((p) => (
-                  <th scope="col">{p.label}</th>
-                ))
-              }
-              <th scope="col" class="coverage-read">Read as</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              PEERS.map((p) => (
-                <tr class:list={[{ "is-self": p.self }]}>
-                  <th scope="row">
-                    {p.url ? (
-                      <a href={p.url} target="_blank" rel="noreferrer">
-                        {p.name}
-                      </a>
-                    ) : (
-                      p.name
-                    )}
-                    <span class="sr-only"> owns {ownsLabel(p.organs)}</span>
-                  </th>
-                  {organIds.map((id) => (
-                    <td>
-                      {p.organs.includes(id) ? (
-                        <span class="dot" title={id}>
-                          ●
-                        </span>
-                      ) : (
-                        <span class="dot-empty" aria-hidden="true">
-                          ·
-                        </span>
-                      )}
-                    </td>
-                  ))}
-                  <td class="coverage-note">{p.note}</td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
-
-      <p class="note">
-        <mark>Cerebras Knowledge</mark> is retrieve done well. It can sit inside
-        a fuller stack. Continuity, scope, and constraint are still someone
-        else’s job — same as a tracker that only does work.
-      </p>
+      {
+        fieldLanes.map((lane) => {
+          const peers = peersInLane(lane.id);
+          if (!peers.length) return null;
+          return (
+            <div class="lane">
+              <div class="lane-head">
+                <h3 class="lane-title">{lane.title}</h3>
+                <p class="lane-blurb" set:html={laneBlurbHtml(lane.blurb)} />
+              </div>
+              <div class="coverage-wrap">
+                <table class="coverage">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="coverage-name">
+                        Name
+                      </th>
+                      {PARTS.map((p) => (
+                        <th scope="col">{p.label}</th>
+                      ))}
+                      <th scope="col" class="coverage-read">
+                        From the source
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {peers.map((p) => (
+                      <tr>
+                        <th scope="row">
+                          <a href={p.url} target="_blank" rel="noreferrer">
+                            {p.name}
+                          </a>
+                          {p.by ? <span class="by"> · {p.by}</span> : null}
+                          <span class="sr-only">
+                            {" "}
+                            — {ownsLabel(p.organs)}
+                          </span>
+                        </th>
+                        {organIds.map((id) => (
+                          <td>
+                            {p.organs.includes(id) ? (
+                              <span class="dot" title={id}>
+                                ●
+                              </span>
+                            ) : (
+                              <span class="dot-empty" aria-hidden="true">
+                                ·
+                              </span>
+                            )}
+                          </td>
+                        ))}
+                        <td class="coverage-note">{p.note}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          );
+        })
+      }
     </section>
 
-    <section class="lifeos" id="lifeos" aria-labelledby="lifeos-title">
-      <div class="section-head">
-        <h2 id="lifeos-title">LifeOS cut</h2>
-        <p>What we actually run — not what we wish we shipped.</p>
-      </div>
-      <div class="cut" role="group" aria-label="LifeOS inventory">
-        <div class="cut-row">
-          <span class="cut-k">heavy</span>
-          <span class="cut-v"
-            >World model (folio · ledger · trackers). OPEVL walker. Work / Run /
-            Session as the coordination triad.</span
-          >
-        </div>
-        <div class="cut-row">
-          <span class="cut-k">muscle</span>
-          <span class="cut-v"
-            >Fly Deep Agents today. Claude Code / Codex optional — swappable in
-            doctrine, sticky in practice.</span
-          >
-        </div>
-        <div class="cut-row">
-          <span class="cut-k">thin</span>
-          <span class="cut-v"
-            >Cross-repo scope. Session handoff agents can trust. OS-level
-            sandbox.</span
-          >
-        </div>
-        <div class="cut-row cut-row-open">
-          <span class="cut-k">bet</span>
-          <span class="cut-v"
-            >Harden a thin organ — or double down on the world model that
-            dispatches wraps. Not both as the same product story.</span
-          >
-        </div>
-      </div>
-      <p class="note">
-        Thesis: control plane + world model first. Meta-harness organs attach
-        under Session and Run. Not a rename. Not “we are Omnigent.”
-      </p>
-    </section>
+    {
+      tbd && (
+        <section class="lifeos" id="tbd" aria-labelledby="tbd-title">
+          <div class="section-head">
+            <h2 id="tbd-title">TBD (private)</h2>
+            <p>
+              Our stack is not public. Placement is the open question — not a
+              brand claim.
+            </p>
+          </div>
+          <div class="cut" role="group" aria-label="TBD placement">
+            <div class="cut-row">
+              <span class="cut-k">lane</span>
+              <span class="cut-v">
+                Closest to org / control-plane + durable meaning — not yet a
+                Polygraph-style cross-repo shop, not Omnigent packaging.
+              </span>
+            </div>
+            <div class="cut-row">
+              <span class="cut-k">thesis</span>
+              <span class="cut-v">{tbd.note}</span>
+            </div>
+            <div class="cut-row cut-row-open">
+              <span class="cut-k">bet</span>
+              <span class="cut-v">
+                Harden a thin organ (scope, handoff, sandbox) — or keep the
+                asset as the world model that dispatches wraps. Same word
+                “meta-harness” does not decide that for us.
+              </span>
+            </div>
+          </div>
+        </section>
+      )
+    }
 
     <section class="open" id="open" aria-labelledby="open-title">
       <h2 id="open-title">Still open</h2>
       <ol>
         <li>
-          After cancel-order lands across three repos, what is queryable next
-          Tuesday without re-explaining the why?
+          After a three-repo change lands, what must remain queryable next
+          week without re-explaining the why?
         </li>
         <li>
-          If we harden one thin organ next: handoff, sandbox, or scope?
+          If we only harden one thin organ next: handoff, sandbox, or scope?
         </li>
         <li>
-          If Omnigent + Beads + a knowledge organ covered the week, would
-          LifeOS still earn its keep — or is the world model the only
-          irreplaceable piece?
+          If Polygraph (scope + continuity) + Omnigent (swap + constraint) +
+          Beads (work) + a Cerebras-like retrieve covered the week, what would
+          a private control plane still be for?
         </li>
       </ol>
+    </section>
+
+    <section class="sources" id="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">Sources</h2>
+      <p class="sources-lead">
+        Primary pages this pass leaned on. Notes above are ours; facts should
+        match these.
+      </p>
+      <ul class="sources-list">
+        <li>
+          <a href="https://metaharness.tools/">metaharness.tools</a> — Meta-Harness
+          101 (orchestration vs optimization; capability map)
+        </li>
+        <li>
+          <a href="https://trypolygraph.com/">Polygraph</a> ·
+          <a href="https://omnigent.ai/">Omnigent</a> ·
+          <a
+            href="https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents"
+            >Databricks Omnigent post</a
+          >
+        </li>
+        <li>
+          <a href="https://paperclip.ing/">Paperclip</a> ·
+          <a href="https://blog.cloudflare.com/cloudflare-os/"
+            >Cloudflare OS</a
+          >
+          · <a href="https://www.agno.com/">Agno</a>
+        </li>
+        <li>
+          <a href="https://beads.gascity.com/">Beads</a> ·
+          <a href="https://qm.ycombinator.com/">QM</a> ·
+          <a href="https://github.com/yc-software/qm">yc-software/qm</a>
+        </li>
+        <li>
+          <a
+            href="https://www.cerebras.ai/blog/how-we-built-our-knowledge-base"
+            >Cerebras Knowledge</a
+          >
+          ·
+          <a href="https://yoonholee.com/meta-harness/">Stanford Meta-Harness</a>
+          ·
+          <a href="https://superagenticai.github.io/metaharness/"
+            >SuperagenticAI metaharness</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/andrewyng/openworker">OpenWorker</a> —
+          adjacent coworker, not coding meta-harness
+        </li>
+      </ul>
     </section>
   </main>
 
   <footer class="foot">
     <p>
-      Written beside LifeOS. Labels move. MIT ·
+      Research notebook. Labels move. MIT ·
       <a href="https://github.com/Angelguirao/meta-harness">source</a>
     </p>
   </footer>

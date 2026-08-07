@@ -1,8 +1,10 @@
 # meta-harness
 
-Night-lab notes on the layer above coding agents — from [LifeOS](https://github.com/Angelguirao/personal-ai-os).
+Research notes on the layer above coding agents.
 
 **Live:** [meta-harness.vercel.app](https://meta-harness.vercel.app)
+
+Peers are cited from primary sources. Our own stack is referred to as **TBD** (private) — not linked here.
 
 ```bash
 npm install
