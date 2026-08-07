@@ -17,11 +17,20 @@ const neighborLanes = LANES.filter((l) => !l.quiet)
 const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
   peersInLane(l.id),
 );
+
+const sources = [
+  { name: "metaharness.tools", url: "https://metaharness.tools/" },
+  ...TWO_SHOPS.map((s) => ({ name: s.name, url: s.url })),
+  ...PEERS.filter((p) => !p.self && p.url).map((p) => ({
+    name: p.name === "Cerebras Knowledge" ? "Cerebras" : p.name,
+    url: p.url,
+  })),
+];
 ---
 
 <BaseLayout>
   <header class="top">
-    <span class="top-meta">research · v0</span>
+    <span class="top-meta">field notes · v0</span>
     <nav class="top-nav" aria-label="On this page">
       <a href="#organs">organs</a>
       <a href="#shops">shops</a>
@@ -155,9 +164,9 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
       </p>
 
       <aside class="compose" aria-labelledby="compose-title">
-        <h3 id="compose-title" class="compose-title">One assembly</h3>
+        <h3 id="compose-title" class="compose-title">Fill the rest</h3>
         <p class="compose-lead">
-          Neither shop covers every organ. One way to fill the rest:
+          Neither shop is a full shop. Organs still ship separately:
         </p>
         <ul class="compose-stack">
           <li>
@@ -176,11 +185,12 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
               class="compose-who"
               href="https://www.cerebras.ai/blog/how-we-built-our-knowledge-base"
               target="_blank"
-              rel="noreferrer">Cerebras-like</a
+              rel="noreferrer">Cerebras</a
             >
             <span class="compose-organs">
               <a href="#organ-retrieve" data-organ="retrieve">retrieve</a>
             </span>
+            <span class="compose-aside">pattern, not a product slot</span>
           </li>
           <li class="compose-tbd">
             <a class="compose-who" href="#tbd">TBD</a>
@@ -190,10 +200,6 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
             >
           </li>
         </ul>
-        <p class="compose-note">
-          Organs ship separately. The bet is which thin gap becomes the product —
-          or whether the world model stays the asset.
-        </p>
       </aside>
     </section>
 
@@ -277,6 +283,7 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
               </dd>
             </div>
           </dl>
+          <p class="coda">Until the shop exists, you are it.</p>
         </section>
       )
     }
@@ -284,23 +291,16 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
 
   <footer class="foot">
     <p class="foot-sources">
-      <a href="https://metaharness.tools/">metaharness.tools</a>
-      <a href="https://trypolygraph.com/">Polygraph</a>
-      <a href="https://omnigent.ai/">Omnigent</a>
-      <a href="https://paperclip.ing/">Paperclip</a>
-      <a href="https://blog.cloudflare.com/cloudflare-os/">Cloudflare OS</a>
-      <a href="https://www.agno.com/">Agno</a>
-      <a href="https://beads.gascity.com/">Beads</a>
-      <a href="https://qm.ycombinator.com/">QM</a>
-      <a href="https://www.cerebras.ai/blog/how-we-built-our-knowledge-base"
-        >Cerebras</a
-      >
-      <a href="https://yoonholee.com/meta-harness/">Stanford</a>
-      <a href="https://superagenticai.github.io/metaharness/">SuperagenticAI</a>
-      <a href="https://github.com/andrewyng/openworker">OpenWorker</a>
+      {
+        sources.map((s) => (
+          <a href={s.url} target="_blank" rel="noreferrer">
+            {s.name}
+          </a>
+        ))
+      }
     </p>
     <p class="foot-meta">
-      Updated 2026-08-07 · research notes · MIT ·
+      Updated 2026-08-07 · field notes · MIT ·
       <a href="https://github.com/Angelguirao/meta-harness">source</a>
     </p>
   </footer>

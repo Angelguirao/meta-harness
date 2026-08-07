@@ -19,12 +19,12 @@ export const PARTS = [
   {
     id: "continuity",
     label: "continuity",
-    miss: "The why dies with the chat. Git only has the patch.",
+    miss: "Tomorrow’s agent inherits the patch, not the plan.",
   },
   {
     id: "scope",
     label: "scope",
-    miss: "Cross-repo work — you are the integration bus.",
+    miss: "Cross-repo work — you are still the integration bus.",
   },
   {
     id: "constraint",

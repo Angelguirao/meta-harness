@@ -37,7 +37,7 @@ typography:
 
 **Night lab / research strip.** Notebook, not SaaS. Cool blue-black atmosphere + faint grid. IBM Plex carries identity (same family as aie-sessions, inverted). Amber only on the punch rule, open-bet key, and mark highlights.
 
-Narrow reading measure (~38rem). Brand-led hero (brand + lede + shop/muscle stack in first viewport). Hierarchy: hero → why punch → Organs → **Two shops** + contrast line → fill-the-rest assembly → neighbors → quiet “not this” → TBD. Organ tags and rows cross-light. Amber on brand hyphen, punch, cursor, TBD bet. Our stack is **TBD** — never LifeOS on this public surface.
+Narrow reading measure (~38rem). Brand-led hero (brand + lede + shop/muscle stack in first viewport). Hierarchy: hero → why punch → Organs → **Two shops** + contrast → fill-the-rest → neighbors → quiet elsewhere → TBD + coda (“you are it”). Organ tags and rows cross-light. Amber on brand hyphen, punch, cursor, TBD bet. Our stack is **TBD** — never LifeOS on this public surface. Bet lives once (TBD), not repeated above.
 
 ## Colors
 
