@@ -44,7 +44,7 @@ muscle   claude code · codex · pi · open code · …</code></pre>
       <p>
         A harness runs one loop in one tree. Cancel-order needs API + web +
         design-system — three trees. You clone, paste context, land three PRs.
-        That stitching is what
+        That stitching is what{" "}
         <a href="https://metaharness.tools/">metaharness.tools</a> means by
         meta-harness.
       </p>
@@ -65,31 +65,48 @@ muscle   claude code · codex · pi · open code · …</code></pre>
       </p>
       <div class="shop-grid">
         {
-          TWO_SHOPS.map((s, i) => (
-            <>
-              {i === 1 ? (
+          (() => {
+            const [left, right] = TWO_SHOPS;
+            return (
+              <>
+                <article class="shop">
+                  <header class="shop-head">
+                    <a
+                      class="shop-name"
+                      href={left.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {left.name}
+                    </a>
+                    <span class="shop-by">{left.by}</span>
+                  </header>
+                  <p class="shop-claim">{left.claim}</p>
+                  <p class="shop-hook">{left.hook}</p>
+                  <p class="shop-organs">{left.organs.join(" · ")}</p>
+                </article>
                 <div class="shop-vs" aria-hidden="true">
                   vs
                 </div>
-              ) : null}
-              <article class="shop">
-                <header class="shop-head">
-                  <a
-                    class="shop-name"
-                    href={s.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {s.name}
-                  </a>
-                  <span class="shop-by">{s.by}</span>
-                </header>
-                <p class="shop-claim">{s.claim}</p>
-                <p class="shop-hook">{s.hook}</p>
-                <p class="shop-organs">{s.organs.join(" · ")}</p>
-              </article>
-            </>
-          ))
+                <article class="shop">
+                  <header class="shop-head">
+                    <a
+                      class="shop-name"
+                      href={right.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {right.name}
+                    </a>
+                    <span class="shop-by">{right.by}</span>
+                  </header>
+                  <p class="shop-claim">{right.claim}</p>
+                  <p class="shop-hook">{right.hook}</p>
+                  <p class="shop-organs">{right.organs.join(" · ")}</p>
+                </article>
+              </>
+            );
+          })()
         }
       </div>
       <p class="shops-note">
