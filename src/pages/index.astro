@@ -9,7 +9,11 @@ import {
 } from "../data/landscape.js";
 
 const tbd = PEERS.find((p) => p.self);
-const mainLanes = LANES.filter((l) => !l.quiet && peersInLane(l.id).length);
+const [poly, omni] = TWO_SHOPS;
+
+const neighbors = LANES.filter((l) => !l.quiet).flatMap((l) =>
+  peersInLane(l.id).map((p) => ({ ...p, laneTitle: l.title })),
+);
 const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
   peersInLane(l.id).map((p) => ({ ...p, laneTitle: l.title })),
 );
@@ -20,8 +24,8 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
     <span class="top-meta">research · v0</span>
     <nav class="top-nav" aria-label="On this page">
       <a href="#why">why</a>
-      <a href="#shops">shops</a>
       <a href="#organs">organs</a>
+      <a href="#shops">shops</a>
       <a href="#field">field</a>
       <a href="#tbd">tbd</a>
       <a href="https://github.com/Angelguirao/meta-harness">github</a>
@@ -35,8 +39,25 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
         The coding agent is the muscle. Something else has to be the shop —
         or you are.
       </p>
-      <pre class="stack" aria-hidden="true"><code>shop     continuity · scope · constraint · work · retrieve · swap
-muscle   claude code · codex · pi · open code · …</code></pre>
+      <div class="stack" aria-hidden="true">
+        <div class="stack-row">
+          <span class="stack-k">shop</span>
+          <span class="stack-v">
+            {
+              PARTS.map((p, i) => (
+                <>
+                  {i > 0 ? " · " : ""}
+                  <a href={`#organ-${p.id}`}>{p.label}</a>
+                </>
+              ))
+            }
+          </span>
+        </div>
+        <div class="stack-row">
+          <span class="stack-k">muscle</span>
+          <span class="stack-v">claude code · codex · pi · open code · …</span>
+        </div>
+      </div>
     </section>
 
     <section class="prose" id="why" aria-labelledby="why-title">
@@ -58,72 +79,15 @@ muscle   claude code · codex · pi · open code · …</code></pre>
       </p>
     </section>
 
-    <section class="shops" id="shops" aria-labelledby="shops-title">
-      <h2 id="shops-title">Two shops</h2>
-      <p class="section-dek">
-        Orchestration, today — same layer, different center of gravity.
-      </p>
-      <div class="shop-grid">
-        {
-          (() => {
-            const [left, right] = TWO_SHOPS;
-            return (
-              <>
-                <article class="shop">
-                  <header class="shop-head">
-                    <a
-                      class="shop-name"
-                      href={left.url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {left.name}
-                    </a>
-                    <span class="shop-by">{left.by}</span>
-                  </header>
-                  <p class="shop-claim">{left.claim}</p>
-                  <p class="shop-hook">{left.hook}</p>
-                  <p class="shop-organs">{left.organs.join(" · ")}</p>
-                </article>
-                <div class="shop-vs" aria-hidden="true">
-                  vs
-                </div>
-                <article class="shop">
-                  <header class="shop-head">
-                    <a
-                      class="shop-name"
-                      href={right.url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {right.name}
-                    </a>
-                    <span class="shop-by">{right.by}</span>
-                  </header>
-                  <p class="shop-claim">{right.claim}</p>
-                  <p class="shop-hook">{right.hook}</p>
-                  <p class="shop-organs">{right.organs.join(" · ")}</p>
-                </article>
-              </>
-            );
-          })()
-        }
-      </div>
-      <p class="shops-note">
-        Polygraph starts from <em>repos + memory</em>. Omnigent starts from
-        <em>harness swap + policy</em>. Neither is the whole organ bundle.
-      </p>
-    </section>
-
     <section class="organs" id="organs" aria-labelledby="organs-title">
       <h2 id="organs-title">Organs</h2>
       <p class="section-dek">
-        Our lens for reading the field — not a vendor feature sheet.
+        Lens for reading the field — failure modes, not a feature sheet.
       </p>
       <ul class="organ-list">
         {
           PARTS.map((part) => (
-            <li>
+            <li id={`organ-${part.id}`}>
               <span class="organ-name">{part.label}</span>
               <span class="organ-miss">{part.miss}</span>
             </li>
@@ -132,44 +96,96 @@ muscle   claude code · codex · pi · open code · …</code></pre>
       </ul>
     </section>
 
+    <section class="shops" id="shops" aria-labelledby="shops-title">
+      <h2 id="shops-title">Two shops</h2>
+      <p class="section-dek">
+        Orchestration, today — same layer, different center of gravity.
+      </p>
+      <div class="shop-grid">
+        <article class="shop">
+          <header class="shop-head">
+            <a
+              class="shop-name"
+              href={poly.url}
+              target="_blank"
+              rel="noreferrer">{poly.name}</a
+            >
+            <span class="shop-by">{poly.by}</span>
+          </header>
+          <p class="shop-claim">{poly.claim}</p>
+          <p class="shop-hook">{poly.hook}</p>
+          <p class="shop-organs">
+            {
+              poly.organs.map((id, i) => (
+                <>
+                  {i > 0 ? " · " : ""}
+                  <a href={`#organ-${id}`}>{id}</a>
+                </>
+              ))
+            }
+          </p>
+        </article>
+        <div class="shop-vs" aria-hidden="true">vs</div>
+        <article class="shop">
+          <header class="shop-head">
+            <a
+              class="shop-name"
+              href={omni.url}
+              target="_blank"
+              rel="noreferrer">{omni.name}</a
+            >
+            <span class="shop-by">{omni.by}</span>
+          </header>
+          <p class="shop-claim">{omni.claim}</p>
+          <p class="shop-hook">{omni.hook}</p>
+          <p class="shop-organs">
+            {
+              omni.organs.map((id, i) => (
+                <>
+                  {i > 0 ? " · " : ""}
+                  <a href={`#organ-${id}`}>{id}</a>
+                </>
+              ))
+            }
+          </p>
+        </article>
+      </div>
+      <p class="shops-note">
+        Polygraph starts from <em>repos + memory</em>. Omnigent starts from{" "}
+        <em>harness swap + policy</em>. Neither is the whole organ bundle.
+      </p>
+    </section>
+
     <section class="field" id="field" aria-labelledby="field-title">
       <h2 id="field-title">Around the shop</h2>
       <p class="section-dek">Neighbors. Not interchangeable with the two above.</p>
-
-      {
-        mainLanes.map((lane) => (
-          <div class="lane">
-            <h3 class="lane-title">{lane.title}</h3>
-            <ul class="peer-list">
-              {peersInLane(lane.id).map((p) => (
-                <li>
-                  <div class="peer-head">
-                    <a
-                      class="peer-name"
-                      href={p.url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {p.name}
-                    </a>
-                    {p.by !== p.name ? (
-                      <span class="peer-by">{p.by}</span>
-                    ) : null}
-                    <span class="peer-organs">{p.organs.join(" · ")}</span>
-                  </div>
-                  <p class="peer-hook">{p.hook}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
+      <ul class="peer-list peer-list-dense">
+        {
+          neighbors.map((p) => (
+            <li>
+              <div class="peer-head">
+                <a
+                  class="peer-name"
+                  href={p.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {p.name}
+                </a>
+                <span class="peer-by">{p.laneTitle}</span>
+                <span class="peer-organs">{p.organs.join(" · ")}</span>
+              </div>
+              <p class="peer-hook">{p.hook}</p>
+            </li>
+          ))
+        }
+      </ul>
 
       {
         elsewhere.length > 0 && (
           <div class="elsewhere">
             <h3 class="lane-title">Elsewhere</h3>
-            <ul class="peer-list">
+            <ul class="peer-list peer-list-dense">
               {elsewhere.map((p) => (
                 <li>
                   <div class="peer-head">

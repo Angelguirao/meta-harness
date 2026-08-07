@@ -184,16 +184,43 @@ main {
 
 .stack {
   margin: 0;
-  padding: 0.9rem 0 0;
+  padding: 0.95rem 0 0;
   border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.35rem;
 }
 
-.stack code {
+.stack-row {
+  display: grid;
+  grid-template-columns: 4.25rem 1fr;
+  gap: 0.85rem;
+  align-items: baseline;
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  line-height: 1.7;
+  line-height: 1.55;
+}
+
+.stack-k {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.stack-v {
   color: var(--dim);
-  white-space: pre-wrap;
+}
+
+.stack-v a {
+  color: var(--dim);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.stack-v a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--line);
 }
 
 .prose,
@@ -234,25 +261,28 @@ main {
 }
 
 .shop-vs {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
-  align-self: center;
-  padding: 0 0.35rem;
+  padding: 0.55rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 
 @media (min-width: 720px) {
   .shop-vs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-top: 0;
+    border-bottom: 0;
     border-left: 1px solid var(--line);
     border-right: 1px solid var(--line);
     min-height: 100%;
     padding: 1rem 0.5rem;
+    align-self: stretch;
   }
 }
 
@@ -316,6 +346,25 @@ main {
   font-size: 0.68rem;
   letter-spacing: 0.02em;
   color: var(--dim);
+}
+
+.shop-organs a {
+  color: var(--dim);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.shop-organs a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--line);
+}
+
+.organ-list li {
+  scroll-margin-top: 3.5rem;
+}
+
+.organ-list li:target .organ-name {
+  color: var(--accent);
 }
 
 .shops-note {
@@ -398,6 +447,11 @@ h2 {
   gap: 0.2rem 1.1rem;
   padding: 0.8rem 0;
   border-bottom: 1px solid var(--line);
+  transition: background 0.2s ease;
+}
+
+.organ-list li:target {
+  background: rgba(217, 119, 6, 0.06);
 }
 
 @media (min-width: 560px) {
@@ -419,10 +473,6 @@ h2 {
   color: var(--muted);
 }
 
-.lane + .lane {
-  margin-top: 1.85rem;
-}
-
 .lane-title {
   font-family: var(--font-mono);
   font-weight: 500;
@@ -431,6 +481,10 @@ h2 {
   text-transform: uppercase;
   color: var(--dim);
   margin: 0 0 0.15rem;
+}
+
+.peer-list-dense {
+  margin-top: 0;
 }
 
 .peer-list li {
