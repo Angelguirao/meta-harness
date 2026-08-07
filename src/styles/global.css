@@ -359,14 +359,6 @@ main {
   border-bottom-color: var(--line);
 }
 
-.organ-list li {
-  scroll-margin-top: 3.5rem;
-}
-
-.organ-list li:target .organ-name {
-  color: var(--accent);
-}
-
 .shops-note {
   margin: 0;
   max-width: var(--measure);
@@ -447,11 +439,16 @@ h2 {
   gap: 0.2rem 1.1rem;
   padding: 0.8rem 0;
   border-bottom: 1px solid var(--line);
+  scroll-margin-top: 3.5rem;
   transition: background 0.2s ease;
 }
 
 .organ-list li:target {
   background: rgba(217, 119, 6, 0.06);
+}
+
+.organ-list li:target .organ-name {
+  color: var(--accent);
 }
 
 @media (min-width: 560px) {
