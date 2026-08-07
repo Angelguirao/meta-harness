@@ -5,14 +5,20 @@ export const PEERS = [
   {
     name: "Paperclip",
     layer: "company control plane",
-    note: "Org chart, budgets, hired agents. Closest “run a company of agents” product.",
+    note: "Issue/work-item centric — org chart, budgets, hired agents. Strong coordination; human-board shaped.",
     url: "https://paperclip.ing/",
   },
   {
     name: "Omnigent",
     layer: "orchestration wrap",
-    note: "One layer over Claude Code / Codex / Pi: swap, policy, shared live sessions.",
+    note: "Session-centric meta-harness — swap/policy/shared live sessions over Claude Code / Codex / Pi.",
     url: "https://omnigent.ai/",
+  },
+  {
+    name: "Agno AgentOS",
+    layer: "run control plane",
+    note: "Run/workflow-centric — durable runs, teams, multi-framework AgentOS. Execution unit ≠ Work Object.",
+    url: "https://www.agno.com/",
   },
   {
     name: "Polygraph",
@@ -25,6 +31,12 @@ export const PEERS = [
     layer: "fleet harness",
     note: "YC’s open quartermaster for many OpenClaw-like agents at work.",
     url: "https://qm.ycombinator.com/",
+  },
+  {
+    name: "OpenWorker",
+    layer: "intent → deliverable",
+    note: "Chat → task UX that finishes work; lighter organizational work graph than a full Work/Run/Session triad.",
+    url: "https://github.com/andrewyng/openworker",
   },
   {
     name: "Beads",
