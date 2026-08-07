@@ -74,8 +74,8 @@ export const LANES = [
   { id: "work-graph", title: "Work graph" },
   { id: "fleet", title: "Fleet harness" },
   { id: "retrieve", title: "Retrieve organ" },
-  { id: "optimize", title: "Not orchestration", quiet: true },
-  { id: "adjacent", title: "Adjacent", quiet: true },
+  { id: "optimize", title: "optimization", quiet: true },
+  { id: "adjacent", title: "adjacent", quiet: true },
 ];
 
 /** @type {Peer[]} */

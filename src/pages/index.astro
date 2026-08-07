@@ -10,7 +10,9 @@ import {
 
 const tbd = PEERS.find((p) => p.self);
 const mainLanes = LANES.filter((l) => !l.quiet && peersInLane(l.id).length);
-const quietLanes = LANES.filter((l) => l.quiet && peersInLane(l.id).length);
+const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
+  peersInLane(l.id).map((p) => ({ ...p, laneTitle: l.title })),
+);
 ---
 
 <BaseLayout>
@@ -18,8 +20,8 @@ const quietLanes = LANES.filter((l) => l.quiet && peersInLane(l.id).length);
     <span class="top-meta">research · v0</span>
     <nav class="top-nav" aria-label="On this page">
       <a href="#why">why</a>
-      <a href="#organs">organs</a>
       <a href="#shops">shops</a>
+      <a href="#organs">organs</a>
       <a href="#field">field</a>
       <a href="#tbd">tbd</a>
       <a href="https://github.com/Angelguirao/meta-harness">github</a>
@@ -50,18 +52,57 @@ muscle   claude code · codex · pi · open code · …</code></pre>
         And when the chat dies, the why dies with it. Git kept the patch. Nobody
         kept the decision. Next Tuesday starts cold.
       </p>
-      <p>
-        Same word, two jobs: <strong>orchestration</strong> (shop above the
-        muscle) vs <strong>optimization</strong> (search over harness code).
-        This page maps the shop — as a
-        <strong>bundle of organs</strong>, not one product shape.
+      <p class="punch">
+        Two shops are forming around that gap. Everything else is an organ, an
+        org OS, or a different job.
       </p>
-      <p class="punch">Field notes. Not a pitch.</p>
+    </section>
+
+    <section class="shops" id="shops" aria-labelledby="shops-title">
+      <h2 id="shops-title">Two shops</h2>
+      <p class="section-dek">
+        Orchestration, today — same layer, different center of gravity.
+      </p>
+      <div class="shop-grid">
+        {
+          TWO_SHOPS.map((s, i) => (
+            <>
+              {i === 1 ? (
+                <div class="shop-vs" aria-hidden="true">
+                  vs
+                </div>
+              ) : null}
+              <article class="shop">
+                <header class="shop-head">
+                  <a
+                    class="shop-name"
+                    href={s.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {s.name}
+                  </a>
+                  <span class="shop-by">{s.by}</span>
+                </header>
+                <p class="shop-claim">{s.claim}</p>
+                <p class="shop-hook">{s.hook}</p>
+                <p class="shop-organs">{s.organs.join(" · ")}</p>
+              </article>
+            </>
+          ))
+        }
+      </div>
+      <p class="shops-note">
+        Polygraph starts from <em>repos + memory</em>. Omnigent starts from
+        <em>harness swap + policy</em>. Neither is the whole organ bundle.
+      </p>
     </section>
 
     <section class="organs" id="organs" aria-labelledby="organs-title">
       <h2 id="organs-title">Organs</h2>
-      <p class="section-dek">If it’s missing, this breaks.</p>
+      <p class="section-dek">
+        Our lens for reading the field — not a vendor feature sheet.
+      </p>
       <ul class="organ-list">
         {
           PARTS.map((part) => (
@@ -74,41 +115,9 @@ muscle   claude code · codex · pi · open code · …</code></pre>
       </ul>
     </section>
 
-    <section class="shops" id="shops" aria-labelledby="shops-title">
-      <h2 id="shops-title">Two shops</h2>
-      <p class="section-dek">
-        The orchestration lane, today, is basically these two — different
-        centers of gravity.
-      </p>
-      <div class="shop-grid">
-        {
-          TWO_SHOPS.map((s) => (
-            <article class="shop">
-              <header class="shop-head">
-                <a class="shop-name" href={s.url} target="_blank" rel="noreferrer">
-                  {s.name}
-                </a>
-                <span class="shop-by">{s.by}</span>
-              </header>
-              <p class="shop-claim">{s.claim}</p>
-              <p class="shop-hook">{s.hook}</p>
-              <p class="shop-organs">{s.organs.join(" · ")}</p>
-            </article>
-          ))
-        }
-      </div>
-      <p class="shops-note">
-        Same layer. Polygraph starts from <em>repos + memory</em>. Omnigent
-        starts from <em>harness swap + policy</em>. Most other names below are
-        organs, org OS, or a different job.
-      </p>
-    </section>
-
     <section class="field" id="field" aria-labelledby="field-title">
       <h2 id="field-title">Around the shop</h2>
-      <p class="section-dek">
-        Useful neighbors. Not interchangeable with the two above.
-      </p>
+      <p class="section-dek">Neighbors. Not interchangeable with the two above.</p>
 
       {
         mainLanes.map((lane) => (
@@ -140,33 +149,27 @@ muscle   claude code · codex · pi · open code · …</code></pre>
       }
 
       {
-        quietLanes.length > 0 && (
-          <div class="quiet-block">
-            {quietLanes.map((lane) => (
-              <div class="lane lane-quiet">
-                <h3 class="lane-title">{lane.title}</h3>
-                <ul class="peer-list">
-                  {peersInLane(lane.id).map((p) => (
-                    <li>
-                      <div class="peer-head">
-                        <a
-                          class="peer-name"
-                          href={p.url}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {p.name}
-                        </a>
-                        {p.by !== p.name ? (
-                          <span class="peer-by">{p.by}</span>
-                        ) : null}
-                      </div>
-                      <p class="peer-hook">{p.hook}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+        elsewhere.length > 0 && (
+          <div class="elsewhere">
+            <h3 class="lane-title">Elsewhere</h3>
+            <ul class="peer-list">
+              {elsewhere.map((p) => (
+                <li>
+                  <div class="peer-head">
+                    <a
+                      class="peer-name"
+                      href={p.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {p.name}
+                    </a>
+                    <span class="peer-by">{p.laneTitle}</span>
+                  </div>
+                  <p class="peer-hook">{p.hook}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         )
       }
@@ -176,7 +179,7 @@ muscle   claude code · codex · pi · open code · …</code></pre>
       tbd && (
         <section class="tbd" id="tbd" aria-labelledby="tbd-title">
           <h2 id="tbd-title">TBD</h2>
-          <p class="section-dek">Private. Unlinked. Unclaimed.</p>
+          <p class="section-dek">Private stack. Unlinked. Unclaimed.</p>
           <dl class="tbd-cut">
             <div>
               <dt>lane</dt>
@@ -198,24 +201,20 @@ muscle   claude code · codex · pi · open code · …</code></pre>
               </dd>
             </div>
           </dl>
+          <ol class="tbd-open-q">
+            <li>
+              After a three-repo change, what stays queryable next week without
+              re-explaining the why?
+            </li>
+            <li>Next thin organ: handoff, sandbox, or scope?</li>
+            <li>
+              If Polygraph + Omnigent + Beads + retrieve covered the week, what
+              is a private control plane still for?
+            </li>
+          </ol>
         </section>
       )
     }
-
-    <section class="open" id="open" aria-labelledby="open-title">
-      <h2 id="open-title">Open</h2>
-      <ol>
-        <li>
-          After a three-repo change, what stays queryable next week without
-          re-explaining the why?
-        </li>
-        <li>Next thin organ: handoff, sandbox, or scope?</li>
-        <li>
-          If Polygraph + Omnigent + Beads + retrieve covered the week, what is
-          a private control plane still for?
-        </li>
-      </ol>
-    </section>
   </main>
 
   <footer class="foot">

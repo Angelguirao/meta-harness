@@ -9,7 +9,8 @@ interface Props {
 const title = Astro.props.title ?? "meta-harness";
 const description =
   Astro.props.description ??
-  "Research notes on the layer above coding agents.";
+  "Field notes on the shop above coding agents — Polygraph, Omnigent, and the organs around them.";
+const canonical = "https://meta-harness.vercel.app/";
 ---
 
 <!doctype html>
@@ -21,6 +22,14 @@ const description =
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#09090B" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
