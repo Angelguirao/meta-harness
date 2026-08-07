@@ -60,15 +60,15 @@ export const PEERS = [
 ];
 
 /**
- * Related infrastructure that is easy to confuse with the layer above harnesses.
- * Useful to borrow from; wrong as the product category.
+ * Strong bets on a single organ of the “layer above” bundle —
+ * often mistaken for the whole animal.
  */
 /** @type {Peer[]} */
 export const ADJACENT = [
   {
     name: "Cerebras Knowledge",
-    layer: "org knowledge base",
-    note: "Meet data where it lives, distill, retrieve, answer with citations. Powers humans and agents — but the job is find X, not own phases, policy, or cross-repo work.",
+    layer: "retrieval / distillation",
+    note: "Meet data where it lives → distill → hybrid retrieve → cited answers. One part many stacks need; center of gravity is find X, not orchestrate acting agents.",
     url: "https://www.cerebras.ai/blog/how-we-built-our-knowledge-base",
   },
 ];

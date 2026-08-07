@@ -26,7 +26,7 @@ import { ADJACENT, PEERS } from "../data/landscape.js";
       <a href="#above">Above</a>
       <a href="#lifeos">LifeOS</a>
       <a href="#field">Field</a>
-      <a href="#not">Not this</a>
+      <a href="#parts">Parts</a>
       <a href="#open">Open</a>
     </nav>
 
@@ -132,11 +132,20 @@ import { ADJACENT, PEERS } from "../data/landscape.js";
         </ul>
       </section>
 
-      <section id="not">
-        <h2>Not this</h2>
+      <section id="parts">
+        <h2>Parts, not one product shape</h2>
         <p>
-          Easy to confuse with the layer above harnesses. Worth learning from.
-          Wrong category if you treat them as the same product.
+          A fuller “layer above” is probably a <strong>bundle</strong>: work
+          graph, session memory, cross-repo scope, policy/sandbox, retrieval /
+          world model, harness swap. Almost nobody ships the whole bundle with
+          equal weight. Peers specialize — Polygraph on space and time across
+          repos, Omnigent on session + policy, Paperclip on company coordination,
+          Stanford on searching the harness itself.
+        </p>
+        <p>
+          So the useful question is rarely “is X a meta-harness?” It is
+          <em>which parts does X own, and which center of gravity is the
+          product?</em>
         </p>
         <ul class="peers peers-adjacent">
           {
@@ -158,17 +167,23 @@ import { ADJACENT, PEERS } from "../data/landscape.js";
           }
         </ul>
         <p>
-          A knowledge base answers <em>where is X / what is Z</em>. A
-          meta-harness (in our working sense) owns continuity, scope, and
-          constraint around agents that act. LifeOS borrows Cerebras-style
-          meet-data-where-it-lives and hybrid retrieve — and rejects
-          doc-warehouse-as-the-product.
+          Cerebras Knowledge is a strong bet on the <strong>retrieval /
+          distillation</strong> part — meet data where it lives, answer with
+          citations, serve humans and agents. That can sit <em>inside</em> a
+          meta-harness or cognitive OS (LifeOS already borrows that philosophy).
+          It is not, by itself, continuity + scope + constraint around acting
+          agents. Same for a pure work tracker or a pure sandbox: necessary
+          organs, not the whole animal.
         </p>
       </section>
 
       <section id="open">
         <h2>Still open</h2>
         <ol class="questions">
+          <li>
+            Which parts of the bundle are load-bearing for LifeOS — and which
+            can stay thin forever?
+          </li>
           <li>
             Is the durable asset the wrap around coding agents, or the world
             model and walker that dispatch them?

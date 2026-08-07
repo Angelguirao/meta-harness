@@ -6,17 +6,19 @@
  * @see docs/PERSONAL-SURFACE-TOKENS.md
  */
 :root {
-  /* Color — cool zinc + rare amber (LifeOS Industrial) */
+  /* Color — cool zinc ground; amber is signal only (never page wash / focus chrome) */
   --background: #fafafa;
   --background-breathe: #f4f4f5;
   --foreground: #18181b;
-  --muted: #71717a;
+  /* zinc-600 — AA on #fafafa (~7:1); do not wash with /50–/65 opacities */
+  --muted: #52525b;
   --accent: #d97706;
-  --accent-soft: rgba(217, 119, 6, 0.1);
+  --accent-soft: rgba(217, 119, 6, 0.08);
   --accent-strong: #b45309;
   --surface: #ffffff;
   --border: #e4e4e7;
-  --glow: rgba(217, 119, 6, 0.12);
+  /* Cool ink glow — amber glow reserved for explicit signal components */
+  --glow: rgba(24, 24, 27, 0.06);
 
   /* Shape — tighter than cream-era soft panels */
   --radius-panel: 0.75rem;

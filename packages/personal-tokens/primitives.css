@@ -3,9 +3,11 @@
  * Apps still own Tailwind @theme, overflow guards, and workshop desk tokens.
  */
 
+/* void-breathe retired for PersonalOS desks — static cool ground (less warm drift). */
 @media (prefers-reduced-motion: no-preference) {
   .void-breathe {
-    animation: personal-breathe 14s ease-in-out infinite;
+    animation: none;
+    background-color: var(--background);
   }
 }
 
@@ -31,7 +33,7 @@
 }
 
 ::selection {
-  background: var(--accent-soft);
+  background: color-mix(in srgb, var(--foreground) 12%, transparent);
   color: var(--foreground);
 }
 
@@ -40,8 +42,10 @@
   inset: 0;
   pointer-events: none;
   z-index: 50;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Keep grain cool and faint — higher opacity + noise reads warm/dirty */
+  opacity: 0.015;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }
 
 @keyframes personal-blink {
