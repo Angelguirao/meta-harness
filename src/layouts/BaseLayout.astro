@@ -6,10 +6,10 @@ interface Props {
   description?: string;
 }
 
-const title = Astro.props.title ?? "Meta-harness — field notes";
+const title = Astro.props.title ?? "meta-harness";
 const description =
   Astro.props.description ??
-  "Research notes on the layer above AI agent harnesses — problems, nature, landscape, and where LifeOS sits.";
+  "Field notes on the layer above AI agent harnesses, written while building LifeOS.";
 ---
 
 <!doctype html>
@@ -23,14 +23,17 @@ const description =
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
   </head>
-  <body class="void-breathe relative">
+  <body>
     <a class="skip" href="#main">Skip to content</a>
+    <div class="atmosphere" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
-    <slot />
+    <div class="wrap">
+      <slot />
+    </div>
   </body>
 </html>

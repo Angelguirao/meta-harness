@@ -1,221 +1,169 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import SectionReveal from "../components/SectionReveal";
-import LandscapeFilter from "../components/LandscapeFilter";
-import {
-  LAYERS,
-  NATURE,
-  OPEN_QUESTIONS,
-  PROBLEMS,
-} from "../data/landscape";
-
-const toc = [
-  { id: "problems", label: "Problems" },
-  { id: "nature", label: "Nature" },
-  { id: "layers", label: "Layers" },
-  { id: "landscape", label: "Landscape" },
-  { id: "lifeos", label: "LifeOS" },
-  { id: "open", label: "Open" },
-];
+import { PEERS } from "../data/landscape.js";
 ---
 
 <BaseLayout>
-  <header
-    class="relative z-10 border-b border-border/40 px-4 py-4 lg:px-10"
-  >
-    <div class="mx-auto flex max-w-3xl items-center justify-between gap-4 lg:max-w-4xl">
-      <a href="/" class="personal-display-title text-lg text-foreground no-underline"
-        >meta-harness</a
-      >
-      <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-        Field notes · v0
-      </p>
-    </div>
+  <header class="site-header">
+    <span class="site-meta">field notes · v0</span>
+    <a href="https://github.com/Angelguirao/meta-harness">GitHub</a>
   </header>
 
-  <main id="main" class="relative z-10 px-4 pb-24 pt-12 lg:px-10 lg:pt-16">
-    <div class="mx-auto max-w-3xl space-y-20 lg:max-w-4xl">
-      <section class="space-y-6">
-        <p
-          class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted"
-        >
-          Research in public
+  <main id="main">
+    <h1 class="brand">meta-harness</h1>
+    <p class="lede">
+      Notes on whatever sits above a coding agent — written while building LifeOS,
+      before the industry settles what the word means.
+    </p>
+
+    <ul class="toc" aria-label="Sections">
+      <li><a href="#claim">Claim</a></li>
+      <li><a href="#harness">Harness</a></li>
+      <li><a href="#above">Above</a></li>
+      <li><a href="#lifeos">LifeOS</a></li>
+      <li><a href="#field">Field</a></li>
+      <li><a href="#open">Open</a></li>
+    </ul>
+
+    <article>
+      <section id="claim">
+        <h2>What this is</h2>
+        <p>
+          This is not a product page and not a clone of anyone else’s taxonomy.
+          It is a public notebook: problems we keep hitting when agents are the
+          workers, guesses about the missing layer, and a short map of peers who
+          are touching adjacent pain.
         </p>
-        <h1
-          class="personal-display-title max-w-2xl text-4xl leading-tight text-foreground sm:text-5xl"
-        >
-          The layer above agent harnesses — still being named
-        </h1>
-        <p class="max-w-2xl text-base leading-relaxed text-muted">
-          Harnesses like Claude Code and Codex do one job well. Something sits
-          above them: continuity, boundaries, policy, maybe a world model. Peers
-          call pieces of that a meta-harness. We are discovering the object
-          through LifeOS — not borrowing someone else’s dictionary.
+        <p>
+          If the word <strong>meta-harness</strong> ends up meaning something
+          narrower than what LifeOS needs, we will rename. The research is the
+          point.
         </p>
-        <nav
-          class="flex flex-wrap gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-wider text-muted"
-          aria-label="On this page"
-        >
-          {
-            toc.map((item) => (
-              <a href={`#${item.id}`} class="hover:text-foreground">
-                {item.label}
-              </a>
-            ))
-          }
-        </nav>
       </section>
 
-      <SectionReveal client:visible>
-        <section id="problems" class="scroll-mt-8 space-y-6">
-          <h2 class="personal-display-title text-2xl text-foreground">
-            Problems
-          </h2>
-          <p class="max-w-2xl text-sm text-muted">
-            What breaks when you only have harnesses — the pressure that makes a
-            higher layer feel necessary.
-          </p>
-          <ol class="divide-y divide-border/30 border-y border-border/30">
-            {
-              PROBLEMS.map((p, i) => (
-                <li class="grid gap-2 py-6 sm:grid-cols-[5rem_1fr]">
-                  <p class="font-mono text-[11px] uppercase tracking-widest text-muted">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
-                  <div>
-                    <p class="personal-display-title text-lg text-foreground">
-                      {p.title}
-                    </p>
-                    <p class="mt-2 text-sm leading-relaxed text-muted">{p.body}</p>
-                  </div>
-                </li>
-              ))
-            }
-          </ol>
-        </section>
-      </SectionReveal>
+      <section id="harness">
+        <h2>A harness is the employee</h2>
+        <p>
+          Claude Code, Codex, Deep Agents, OpenClaw — pick your favorite. A
+          harness is the loop that holds tools, a filesystem, a sandbox, and a
+          session. You point it at a folder. It reads, edits, tests, opens a PR.
+        </p>
+        <p>
+          That job matters. It is also incomplete for how work actually shows up:
+        </p>
+        <p>
+          The change spans three repos, but the agent only sees one checkout. The
+          last session already ruled out an approach — that reasoning died when
+          the chat closed. A teammate’s agent burned two hours on the same dead
+          end yesterday, invisibly. Policy is a paragraph in
+          <code>AGENTS.md</code> that the model sometimes obeys.
+        </p>
+        <p>
+          Git remembers the diff. The session remembered why. The organization
+          remembers neither in a form the next agent can use.
+        </p>
+      </section>
 
-      <SectionReveal client:visible>
-        <section id="nature" class="scroll-mt-8 space-y-6">
-          <h2 class="personal-display-title text-2xl text-foreground">
-            Nature
-          </h2>
-          <p class="max-w-2xl text-sm text-muted">
-            Working claims about what the object is. Revisable.
-          </p>
-          <ul class="space-y-8">
-            {
-              NATURE.map((n) => (
-                <li class="max-w-2xl">
-                  <p class="personal-display-title text-lg text-foreground">
-                    {n.title}
-                  </p>
-                  <p class="mt-2 text-sm leading-relaxed text-muted">{n.body}</p>
-                </li>
-              ))
-            }
-          </ul>
-        </section>
-      </SectionReveal>
+      <section id="above">
+        <h2>Something has to sit above</h2>
+        <p>
+          Call it a meta-harness, a control plane, a company OS, a synthetic
+          monorepo — the label is contested. The job is clearer:
+        </p>
+        <p>
+          <strong>Continuity</strong> across sessions and people.
+          <strong>Scope</strong> across repositories and systems of record.
+          <strong>Constraint</strong> that is enforced in code, not hoped for in
+          prompts. Optionally a <strong>world model</strong> — durable meaning
+          that is not chat transcript.
+        </p>
+        <p>
+          Some products stop at wrap-the-coding-agent. Some want to be the place
+          you hire and budget a whole team of agents. Both are answering pressure
+          from the same broken defaults. We refuse to pretend they are the same
+          object until shipping forces a choice.
+        </p>
+      </section>
 
-      <SectionReveal client:visible>
-        <section id="layers" class="scroll-mt-8 space-y-6">
-          <h2 class="personal-display-title text-2xl text-foreground">
-            Working layer map
-          </h2>
-          <p class="max-w-2xl text-sm text-muted">
-            A scaffold for reading peers — not a settled ontology. Labels will
-            move as the research does.
-          </p>
-          <ol class="divide-y divide-border/30 border-y border-border/30">
-            {
-              LAYERS.map((l, i) => (
-                <li class="grid gap-2 py-5 sm:grid-cols-[5rem_1fr]">
-                  <p class="font-mono text-[11px] uppercase tracking-widest text-muted">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
-                  <div>
-                    <p class="personal-display-title text-lg text-foreground">
-                      {l.label}
-                    </p>
-                    <p class="mt-1 text-sm text-muted">{l.hint}</p>
-                  </div>
-                </li>
-              ))
-            }
-          </ol>
-        </section>
-      </SectionReveal>
+      <section id="lifeos">
+        <h2>What we are actually building</h2>
+        <p>
+          <a class="in-body" href="https://github.com/Angelguirao/personal-ai-os"
+            >LifeOS</a
+          > is a personal cognitive OS: folio and ledger as source of truth,
+          PersonalOS as the phase walker (observe → plan → execute → validate →
+          learn), Fly-hosted Deep Agents as muscle. Agents are workers. They do
+          not own the plan pointer.
+        </p>
+        <p class="stack">
+          world model (folio · ledger · trackers)<br />
+          → intelligence (PersonalOS OPEVL)<br />
+          → execution (Fly Deep Agents · optional Claude/Codex)
+        </p>
+        <p>
+          That stack already behaves like a control plane with harness muscle. It
+          only partially behaves like the thin “meta” wraps (session handoff,
+          cross-repo orchestration, OS sandbox). The open question is which gap
+          is the product — and whether one name should cover both.
+        </p>
+      </section>
 
-      <SectionReveal client:visible>
-        <section id="landscape" class="scroll-mt-8 space-y-6">
-          <h2 class="personal-display-title text-2xl text-foreground">
-            Landscape
-          </h2>
-          <p class="max-w-2xl text-sm text-muted">
-            Adjacent bets. Useful as field notes — not as canon for our
-            definition.
-          </p>
-          <LandscapeFilter client:load />
-        </section>
-      </SectionReveal>
+      <section id="field">
+        <h2>Who else is in the field</h2>
+        <p>
+          Annotated, not ranked. Read them as bets on different slices of the
+          pressure above — not as a feature matrix we intend to match.
+        </p>
+        <ul class="peers">
+          {
+            PEERS.map((p) => (
+              <li>
+                <div>
+                  {p.url ? (
+                    <a href={p.url} target="_blank" rel="noreferrer">
+                      {p.name}
+                    </a>
+                  ) : (
+                    <span>{p.name}</span>
+                  )}
+                  <div class="layer">{p.layer}</div>
+                </div>
+                <p>{p.note}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
 
-      <SectionReveal client:visible>
-        <section id="lifeos" class="scroll-mt-8 space-y-6">
-          <h2 class="personal-display-title text-2xl text-foreground">
-            Where LifeOS sits
-          </h2>
-          <p class="max-w-2xl text-sm leading-relaxed text-muted">
-            LifeOS is a personal cognitive OS: folio and ledger as world model,
-            PersonalOS as OPEVL control plane, Fly Deep Agents as muscle. It
-            already touches orchestration concerns (approvals, contracts,
-            swappable executors). Whether that <em class="not-italic text-foreground/80"
-              >is</em
-            > a meta-harness — or an org OS that includes meta-harness traits —
-            is the open question this site exists to pressure.
-          </p>
-          <p
-            class="signal-rule pl-4 font-mono text-sm leading-relaxed text-foreground/80"
-          >
-            PersonalOS (walker) → Fly Deep Agents (muscle) → Folio / ledger (SoT)
-          </p>
-        </section>
-      </SectionReveal>
-
-      <SectionReveal client:visible>
-        <section id="open" class="scroll-mt-8 space-y-6">
-          <h2 class="personal-display-title text-2xl text-foreground">
-            Open questions
-          </h2>
-          <ol class="list-decimal space-y-3 pl-5 text-sm leading-relaxed text-muted">
-            {OPEN_QUESTIONS.map((q) => <li class="max-w-2xl pl-1">{q}</li>)}
-          </ol>
-        </section>
-      </SectionReveal>
-    </div>
+      <section id="open">
+        <h2>Still open</h2>
+        <ol class="questions">
+          <li>
+            Is the durable asset the wrap around coding agents, or the world
+            model + walker that happens to dispatch them?
+          </li>
+          <li>
+            What must survive a crashed harness for the layer above to have
+            earned its keep?
+          </li>
+          <li>
+            For LifeOS, which missing surface forces a real placement call first:
+            session handoff, policy sandbox, or cross-repo work?
+          </li>
+          <li>
+            When — if ever — does this stop being a private OS and become
+            something other operators should run?
+          </li>
+        </ol>
+      </section>
+    </article>
   </main>
 
-  <footer
-    class="relative z-10 border-t border-border/40 px-4 py-10 text-sm text-muted lg:px-10"
-  >
-    <div class="mx-auto max-w-3xl space-y-2 lg:max-w-4xl">
-      <p>
-        Built in public next to{" "}
-        <a
-          class="underline-offset-2 hover:underline"
-          href="https://github.com/Angelguirao/personal-ai-os"
-          >LifeOS</a
-        >. Peers such as{" "}
-        <a
-          class="underline-offset-2 hover:underline"
-          href="https://metaharness.tools/#top"
-          >metaharness.tools</a
-        >{" "}
-        are citations, not the definition.
-      </p>
-      <p class="font-mono text-[11px] uppercase tracking-wider">
-        MIT · Industrial skin · Astro
-      </p>
-    </div>
+  <footer class="site-footer">
+    <p>
+      Built beside LifeOS. Peers including{" "}
+      <a href="https://metaharness.tools/#top">metaharness.tools</a> are
+      citations. MIT.
+    </p>
   </footer>
 </BaseLayout>

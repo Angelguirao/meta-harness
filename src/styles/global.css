@@ -1,63 +1,23 @@
-@import "tailwindcss";
 @import "@angelguirao/personal-tokens/tokens.css";
 @import "@angelguirao/personal-tokens/primitives.css";
 
-@custom-variant dark (&:is(.dark *));
+/*
+  Meta-harness field notes — LifeOS Industrial reading surface.
+  Zinc chrome. Amber only as rare signal. No cream panels, no terracotta,
+  no marketing card grids, no chip dashboards.
+*/
 
 :root {
-  --background: #fafafa;
-  --background-breathe: #f4f4f5;
-  --foreground: #18181b;
-  --surface: #ffffff;
-  --border: #e4e4e7;
-  --muted: #71717a;
-  --muted-foreground: #71717a;
-  /* Amber is rare signal only — never warm cream fills / brown-amber chrome
-     (those read as terracotta). UI chrome stays cool zinc. */
-  --accent: #d97706;
-  --accent-soft: #f4f4f5;
-  --accent-strong: #18181b;
-  --accent-foreground: #18181b;
-  --glow: rgba(24, 24, 27, 0.08);
-
-  --card: #ffffff;
-  --card-foreground: #18181b;
-  --popover: #ffffff;
-  --popover-foreground: #18181b;
-  --primary: #18181b;
-  --primary-foreground: #fafafa;
-  --secondary: #f4f4f5;
-  --secondary-foreground: #18181b;
-  --destructive: #dc2626;
-  --input: #e4e4e7;
-  --ring: #52525b;
-  --radius: 0.375rem;
-
+  --bg: var(--background);
+  --text: var(--foreground);
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-soft: var(--accent-soft);
-  --color-accent-strong: var(--accent-strong);
-  --color-border: var(--border);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-ring: var(--ring);
-  --color-destructive: var(--destructive);
-  --font-sans: var(--font-body);
-  --font-mono: var(--font-mono);
-  --radius-sm: calc(var(--radius) - 2px);
-  --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) + 2px);
+  --measure: 38rem;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --rule: color-mix(in srgb, var(--border) 70%, transparent);
+  /* Soft accent wash: cool, not cream yellow */
+  --accent-wash: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 * {
@@ -72,16 +32,17 @@ html {
 body {
   margin: 0;
   min-height: 100dvh;
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-body);
-  background: var(--background);
-  color: var(--foreground);
-  line-height: 1.55;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-.personal-display-title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+::selection {
+  background: var(--accent-wash);
+  color: var(--text);
 }
 
 .skip {
@@ -91,19 +52,283 @@ body {
 }
 
 .skip:focus {
-  left: 1rem;
+  left: var(--gutter);
   top: 1rem;
-  z-index: 60;
+  z-index: 40;
+  padding: 0.5rem 0.75rem;
   background: var(--foreground);
   color: var(--background);
-  padding: 0.5rem 0.75rem;
+  text-decoration: none;
 }
 
-::selection {
-  background: #e4e4e7;
-  color: #18181b;
+/* Atmosphere: cool zinc hatch, not gradient theater */
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--background-breathe) 55%, transparent) 0%,
+      transparent 28%
+    ),
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 11px,
+      color-mix(in srgb, var(--border) 35%, transparent) 11px,
+      color-mix(in srgb, var(--border) 35%, transparent) 12px
+    );
+  opacity: 0.35;
+  mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 85%);
 }
 
-.signal-rule {
+.wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.site-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.site-header a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.site-header a:hover {
+  color: var(--foreground);
+}
+
+.site-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+main {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: clamp(2.5rem, 8vw, 4.5rem) var(--gutter) 5rem;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.75rem, 9vw, 4.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  margin: 0 0 1.25rem;
+}
+
+.lede {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--foreground) 78%, var(--muted));
+  text-wrap: pretty;
+  margin: 0 0 2.5rem;
+  max-width: 34rem;
+}
+
+.toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin: 0 0 3.5rem;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.toc a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.toc a:hover {
+  color: var(--accent);
+}
+
+article section {
+  padding: 2.75rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+article section:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  text-wrap: balance;
+  margin: 0 0 1rem;
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.015em;
+  margin: 1.75rem 0 0.5rem;
+}
+
+p,
+li {
+  text-wrap: pretty;
+  color: color-mix(in srgb, var(--foreground) 88%, var(--muted));
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--background-breathe);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+a.in-body {
+  color: var(--foreground);
+  text-decoration-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  text-underline-offset: 0.18em;
+}
+
+a.in-body:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.stack {
+  margin: 1.5rem 0 0;
+  padding: 0.9rem 0 0.9rem 1rem;
   border-left: 2px solid var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--foreground);
+}
+
+.peers {
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.peers li {
+  display: grid;
+  gap: 0.35rem 1.25rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 640px) {
+  .peers li {
+    grid-template-columns: 11rem 1fr;
+    align-items: baseline;
+  }
+}
+
+.peers li:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.peers a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.peers a:hover {
+  color: var(--accent);
+}
+
+.peers .layer {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+.peers p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.questions {
+  margin: 1rem 0 0;
+  padding-left: 1.15rem;
+}
+
+.questions li {
+  margin-bottom: 0.75rem;
+}
+
+.questions li::marker {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+.site-footer {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter) 3rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.site-footer a {
+  color: var(--foreground);
+  text-underline-offset: 0.15em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .atmosphere {
+    opacity: 0.2;
+  }
 }

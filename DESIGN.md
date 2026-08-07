@@ -8,19 +8,16 @@ This research site shares the **LifeOS Industrial** personal skin.
 
 ## Site intent
 
-Public field notes on a forming concept (meta-harness) — not a product marketing clone of peer sites. Industrial zinc + rare amber; Space Grotesk / DM Sans / JetBrains Mono.
+Public field notes — a reading surface, not a SaaS landing page.
 
-**Accent discipline:** amber (`#d97706`) is a rare 1–2px signal only. Never use amber-700 / cream-yellow soft fills as chrome — they read as terracotta. Eyebrows, chips, buttons, and selection stay cool zinc.
+- Brand (`meta-harness`) is the hero.
+- One lede. Long-form sections. Measure ~38rem.
+- Hairline rules, zinc hatch atmosphere, light grain.
+- Amber only as the stack rule / sparse link hover — never cream fills, never amber-700 chrome, never chip dashboards.
+- No cards, no numbered marketing lists, no scroll-reveal theater by default.
 
-## Motion (this surface)
+## Motion
 
-- Section enter: opacity + `translateY` only, ease-out, ~400–500ms, respect `prefers-reduced-motion`.
-- Landscape filter: chip press feedback ≤200ms; list crossfade opacity only.
-- Ambient: optional `void-breathe` on the canvas — pause when reduced motion.
-- Do not animate layout width/height; no mascot theater copied from peers.
-
-## shadcn
-
-Radix-based kit under `src/components/ui/`, CSS vars bridged to Industrial tokens in `src/styles/global.css`. Prefer existing primitives over one-offs.
+Prefer none on this surface. Scroll is enough. If motion returns later: compositor-only, reduced-motion respected, rare sections only.
 
 Do not invent a second personal palette. Holzen Nox is out of scope.
