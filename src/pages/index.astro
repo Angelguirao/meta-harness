@@ -1,52 +1,53 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { PARTS, PEERS } from "../data/landscape.js";
+import { PARTS, PEERS, ownsLabel } from "../data/landscape.js";
+
+const organIds = PARTS.map((p) => p.id);
 ---
 
 <BaseLayout>
   <header class="top">
-    <span class="top-meta">lifeos · research notes · v0</span>
+    <span class="top-meta">lifeos · research · v0</span>
     <nav class="top-nav" aria-label="On this page">
       <a href="#scene">scene</a>
-      <a href="#bundle">bundle</a>
+      <a href="#bundle">organs</a>
       <a href="#field">field</a>
       <a href="#lifeos">lifeos</a>
-      <a href="https://github.com/Angelguirao/meta-harness">source</a>
+      <a href="#open">open</a>
+      <a class="top-source" href="https://github.com/Angelguirao/meta-harness"
+        >source</a
+      >
     </nav>
   </header>
 
-  <div class="hero-bleed" aria-hidden="true">
-    <pre class="schematic"><code>┌─ shop ──────────────────────────────────────┐
-│  continuity   scope   constraint   work     │
-│  retrieve     swap                          │
-│       │                                     │
-│       ▼                                     │
-│  ┌─ muscle ─────────────────────────────┐   │
-│  │  claude code · codex · deep agents   │   │
-│  └──────────────────────────────────────┘   │
-└─────────────────────────────────────────────┘</code></pre>
-  </div>
-
   <main id="main">
-    <section class="hero">
-      <h1 class="brand">meta-harness</h1>
-      <p class="lede">
-        Working name for the shop above the coding agent — the stuff that
-        survives when the chat dies.
-      </p>
-      <p class="dek">
-        Not a product pitch. Notes from running
-        <a href="https://github.com/Angelguirao/personal-ai-os">LifeOS</a>
-        next to everyone else who is building this layer.
-      </p>
+    <section class="hero" aria-labelledby="brand">
+      <div class="hero-copy">
+        <h1 id="brand" class="brand">meta-harness</h1>
+        <p class="lede">
+          Working name for the shop above the coding agent — what survives when
+          the chat dies.
+        </p>
+        <p class="dek">
+          Not a pitch. Field notes from
+          <a href="https://github.com/Angelguirao/personal-ai-os">LifeOS</a>
+          against everyone shipping this layer.
+        </p>
+      </div>
+      <div class="hero-schematic" aria-hidden="true">
+        <pre class="schematic"><code><span class="sch-shop">shop</span>  continuity · scope · constraint · work · retrieve · swap
+  │
+  ▼
+<span class="sch-muscle">muscle</span>  claude code · codex · deep agents</code></pre>
+      </div>
     </section>
 
     <section class="scene" id="scene" aria-labelledby="scene-title">
       <h2 id="scene-title">Tuesday, still broken</h2>
       <p>
         Ticket: cancel a stuck order. Needs the payments API, the customer web
-        app, and a design-system confirm dialog. Three repos. Claude Code can
-        edit one tree at a time. You clone, branch, paste context, babysit
+        app, and a design-system confirm dialog. Three repos. The coding agent
+        edits one tree at a time. You clone, branch, paste context, babysit
         three PRs so they land in the same deploy.
       </p>
       <p>
@@ -59,28 +60,30 @@ import { PARTS, PEERS } from "../data/landscape.js";
       </p>
     </section>
 
-    <section class="define" aria-labelledby="define-title">
+    <section class="define" id="define" aria-labelledby="define-title">
       <h2 id="define-title">Working definition</h2>
       <p>
-        A <strong>harness</strong> is one agent loop in one session — Claude
-        Code, Codex, Deep Agents. A <strong>meta-harness</strong>, as we use
-        the word here, is not a single SKU. It is a
+        A <strong>harness</strong> is one agent loop in one session. A
+        <strong>meta-harness</strong>, here, is not a SKU — it is a
         <strong>bundle of organs</strong> that make those loops usable across
-        time, repos, and risk: continuity, scope, constraint, work graph,
-        retrieve, swap.
+        time, repos, and risk.
       </p>
       <p>
-        Peers ship different subsets hard.
-        <a href="https://metaharness.tools">metaharness.tools</a> is a useful
-        map of the conversation — not our dictionary. We learn the label by
-        placing LifeOS next to the field.
+        Two different jobs share the name: <em>orchestration</em> (shop above
+        the muscle) and <em>optimization</em> (outer loop that searches harness
+        code — Stanford). This notebook is about the shop.
+      </p>
+      <p>
+        <a href="https://metaharness.tools">metaharness.tools</a> maps the
+        conversation. It is not our dictionary. We learn the label by placing
+        LifeOS in the field.
       </p>
     </section>
 
     <section class="bundle" id="bundle" aria-labelledby="bundle-title">
       <div class="section-head">
         <h2 id="bundle-title">If this organ is missing</h2>
-        <p>Each line is a failure mode, not a feature slogan.</p>
+        <p>Failure modes — not feature slogans.</p>
       </div>
       <ul class="matrix">
         {
@@ -96,22 +99,27 @@ import { PARTS, PEERS } from "../data/landscape.js";
 
     <section class="field" id="field" aria-labelledby="field-title">
       <div class="section-head">
-        <h2 id="field-title">Field notes</h2>
-        <p>Center of gravity — who owns which organ hard.</p>
+        <h2 id="field-title">Field</h2>
+        <p>Who owns which organ hard. Dot = center of gravity, not a score.</p>
       </div>
-      <div class="owners-wrap">
-        <table class="owners">
+
+      <div class="coverage-wrap" role="region" aria-label="Organ coverage by peer">
+        <table class="coverage">
           <thead>
             <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Owns hard</th>
-              <th scope="col">Read as</th>
+              <th scope="col" class="coverage-name">Name</th>
+              {
+                PARTS.map((p) => (
+                  <th scope="col">{p.label}</th>
+                ))
+              }
+              <th scope="col" class="coverage-read">Read as</th>
             </tr>
           </thead>
           <tbody>
             {
               PEERS.map((p) => (
-                <tr>
+                <tr class:list={[{ "is-self": p.self }]}>
                   <th scope="row">
                     {p.url ? (
                       <a href={p.url} target="_blank" rel="noreferrer">
@@ -120,82 +128,91 @@ import { PARTS, PEERS } from "../data/landscape.js";
                     ) : (
                       p.name
                     )}
+                    <span class="sr-only"> owns {ownsLabel(p.organs)}</span>
                   </th>
-                  <td class="owns">{p.owns}</td>
-                  <td>{p.note}</td>
+                  {organIds.map((id) => (
+                    <td>
+                      {p.organs.includes(id) ? (
+                        <span class="dot" title={id}>
+                          ●
+                        </span>
+                      ) : (
+                        <span class="dot-empty" aria-hidden="true">
+                          ·
+                        </span>
+                      )}
+                    </td>
+                  ))}
+                  <td class="coverage-note">{p.note}</td>
                 </tr>
               ))
             }
           </tbody>
         </table>
       </div>
+
       <p class="note">
         <mark>Cerebras Knowledge</mark> is retrieve done well. It can sit inside
-        a fuller stack. Continuity + scope + constraint are still someone
-        else’s job — same pattern as a tracker that only does work, or a
-        sandbox that only does constraint.
+        a fuller stack. Continuity, scope, and constraint are still someone
+        else’s job — same as a tracker that only does work.
       </p>
     </section>
 
     <section class="lifeos" id="lifeos" aria-labelledby="lifeos-title">
       <div class="section-head">
-        <h2 id="lifeos-title">Where LifeOS sits</h2>
-        <p>
-          <a href="https://github.com/Angelguirao/personal-ai-os">personal-ai-os</a>
-          — what we actually run, not what we wish we shipped.
-        </p>
+        <h2 id="lifeos-title">LifeOS cut</h2>
+        <p>What we actually run — not what we wish we shipped.</p>
       </div>
       <div class="cut" role="group" aria-label="LifeOS inventory">
         <div class="cut-row">
-          <span class="cut-k">heavy today</span>
+          <span class="cut-k">heavy</span>
           <span class="cut-v"
-            >world model (folio · ledger · trackers) · OPEVL walker · Work /
-            Run / Session coordination</span
+            >World model (folio · ledger · trackers). OPEVL walker. Work / Run /
+            Session as the coordination triad.</span
           >
         </div>
         <div class="cut-row">
           <span class="cut-k">muscle</span>
           <span class="cut-v"
-            >Fly Deep Agents; Claude Code / Codex optional — swappable in
-            doctrine, sticky in practice</span
+            >Fly Deep Agents today. Claude Code / Codex optional — swappable in
+            doctrine, sticky in practice.</span
           >
         </div>
         <div class="cut-row">
           <span class="cut-k">thin</span>
           <span class="cut-v"
-            >cross-repo scope · session handoff that agents trust · OS-level
-            sandbox</span
+            >Cross-repo scope. Session handoff agents can trust. OS-level
+            sandbox.</span
           >
         </div>
         <div class="cut-row cut-row-open">
-          <span class="cut-k">open bet</span>
+          <span class="cut-k">bet</span>
           <span class="cut-v"
-            >which thin gap becomes the product — or whether the asset is the
-            world model that dispatches wraps</span
+            >Harden a thin organ — or double down on the world model that
+            dispatches wraps. Not both as the same product story.</span
           >
         </div>
       </div>
       <p class="note">
-        Working thesis: control plane + world model first. Meta-harness organs
-        attach as substrates for Session and Run — not a rename, not a claim
-        that we are Omnigent.
+        Thesis: control plane + world model first. Meta-harness organs attach
+        under Session and Run. Not a rename. Not “we are Omnigent.”
       </p>
     </section>
 
-    <section class="open" aria-labelledby="open-title">
+    <section class="open" id="open" aria-labelledby="open-title">
       <h2 id="open-title">Still open</h2>
       <ol>
         <li>
-          After a cross-repo cancel-order, what should still be queryable next
-          Tuesday without re-explaining?
+          After cancel-order lands across three repos, what is queryable next
+          Tuesday without re-explaining the why?
         </li>
         <li>
-          If we only harden one thin organ next, is it handoff, sandbox, or
-          scope?
+          If we harden one thin organ next: handoff, sandbox, or scope?
         </li>
         <li>
-          Would we still need LifeOS if Omnigent + Beads + a knowledge organ
-          covered the week — or is the world model the irreplaceable piece?
+          If Omnigent + Beads + a knowledge organ covered the week, would
+          LifeOS still earn its keep — or is the world model the only
+          irreplaceable piece?
         </li>
       </ol>
     </section>
@@ -207,4 +224,29 @@ import { PARTS, PEERS } from "../data/landscape.js";
       <a href="https://github.com/Angelguirao/meta-harness">source</a>
     </p>
   </footer>
+
+  <script>
+    const links = [...document.querySelectorAll(".top-nav a[href^='#']")];
+    const sections = links
+      .map((a) => document.querySelector(a.getAttribute("href") || ""))
+      .filter(Boolean);
+
+    const sync = () => {
+      const y = window.scrollY + 96;
+      let current = sections[0];
+      for (const s of sections) {
+        if (s instanceof HTMLElement && s.offsetTop <= y) current = s;
+      }
+      links.forEach((a) => {
+        a.classList.toggle(
+          "is-active",
+          current instanceof HTMLElement &&
+            a.getAttribute("href") === `#${current.id}`,
+        );
+      });
+    };
+
+    sync();
+    window.addEventListener("scroll", sync, { passive: true });
+  </script>
 </BaseLayout>

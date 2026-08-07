@@ -37,7 +37,7 @@ typography:
 
 **Night lab / research strip.** Notebook, not SaaS. Cool blue-black atmosphere + faint grid. IBM Plex carries identity (same family as aie-sessions, inverted). Amber only on the punch rule, open-bet key, and mark highlights.
 
-Hero opens with a full-bleed mono schematic of shop → muscle, then brand + working definition.
+Hero is one composition: brand + lede beside a mono shop→muscle schematic. Field includes an organ×peer coverage grid; LifeOS is a highlighted self-row. Amber only on punch, bet, mark, self-dot, active nav underline.
 
 ## Colors
 
