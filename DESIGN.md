@@ -37,7 +37,7 @@ typography:
 
 **Night lab / research strip.** Notebook, not SaaS. Cool blue-black atmosphere + faint grid. IBM Plex carries identity (same family as aie-sessions, inverted). Amber only on the punch rule, open-bet key, and mark highlights.
 
-Hero is one composition: brand + lede beside a mono shop→muscle schematic. Field includes an organ×peer coverage grid; LifeOS is a highlighted self-row. Amber only on punch, bet, mark, self-dot, active nav underline.
+Narrow reading measure (~40rem). Brand-led hero, short essay, organ miss-list, peer hooks grouped by lane. No coverage matrices, no marketing cards. Amber only on punch and TBD bet. Our stack is labeled TBD — never LifeOS on this public surface.
 
 ## Colors
 
