@@ -1,98 +1,66 @@
 ---
 version: alpha
-name: Meta-Harness Field Notes
+name: Meta-harness Field Notes
 description: >
-  Public research / field notes on harnesses and agent systems. Reading surface
-  with brand-first hero, long-form measure, zinc hatch atmosphere. DM Sans body,
-  Space Grotesk sparingly for brand only when needed — or prefer system-adjacent
-  sans with hairline rules. Cool zinc + rare amber; not a SaaS landing page.
-  Not PersonalOS Workbench. Not Holzen Nox.
+  Dark industrial research notes on the layer above agent harnesses.
+  Cool zinc night canvas, rare amber marks, Space Grotesk + JetBrains Mono.
+  Not PersonalOS desk chrome. Not cream editorial. Not Holzen Nox.
 colors:
-  primary: "#18181B"
-  background: "#FAFAFA"
-  background-breathe: "#F4F4F5"
-  foreground: "#18181B"
-  muted: "#71717A"
+  primary: "#FAFAFA"
+  background: "#0C0C0C"
+  background-breathe: "#141414"
+  foreground: "#FAFAFA"
+  muted: "#A1A1AA"
   accent: "#D97706"
-  accent-soft: "rgba(217, 119, 6, 0.1)"
-  accent-strong: "#B45309"
-  surface: "#FFFFFF"
-  border: "#E4E4E7"
+  accent-soft: "rgba(217, 119, 6, 0.12)"
+  accent-strong: "#F59E0B"
+  surface: "#141414"
+  border: "#27272A"
 typography:
   display:
-    fontFamily: DM Sans
-    fontSize: 2.25rem
+    fontFamily: Space Grotesk
+    fontSize: 3rem
     fontWeight: 600
-    lineHeight: 1.15
-    letterSpacing: -0.02em
+    letterSpacing: -0.03em
   body-md:
     fontFamily: DM Sans
-    fontSize: 1rem
+    fontSize: 1.0625rem
     fontWeight: 400
     lineHeight: 1.65
   mono:
     fontFamily: JetBrains Mono
     fontSize: 0.8125rem
     fontWeight: 400
-    lineHeight: 1.45
-rounded:
-  sm: 4px
-  md: 6px
-spacing:
-  md: 16px
-  lg: 24px
 ---
 
 ## Overview
 
-**Field notes.** Public research writing — brand (`meta-harness`) is the hero, one lede, long-form sections, measure ~38rem. Personality is calm sans reading + zinc hatch/grain atmosphere. Amber only as sparse stack-rule or link hover — never cream fills or chip dashboards.
+**Night lab / research strip.** This site is a notebook, not a desk and not a SaaS landing page. Dark zinc canvas, hairline structure, mono for the parts matrix and peer table. Amber appears only as a mark or a single rule — never as chrome paint.
 
-This is **not** PersonalOS Workbench density, **not** Atlas, **not** Codex Literata, **not** Session Ledger Plex, and **not** Holzen Nox.
+Peers in spirit: Warp, terminal docs, gstack — not Anthropic cream, not PersonalOS light steward chrome.
 
 ## Colors
 
-Imported from `@angelguirao/personal-tokens`.
-
-- **Ground / surface / border:** cool zinc.
-- **Accent:** amber — stack rule / sparse hover only.
-- No cream panels, no amber-700 chrome blocks.
+- **Canvas `#0C0C0C` / surface `#141414`:** Night ground.
+- **Ink `#FAFAFA` / muted `#A1A1AA`:** Reading contrast on dark.
+- **Border `#27272A`:** Hairlines only.
+- **Accent `#D97706`:** Rare — mark highlights, one stack rule. Never buttons, nav, or fills.
 
 ## Typography
 
-- **Display / body:** DM Sans — clean research sans.
-- **Mono:** JetBrains Mono — codes and technical asides.
-- Brand name can carry weight; avoid italic display theater.
+- **Display:** Space Grotesk, upright, heavy tracking cut.
+- **Body:** DM Sans.
+- **Matrix / peers / meta:** JetBrains Mono — the personality layer.
 
 ## Layout
 
-- Brand-first first viewport; one lede.
-- Hairline rules; light grain; no card grids as default marketing.
-- Prefer none motion; reduced-motion respected if any motion returns.
-
-## Components
-
-Astro + small Radix button island today. Expand with local shadcn only when interaction needs it. Do not import PersonalOS desk components wholesale.
+- Brand once in the hero (large). Header is quiet meta + source.
+- Measure ~58–62ch for prose.
+- Parts as a mono grid, not marketing cards.
+- No scroll-reveal theater. Optional one short rise on hero if motion is on.
 
 ## Do's and Don'ts
 
-**Do**
+**Do** keep amber scarce; let mono carry structure; write concrete operator scenes.
 
-- Keep brand hero + long-form measure.
-- Amber sparse; zinc atmosphere.
-- Read this file before restyling.
-
-**Don't**
-
-- SaaS landing cards, numbered marketing lists, scroll-reveal theater by default.
-- Cream / terracotta journal stacks.
-- PersonalOS mono-chip Workbench as the reading chrome.
-
-## Figma
-
-Deferred.
-
-## Agent prompt guide
-
-1. Portfolio map: `personal-agent/docs/DESIGN-SYSTEMS.md`.
-2. Field notes: DM Sans, zinc hatch, brand-first.
-3. If a mock looks like PersonalOS desk or Atlas — wrong product.
+**Don't** cream, terracotta, purple glow, chip filters, duplicate brand in sticky + hero, numbered “AI insight” lists, light PersonalOS clone.

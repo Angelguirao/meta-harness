@@ -1,7 +1,7 @@
 # Agents
 
-Read [`DESIGN.md`](./DESIGN.md) before UI work. Industrial reading surface only.
+Read [`DESIGN.md`](./DESIGN.md) before UI work.
 
-- Brand-first hero, long-form prose, ~38rem measure
-- No cream/terracotta, no card grids, no chip filters, no scroll-reveal by default
-- Content is research notes — concrete LifeOS evidence, not generic AI insight lists
+Night industrial research strip — dark zinc, rare amber marks, mono for matrix/tables. Not PersonalOS light desk. Not cream. Not marketing cards or chip filters.
+
+Content: concrete operator scenes + parts bundle + who-owns-what. Not generic AI insight lists.

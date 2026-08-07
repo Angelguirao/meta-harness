@@ -1,74 +1,84 @@
-/** @typedef {{ name: string; layer: string; note: string; url?: string }} Peer */
+/** @typedef {{ name: string; owns: string; url?: string }} Peer */
 
-/** Bets that sit above (or search over) agent harnesses. */
-/** @type {Peer[]} */
-export const PEERS = [
+/** @type {{ id: string; label: string; blurb: string }[]} */
+export const PARTS = [
   {
-    name: "Paperclip",
-    layer: "company control plane",
-    note: "Issue-centric company of agents — org chart, budgets, board approvals.",
-    url: "https://paperclip.ing/",
+    id: "continuity",
+    label: "continuity",
+    blurb: "Prior attempts survive the chat. Why is queryable.",
   },
   {
-    name: "Omnigent",
-    layer: "orchestration wrap",
-    note: "Session-centric wrap over Claude Code / Codex / Pi — swap, policy, live share.",
-    url: "https://omnigent.ai/",
+    id: "scope",
+    label: "scope",
+    blurb: "Work crosses repos and tools without you as the bus.",
   },
   {
-    name: "Polygraph",
-    layer: "orchestration wrap",
-    note: "Cross-repo graph + memory that survives the session. Agent-agnostic.",
-    url: "https://trypolygraph.com/",
+    id: "constraint",
+    label: "constraint",
+    blurb: "Spend, writes, risk — enforced, not hoped.",
   },
   {
-    name: "Agno AgentOS",
-    layer: "run control plane",
-    note: "Durable runs, teams, multi-framework runtime — execution product, not a world model.",
-    url: "https://www.agno.com/",
+    id: "work",
+    label: "work graph",
+    blurb: "Tickets and deps agents can trust after context dies.",
   },
   {
-    name: "QM",
-    layer: "fleet harness",
-    note: "YC’s open quartermaster for many OpenClaw-like agents at work.",
-    url: "https://qm.ycombinator.com/",
+    id: "retrieve",
+    label: "retrieve",
+    blurb: "Meet data where it lives; distill; answer with proof.",
   },
   {
-    name: "Beads",
-    layer: "work graph",
-    note: "Issues and deps that outlive context windows — Dolt-backed, agent-native.",
-    url: "https://beads.gascity.com/",
-  },
-  {
-    name: "OpenWorker",
-    layer: "desktop coworker",
-    note: "Intent → finished deliverable on your machine; lighter org graph than a full OS.",
-    url: "https://github.com/andrewyng/openworker",
-  },
-  {
-    name: "Stanford Meta-Harness",
-    layer: "harness search",
-    note: "Different word sense: outer loop that rewrites harness code from traces.",
-    url: "https://yoonholee.com/meta-harness/",
-  },
-  {
-    name: "metaharness.tools",
-    layer: "peer map",
-    note: "Nx’s public map of the category. Field guide — not our dictionary.",
-    url: "https://metaharness.tools/#top",
+    id: "swap",
+    label: "swap",
+    blurb: "Claude / Codex / Deep Agents are muscle, not the brain.",
   },
 ];
 
-/**
- * Strong bets on a single organ of the “layer above” bundle —
- * often mistaken for the whole animal.
- */
 /** @type {Peer[]} */
-export const ADJACENT = [
+export const PEERS = [
+  {
+    name: "Polygraph",
+    owns: "scope · continuity",
+    url: "https://trypolygraph.com/",
+  },
+  {
+    name: "Omnigent",
+    owns: "swap · constraint · continuity",
+    url: "https://omnigent.ai/",
+  },
+  {
+    name: "Paperclip",
+    owns: "work · constraint",
+    url: "https://paperclip.ing/",
+  },
+  {
+    name: "Beads",
+    owns: "work",
+    url: "https://beads.gascity.com/",
+  },
+  {
+    name: "QM",
+    owns: "swap · work",
+    url: "https://qm.ycombinator.com/",
+  },
+  {
+    name: "Agno AgentOS",
+    owns: "swap · constraint",
+    url: "https://www.agno.com/",
+  },
   {
     name: "Cerebras Knowledge",
-    layer: "retrieval / distillation",
-    note: "Meet data where it lives → distill → hybrid retrieve → cited answers. One part many stacks need; center of gravity is find X, not orchestrate acting agents.",
+    owns: "retrieve",
     url: "https://www.cerebras.ai/blog/how-we-built-our-knowledge-base",
+  },
+  {
+    name: "Stanford Meta-Harness",
+    owns: "swap (search the harness)",
+    url: "https://yoonholee.com/meta-harness/",
+  },
+  {
+    name: "OpenWorker",
+    owns: "swap · constraint (local)",
+    url: "https://github.com/andrewyng/openworker",
   },
 ];

@@ -1,215 +1,132 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { ADJACENT, PEERS } from "../data/landscape.js";
+import { PARTS, PEERS } from "../data/landscape.js";
 ---
 
 <BaseLayout>
-  <header class="site-header">
-    <a class="site-wordmark" href="/">meta-harness</a>
-    <div class="site-header-end">
-      <span class="site-meta">field notes · v0</span>
-      <a href="https://github.com/Angelguirao/meta-harness">source</a>
-    </div>
+  <header class="top">
+    <span class="top-meta">lifeos research · v0</span>
+    <a class="top-link" href="https://github.com/Angelguirao/meta-harness"
+      >github</a
+    >
   </header>
 
   <main id="main">
-    <header class="hero">
+    <section class="hero">
       <h1 class="brand">meta-harness</h1>
       <p class="lede">
-        Field notes on the layer above coding agents — written from LifeOS,
-        before the industry agrees what to call it.
+        The coding agent is the employee. Something else has to be the shop —
+        or you are.
       </p>
-    </header>
+    </section>
 
-    <nav class="toc" aria-label="On this page">
-      <a href="#pressure">Pressure</a>
-      <a href="#above">Above</a>
-      <a href="#lifeos">LifeOS</a>
-      <a href="#field">Field</a>
-      <a href="#parts">Parts</a>
-      <a href="#open">Open</a>
-    </nav>
+    <section class="scene" aria-labelledby="scene-title">
+      <h2 id="scene-title" class="sr">A Tuesday</h2>
+      <p>
+        You ask Claude Code to cancel an order. It needs the API, the web app,
+        and a design-system dialog. Three repos. You clone, branch, paste
+        context, babysit PRs so they land together.
+      </p>
+      <p>
+        Last week you already decided retries belong in the gateway — in a chat
+        that no longer exists. Git has the diff. Nobody has the why. Your
+        other laptop ran the same dead end yesterday.
+      </p>
+      <p class="punch">
+        That gap — not “better prompts” — is what this notebook is about.
+      </p>
+    </section>
 
-    <article>
-      <section id="pressure">
-        <h2>The pressure</h2>
+    <section class="bundle" aria-labelledby="bundle-title">
+      <div class="section-head">
+        <h2 id="bundle-title">The bundle</h2>
         <p>
-          A harness — Claude Code, Codex, Deep Agents, OpenClaw — is the employee.
-          Tools, sandbox, a folder, a session. That job is real. It is also where
-          real work breaks:
+          Not one product shape. Organs. Peers ship different subsets hard.
         </p>
-        <p>
-          The change spans three repos; the agent sees one. Yesterday’s session
-          already ruled out an approach; that reasoning died with the chat. A
-          teammate’s agent burned two hours on the same dead end, invisibly.
-          Policy lives in <code>AGENTS.md</code> and sometimes the model obeys.
-        </p>
-        <p>
-          Git keeps the diff. The session kept the why. Neither is available to
-          the next agent as an organizational fact.
-        </p>
-      </section>
+      </div>
+      <ul class="matrix">
+        {
+          PARTS.map((part) => (
+            <li>
+              <span class="matrix-id">{part.label}</span>
+              <span class="matrix-blurb">{part.blurb}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
 
-      <section id="above">
-        <h2>Something sits above</h2>
-        <p>
-          Meta-harness, control plane, company OS, synthetic monorepo — the
-          labels fight. The jobs are clearer:
-        </p>
-        <ul class="jobs">
-          <li>
-            <strong>Continuity</strong> — sessions and people build on prior
-            attempts, not cold starts.
-          </li>
-          <li>
-            <strong>Scope</strong> — work crosses repos and systems of record
-            without you as the plumbing.
-          </li>
-          <li>
-            <strong>Constraint</strong> — spend, writes, and risk are enforced in
-            code, not hoped for in prompts.
-          </li>
-          <li>
-            <strong>Meaning</strong> — optionally a world model: durable facts
-            that are not chat transcript.
-          </li>
-        </ul>
-        <p>
-          Thin wraps optimize the coding agent. Company OSes hire and budget a
-          team of them. Both answer the same pressure. We will not collapse them
-          into one slogan until shipping forces the choice.
-        </p>
-      </section>
-
-      <section id="lifeos">
-        <h2>What LifeOS is testing</h2>
-        <p>
-          <a class="in-body" href="https://github.com/Angelguirao/personal-ai-os"
-            >LifeOS</a
-          >
-          keeps intelligence and meaning outside the harness. Folio and ledger
-          hold truth. PersonalOS walks phases. Fly Deep Agents (and sometimes
-          Claude or Codex) are muscle. Agents do not own the plan pointer.
-        </p>
-        <p class="stack" aria-label="LifeOS stack">
-          world model — folio · ledger · trackers<br />
-          intelligence — PersonalOS · OPEVL<br />
-          coordination — Work · Run · Session<br />
-          execution — Fly Deep Agents · optional lab CLIs
-        </p>
-        <p>
-          That already looks like a control plane with harness muscle. It only
-          partly looks like Polygraph/Omnigent (handoff, cross-repo, sandbox).
-          Which gap is the product — and whether one name covers both — is why
-          this notebook exists.
-        </p>
-      </section>
-
-      <section id="field">
-        <h2>In the field</h2>
-        <p>
-          Annotated bets on slices of the pressure above. Not a feature matrix.
-          Not a ranking.
-        </p>
-        <ul class="peers">
+    <section class="field" aria-labelledby="field-title">
+      <div class="section-head">
+        <h2 id="field-title">Who owns what</h2>
+        <p>Center of gravity — not a feature scorecard.</p>
+      </div>
+      <table class="owners">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Owns hard</th>
+          </tr>
+        </thead>
+        <tbody>
           {
             PEERS.map((p) => (
-              <li>
-                <div class="peer-name">
+              <tr>
+                <th scope="row">
                   {p.url ? (
                     <a href={p.url} target="_blank" rel="noreferrer">
                       {p.name}
                     </a>
                   ) : (
-                    <span>{p.name}</span>
+                    p.name
                   )}
-                  <span class="layer">{p.layer}</span>
-                </div>
-                <p>{p.note}</p>
-              </li>
+                </th>
+                <td>{p.owns}</td>
+              </tr>
             ))
           }
-        </ul>
-      </section>
+        </tbody>
+      </table>
+      <p class="note">
+        <mark>Cerebras Knowledge</mark> is retrieve, done well. It can live
+        inside a fuller stack. It is not continuity + scope + constraint by
+        itself — same as a tracker that only does work, or a sandbox that only
+        does constraint.
+      </p>
+    </section>
 
-      <section id="parts">
-        <h2>Parts, not one product shape</h2>
+    <section class="lifeos" aria-labelledby="lifeos-title">
+      <div class="section-head">
+        <h2 id="lifeos-title">LifeOS cut</h2>
         <p>
-          A fuller “layer above” is probably a <strong>bundle</strong>: work
-          graph, session memory, cross-repo scope, policy/sandbox, retrieval /
-          world model, harness swap. Almost nobody ships the whole bundle with
-          equal weight. Peers specialize — Polygraph on space and time across
-          repos, Omnigent on session + policy, Paperclip on company coordination,
-          Stanford on searching the harness itself.
+          <a href="https://github.com/Angelguirao/personal-ai-os">personal-ai-os</a>
+          — what we actually run.
         </p>
-        <p>
-          So the useful question is rarely “is X a meta-harness?” It is
-          <em>which parts does X own, and which center of gravity is the
-          product?</em>
-        </p>
-        <ul class="peers peers-adjacent">
-          {
-            ADJACENT.map((p) => (
-              <li>
-                <div class="peer-name">
-                  {p.url ? (
-                    <a href={p.url} target="_blank" rel="noreferrer">
-                      {p.name}
-                    </a>
-                  ) : (
-                    <span>{p.name}</span>
-                  )}
-                  <span class="layer">{p.layer}</span>
-                </div>
-                <p>{p.note}</p>
-              </li>
-            ))
-          }
-        </ul>
-        <p>
-          Cerebras Knowledge is a strong bet on the <strong>retrieval /
-          distillation</strong> part — meet data where it lives, answer with
-          citations, serve humans and agents. That can sit <em>inside</em> a
-          meta-harness or cognitive OS (LifeOS already borrows that philosophy).
-          It is not, by itself, continuity + scope + constraint around acting
-          agents. Same for a pure work tracker or a pure sandbox: necessary
-          organs, not the whole animal.
-        </p>
-      </section>
+      </div>
+      <pre class="cut" aria-label="LifeOS cut of the bundle"><code>world model     folio · ledger · trackers          ← meaning
+walker          PersonalOS OPEVL                    ← phases
+work / run / session                                ← coordination
+muscle          Fly Deep Agents · opt. Claude/Codex ← harness
 
-      <section id="open">
-        <h2>Still open</h2>
-        <ol class="questions">
-          <li>
-            Which parts of the bundle are load-bearing for LifeOS — and which
-            can stay thin forever?
-          </li>
-          <li>
-            Is the durable asset the wrap around coding agents, or the world
-            model and walker that dispatch them?
-          </li>
-          <li>
-            What must survive a crashed harness for the layer above to have
-            earned its keep?
-          </li>
-          <li>
-            For LifeOS: session handoff, policy sandbox, or cross-repo — which
-            missing surface forces a placement call first?
-          </li>
-          <li>
-            When, if ever, does this stop being a private OS and become something
-            other operators should run?
-          </li>
-        </ol>
-      </section>
-    </article>
+heavy:  meaning · walker · work
+thin:   cross-repo scope · session handoff · OS sandbox
+open:   which thin gap becomes the product</code></pre>
+    </section>
+
+    <section class="open" aria-labelledby="open-title">
+      <h2 id="open-title">Open</h2>
+      <ol>
+        <li>Which organs stay thin forever in LifeOS?</li>
+        <li>Is the asset the wrap, or the world model that dispatches wraps?</li>
+        <li>Handoff, sandbox, or cross-repo — what forces the next bet?</li>
+      </ol>
+    </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="foot">
     <p>
-      Beside{" "}
-      <a href="https://github.com/Angelguirao/personal-ai-os">LifeOS</a>. Peers
-      are citations. MIT.
+      Written beside LifeOS. Labels move. MIT ·
+      <a href="https://github.com/Angelguirao/meta-harness">source</a>
     </p>
   </footer>
 </BaseLayout>
