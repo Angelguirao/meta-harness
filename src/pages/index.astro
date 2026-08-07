@@ -1,0 +1,221 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionReveal from "../components/SectionReveal";
+import LandscapeFilter from "../components/LandscapeFilter";
+import {
+  LAYERS,
+  NATURE,
+  OPEN_QUESTIONS,
+  PROBLEMS,
+} from "../data/landscape";
+
+const toc = [
+  { id: "problems", label: "Problems" },
+  { id: "nature", label: "Nature" },
+  { id: "layers", label: "Layers" },
+  { id: "landscape", label: "Landscape" },
+  { id: "lifeos", label: "LifeOS" },
+  { id: "open", label: "Open" },
+];
+---
+
+<BaseLayout>
+  <header
+    class="relative z-10 border-b border-border/40 px-4 py-4 lg:px-10"
+  >
+    <div class="mx-auto flex max-w-3xl items-center justify-between gap-4 lg:max-w-4xl">
+      <a href="/" class="personal-display-title text-lg text-foreground no-underline"
+        >meta-harness</a
+      >
+      <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+        Field notes · v0
+      </p>
+    </div>
+  </header>
+
+  <main id="main" class="relative z-10 px-4 pb-24 pt-12 lg:px-10 lg:pt-16">
+    <div class="mx-auto max-w-3xl space-y-20 lg:max-w-4xl">
+      <section class="space-y-6">
+        <p
+          class="font-mono text-[11px] uppercase tracking-[0.2em] text-accent-strong"
+        >
+          Research in public
+        </p>
+        <h1
+          class="personal-display-title max-w-2xl text-4xl leading-tight text-foreground sm:text-5xl"
+        >
+          The layer above agent harnesses — still being named
+        </h1>
+        <p class="max-w-2xl text-base leading-relaxed text-muted">
+          Harnesses like Claude Code and Codex do one job well. Something sits
+          above them: continuity, boundaries, policy, maybe a world model. Peers
+          call pieces of that a meta-harness. We are discovering the object
+          through LifeOS — not borrowing someone else’s dictionary.
+        </p>
+        <nav
+          class="flex flex-wrap gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-wider text-muted"
+          aria-label="On this page"
+        >
+          {
+            toc.map((item) => (
+              <a href={`#${item.id}`} class="hover:text-foreground">
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </section>
+
+      <SectionReveal client:visible>
+        <section id="problems" class="scroll-mt-8 space-y-6">
+          <h2 class="personal-display-title text-2xl text-foreground">
+            Problems
+          </h2>
+          <p class="max-w-2xl text-sm text-muted">
+            What breaks when you only have harnesses — the pressure that makes a
+            higher layer feel necessary.
+          </p>
+          <ol class="divide-y divide-border/30 border-y border-border/30">
+            {
+              PROBLEMS.map((p, i) => (
+                <li class="grid gap-2 py-6 sm:grid-cols-[5rem_1fr]">
+                  <p class="font-mono text-[11px] uppercase tracking-widest text-muted">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <div>
+                    <p class="personal-display-title text-lg text-foreground">
+                      {p.title}
+                    </p>
+                    <p class="mt-2 text-sm leading-relaxed text-muted">{p.body}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </section>
+      </SectionReveal>
+
+      <SectionReveal client:visible>
+        <section id="nature" class="scroll-mt-8 space-y-6">
+          <h2 class="personal-display-title text-2xl text-foreground">
+            Nature
+          </h2>
+          <p class="max-w-2xl text-sm text-muted">
+            Working claims about what the object is. Revisable.
+          </p>
+          <ul class="space-y-8">
+            {
+              NATURE.map((n) => (
+                <li class="max-w-2xl">
+                  <p class="personal-display-title text-lg text-foreground">
+                    {n.title}
+                  </p>
+                  <p class="mt-2 text-sm leading-relaxed text-muted">{n.body}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </SectionReveal>
+
+      <SectionReveal client:visible>
+        <section id="layers" class="scroll-mt-8 space-y-6">
+          <h2 class="personal-display-title text-2xl text-foreground">
+            Working layer map
+          </h2>
+          <p class="max-w-2xl text-sm text-muted">
+            A scaffold for reading peers — not a settled ontology. Labels will
+            move as the research does.
+          </p>
+          <ol class="divide-y divide-border/30 border-y border-border/30">
+            {
+              LAYERS.map((l, i) => (
+                <li class="grid gap-2 py-5 sm:grid-cols-[5rem_1fr]">
+                  <p class="font-mono text-[11px] uppercase tracking-widest text-muted">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <div>
+                    <p class="personal-display-title text-lg text-foreground">
+                      {l.label}
+                    </p>
+                    <p class="mt-1 text-sm text-muted">{l.hint}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </section>
+      </SectionReveal>
+
+      <SectionReveal client:visible>
+        <section id="landscape" class="scroll-mt-8 space-y-6">
+          <h2 class="personal-display-title text-2xl text-foreground">
+            Landscape
+          </h2>
+          <p class="max-w-2xl text-sm text-muted">
+            Adjacent bets. Useful as field notes — not as canon for our
+            definition.
+          </p>
+          <LandscapeFilter client:load />
+        </section>
+      </SectionReveal>
+
+      <SectionReveal client:visible>
+        <section id="lifeos" class="scroll-mt-8 space-y-6">
+          <h2 class="personal-display-title text-2xl text-foreground">
+            Where LifeOS sits
+          </h2>
+          <p class="max-w-2xl text-sm leading-relaxed text-muted">
+            LifeOS is a personal cognitive OS: folio and ledger as world model,
+            PersonalOS as OPEVL control plane, Fly Deep Agents as muscle. It
+            already touches orchestration concerns (approvals, contracts,
+            swappable executors). Whether that <em class="not-italic text-foreground/80"
+              >is</em
+            > a meta-harness — or an org OS that includes meta-harness traits —
+            is the open question this site exists to pressure.
+          </p>
+          <p
+            class="border-l-2 border-accent-strong/50 pl-4 font-mono text-sm leading-relaxed text-foreground/80"
+          >
+            PersonalOS (walker) → Fly Deep Agents (muscle) → Folio / ledger (SoT)
+          </p>
+        </section>
+      </SectionReveal>
+
+      <SectionReveal client:visible>
+        <section id="open" class="scroll-mt-8 space-y-6">
+          <h2 class="personal-display-title text-2xl text-foreground">
+            Open questions
+          </h2>
+          <ol class="list-decimal space-y-3 pl-5 text-sm leading-relaxed text-muted">
+            {OPEN_QUESTIONS.map((q) => <li class="max-w-2xl pl-1">{q}</li>)}
+          </ol>
+        </section>
+      </SectionReveal>
+    </div>
+  </main>
+
+  <footer
+    class="relative z-10 border-t border-border/40 px-4 py-10 text-sm text-muted lg:px-10"
+  >
+    <div class="mx-auto max-w-3xl space-y-2 lg:max-w-4xl">
+      <p>
+        Built in public next to{" "}
+        <a
+          class="underline-offset-2 hover:underline"
+          href="https://github.com/Angelguirao/personal-ai-os"
+          >LifeOS</a
+        >. Peers such as{" "}
+        <a
+          class="underline-offset-2 hover:underline"
+          href="https://metaharness.tools/#top"
+          >metaharness.tools</a
+        >{" "}
+        are citations, not the definition.
+      </p>
+      <p class="font-mono text-[11px] uppercase tracking-wider">
+        MIT · Industrial skin · Astro
+      </p>
+    </div>
+  </footer>
+</BaseLayout>
