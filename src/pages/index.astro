@@ -36,7 +36,6 @@ const sources = [
       <a href="#shops">shops</a>
       <a href="#field">field</a>
       <a href="#tbd">tbd</a>
-      <a href="https://github.com/Angelguirao/meta-harness">github</a>
     </nav>
   </header>
 
@@ -105,63 +104,65 @@ const sources = [
     <section class="shops" id="shops" aria-labelledby="shops-title">
       <h2 id="shops-title">Two shops</h2>
       <p class="section-dek">Same layer. Different center of gravity.</p>
-      <div class="shop-grid">
-        <article class="shop" data-organs={poly.organs.join(" ")}>
-          <header class="shop-head">
-            <a
-              class="shop-name"
-              href={poly.url}
-              target="_blank"
-              rel="noreferrer">{poly.name}</a
-            >
-            <span class="shop-by">{poly.by}</span>
-          </header>
-          <p class="shop-claim">{poly.claim}</p>
-          <p class="shop-hook">{poly.hook}</p>
-          <p class="shop-organs">
-            {
-              poly.organs.map((id, i) => (
-                <>
-                  {i > 0 ? " · " : ""}
-                  <a href={`#organ-${id}`} data-organ={id}>
-                    {id}
-                  </a>
-                </>
-              ))
-            }
-          </p>
-        </article>
-        <div class="shop-vs" aria-hidden="true">vs</div>
-        <article class="shop" data-organs={omni.organs.join(" ")}>
-          <header class="shop-head">
-            <a
-              class="shop-name"
-              href={omni.url}
-              target="_blank"
-              rel="noreferrer">{omni.name}</a
-            >
-            <span class="shop-by">{omni.by}</span>
-          </header>
-          <p class="shop-claim">{omni.claim}</p>
-          <p class="shop-hook">{omni.hook}</p>
-          <p class="shop-organs">
-            {
-              omni.organs.map((id, i) => (
-                <>
-                  {i > 0 ? " · " : ""}
-                  <a href={`#organ-${id}`} data-organ={id}>
-                    {id}
-                  </a>
-                </>
-              ))
-            }
-          </p>
-        </article>
+      <div class="shop-panel">
+        <div class="shop-grid">
+          <article class="shop" data-organs={poly.organs.join(" ")}>
+            <header class="shop-head">
+              <a
+                class="shop-name"
+                href={poly.url}
+                target="_blank"
+                rel="noreferrer">{poly.name}</a
+              >
+              <span class="shop-by">{poly.by}</span>
+            </header>
+            <p class="shop-claim">{poly.claim}</p>
+            <p class="shop-hook">{poly.hook}</p>
+            <p class="shop-organs">
+              {
+                poly.organs.map((id, i) => (
+                  <>
+                    {i > 0 ? " · " : ""}
+                    <a href={`#organ-${id}`} data-organ={id}>
+                      {id}
+                    </a>
+                  </>
+                ))
+              }
+            </p>
+          </article>
+          <div class="shop-vs" aria-hidden="true">vs</div>
+          <article class="shop" data-organs={omni.organs.join(" ")}>
+            <header class="shop-head">
+              <a
+                class="shop-name"
+                href={omni.url}
+                target="_blank"
+                rel="noreferrer">{omni.name}</a
+              >
+              <span class="shop-by">{omni.by}</span>
+            </header>
+            <p class="shop-claim">{omni.claim}</p>
+            <p class="shop-hook">{omni.hook}</p>
+            <p class="shop-organs">
+              {
+                omni.organs.map((id, i) => (
+                  <>
+                    {i > 0 ? " · " : ""}
+                    <a href={`#organ-${id}`} data-organ={id}>
+                      {id}
+                    </a>
+                  </>
+                ))
+              }
+            </p>
+          </article>
+        </div>
+        <p class="shops-note">
+          <span><em>Polygraph</em> owns the graph across trees.</span>
+          <span><em>Omnigent</em> owns the runner across CLIs.</span>
+        </p>
       </div>
-      <p class="shops-note">
-        <em>Polygraph</em> owns the graph across trees.
-        <em>Omnigent</em> owns the runner across CLIs.
-      </p>
 
       <aside class="compose" aria-labelledby="compose-title">
         <h3 id="compose-title" class="compose-title">Fill the rest</h3>
@@ -309,25 +310,48 @@ const sources = [
     const links = [...document.querySelectorAll(".top-nav a[href^='#']")];
     const sections = links
       .map((a) => document.querySelector(a.getAttribute("href") || ""))
-      .filter(Boolean);
+      .filter((el) => el instanceof HTMLElement);
 
-    const sync = () => {
-      const y = window.scrollY + 96;
-      let current = sections[0];
-      for (const s of sections) {
-        if (s instanceof HTMLElement && s.offsetTop <= y) current = s;
-      }
+    const setActive = (id) => {
       links.forEach((a) => {
-        a.classList.toggle(
-          "is-active",
-          current instanceof HTMLElement &&
-            a.getAttribute("href") === `#${current.id}`,
-        );
+        a.classList.toggle("is-active", a.getAttribute("href") === `#${id}`);
       });
     };
 
-    sync();
-    window.addEventListener("scroll", sync, { passive: true });
+    if ("IntersectionObserver" in window && sections.length) {
+      const visible = new Map();
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) visible.set(e.target, e.intersectionRatio);
+          let best = null;
+          let bestRatio = 0;
+          for (const s of sections) {
+            const r = visible.get(s) || 0;
+            if (r > bestRatio) {
+              bestRatio = r;
+              best = s;
+            }
+          }
+          if (best && bestRatio > 0) setActive(best.id);
+        },
+        {
+          rootMargin: "-20% 0px -55% 0px",
+          threshold: [0, 0.25, 0.5, 0.75, 1],
+        },
+      );
+      sections.forEach((s) => io.observe(s));
+    } else {
+      const sync = () => {
+        const y = window.scrollY + 96;
+        let current = sections[0];
+        for (const s of sections) {
+          if (s.offsetTop <= y) current = s;
+        }
+        setActive(current?.id ?? null);
+      };
+      sync();
+      window.addEventListener("scroll", sync, { passive: true });
+    }
 
     const paintLit = (ids) => {
       document.querySelectorAll("[data-organ-row]").forEach((row) => {

@@ -117,6 +117,15 @@ main,
   backdrop-filter: blur(10px);
 }
 
+@media (max-width: 560px) {
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.7rem var(--gutter);
+  }
+}
+
 .top-meta,
 .top-nav {
   font-family: var(--font-mono);
@@ -349,14 +358,16 @@ main {
 }
 
 /* —— Two shops (uses full main width) —— */
+.shop-panel {
+  margin-bottom: 1.35rem;
+  border: 1px solid var(--line);
+  background: rgba(18, 18, 22, 0.45);
+}
+
 .shop-grid {
   position: relative;
   display: grid;
   gap: 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 1.15rem;
-  background: rgba(18, 18, 22, 0.45);
 }
 
 @media (min-width: 720px) {
@@ -569,9 +580,13 @@ a.compose-who:hover {
 }
 
 .shops-note {
-  margin: 0 0 0.25rem;
-  max-width: var(--measure);
-  font-size: 0.95rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.5rem;
+  margin: 0;
+  padding: 0.85rem 1.1rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.92rem;
   line-height: 1.5;
   color: var(--muted);
   text-wrap: pretty;
