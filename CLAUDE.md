@@ -1,5 +1,7 @@
 # Agents
 
-Read [`DESIGN.md`](./DESIGN.md) before any UI work. LifeOS Industrial only — no cream/terracotta/serif, no Holzen Nox.
+Read [`DESIGN.md`](./DESIGN.md) before UI work. Industrial reading surface only.
 
-This repo is a **research handbook site**, not PersonalOS. Content lives in `src/pages` + `src/data/landscape.ts`. Interactive UI uses React islands under `src/components/`.
+- Brand-first hero, long-form prose, ~38rem measure
+- No cream/terracotta, no card grids, no chip filters, no scroll-reveal by default
+- Content is research notes — concrete LifeOS evidence, not generic AI insight lists

@@ -1,132 +1,121 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { PEERS } from "../data/landscape.js";
+import { ADJACENT, PEERS } from "../data/landscape.js";
 ---
 
 <BaseLayout>
   <header class="site-header">
-    <span class="site-meta">field notes · v0</span>
-    <a href="https://github.com/Angelguirao/meta-harness">GitHub</a>
+    <a class="site-wordmark" href="/">meta-harness</a>
+    <div class="site-header-end">
+      <span class="site-meta">field notes · v0</span>
+      <a href="https://github.com/Angelguirao/meta-harness">source</a>
+    </div>
   </header>
 
   <main id="main">
-    <h1 class="brand">meta-harness</h1>
-    <p class="lede">
-      Notes on whatever sits above a coding agent — written while building LifeOS,
-      before the industry settles what the word means.
-    </p>
+    <header class="hero">
+      <h1 class="brand">meta-harness</h1>
+      <p class="lede">
+        Field notes on the layer above coding agents — written from LifeOS,
+        before the industry agrees what to call it.
+      </p>
+    </header>
 
-    <ul class="toc" aria-label="Sections">
-      <li><a href="#claim">Claim</a></li>
-      <li><a href="#harness">Harness</a></li>
-      <li><a href="#above">Above</a></li>
-      <li><a href="#lifeos">LifeOS</a></li>
-      <li><a href="#field">Field</a></li>
-      <li><a href="#open">Open</a></li>
-    </ul>
+    <nav class="toc" aria-label="On this page">
+      <a href="#pressure">Pressure</a>
+      <a href="#above">Above</a>
+      <a href="#lifeos">LifeOS</a>
+      <a href="#field">Field</a>
+      <a href="#not">Not this</a>
+      <a href="#open">Open</a>
+    </nav>
 
     <article>
-      <section id="claim">
-        <h2>What this is</h2>
+      <section id="pressure">
+        <h2>The pressure</h2>
         <p>
-          This is not a product page and not a clone of anyone else’s taxonomy.
-          It is a public notebook: problems we keep hitting when agents are the
-          workers, guesses about the missing layer, and a short map of peers who
-          are touching adjacent pain.
+          A harness — Claude Code, Codex, Deep Agents, OpenClaw — is the employee.
+          Tools, sandbox, a folder, a session. That job is real. It is also where
+          real work breaks:
         </p>
         <p>
-          If the word <strong>meta-harness</strong> ends up meaning something
-          narrower than what LifeOS needs, we will rename. The research is the
-          point.
-        </p>
-      </section>
-
-      <section id="harness">
-        <h2>A harness is the employee</h2>
-        <p>
-          Claude Code, Codex, Deep Agents, OpenClaw — pick your favorite. A
-          harness is the loop that holds tools, a filesystem, a sandbox, and a
-          session. You point it at a folder. It reads, edits, tests, opens a PR.
+          The change spans three repos; the agent sees one. Yesterday’s session
+          already ruled out an approach; that reasoning died with the chat. A
+          teammate’s agent burned two hours on the same dead end, invisibly.
+          Policy lives in <code>AGENTS.md</code> and sometimes the model obeys.
         </p>
         <p>
-          That job matters. It is also incomplete for how work actually shows up:
-        </p>
-        <p>
-          The change spans three repos, but the agent only sees one checkout. The
-          last session already ruled out an approach — that reasoning died when
-          the chat closed. A teammate’s agent burned two hours on the same dead
-          end yesterday, invisibly. Policy is a paragraph in
-          <code>AGENTS.md</code> that the model sometimes obeys.
-        </p>
-        <p>
-          Git remembers the diff. The session remembered why. The organization
-          remembers neither in a form the next agent can use.
+          Git keeps the diff. The session kept the why. Neither is available to
+          the next agent as an organizational fact.
         </p>
       </section>
 
       <section id="above">
-        <h2>Something has to sit above</h2>
+        <h2>Something sits above</h2>
         <p>
-          Call it a meta-harness, a control plane, a company OS, a synthetic
-          monorepo — the label is contested. The job is clearer:
+          Meta-harness, control plane, company OS, synthetic monorepo — the
+          labels fight. The jobs are clearer:
         </p>
+        <ul class="jobs">
+          <li>
+            <strong>Continuity</strong> — sessions and people build on prior
+            attempts, not cold starts.
+          </li>
+          <li>
+            <strong>Scope</strong> — work crosses repos and systems of record
+            without you as the plumbing.
+          </li>
+          <li>
+            <strong>Constraint</strong> — spend, writes, and risk are enforced in
+            code, not hoped for in prompts.
+          </li>
+          <li>
+            <strong>Meaning</strong> — optionally a world model: durable facts
+            that are not chat transcript.
+          </li>
+        </ul>
         <p>
-          <strong>Continuity</strong> across sessions and people.
-          <strong>Scope</strong> across repositories and systems of record.
-          <strong>Constraint</strong> that is enforced in code, not hoped for in
-          prompts. Optionally a <strong>world model</strong> — durable meaning
-          that is not chat transcript.
-        </p>
-        <p>
-          Some products stop at wrap-the-coding-agent. Some want to be the place
-          you hire and budget a whole team of agents. Both are answering pressure
-          from the same broken defaults. We refuse to pretend they are the same
-          object until shipping forces a choice.
+          Thin wraps optimize the coding agent. Company OSes hire and budget a
+          team of them. Both answer the same pressure. We will not collapse them
+          into one slogan until shipping forces the choice.
         </p>
       </section>
 
       <section id="lifeos">
-        <h2>What we are actually building</h2>
+        <h2>What LifeOS is testing</h2>
         <p>
           <a class="in-body" href="https://github.com/Angelguirao/personal-ai-os"
             >LifeOS</a
-          > is a personal cognitive OS: folio and ledger as source of truth,
-          PersonalOS as the phase walker (observe → plan → execute → validate →
-          learn), Fly-hosted Deep Agents as muscle. Agents are workers. They do
-          not own the plan pointer.
+          >
+          keeps intelligence and meaning outside the harness. Folio and ledger
+          hold truth. PersonalOS walks phases. Fly Deep Agents (and sometimes
+          Claude or Codex) are muscle. Agents do not own the plan pointer.
         </p>
-        <p class="stack">
-          world model (folio · ledger · trackers)<br />
-          → intelligence (PersonalOS OPEVL)<br />
-          → Work → Run → Session (chat-first, task-native)<br />
-          → execution (Fly Deep Agents · optional Claude/Codex)
-        </p>
-        <p>
-          Chat is interaction; Work is coordination; a Run is one attempt; a
-          Session is where humans and agents talk about that attempt. Peers often
-          collapse these — Omnigent around sessions, Agno around runs, Paperclip
-          around issues. LifeOS keeps the triad explicit so concurrency and
-          learning hang off durable Work, not transcript archaeology.
+        <p class="stack" aria-label="LifeOS stack">
+          world model — folio · ledger · trackers<br />
+          intelligence — PersonalOS · OPEVL<br />
+          coordination — Work · Run · Session<br />
+          execution — Fly Deep Agents · optional lab CLIs
         </p>
         <p>
-          That stack already behaves like a control plane with harness muscle. It
-          only partially behaves like the thin “meta” wraps (session handoff,
-          cross-repo orchestration, OS sandbox). The open question is which gap
-          is the product — and whether one name should cover both.
+          That already looks like a control plane with harness muscle. It only
+          partly looks like Polygraph/Omnigent (handoff, cross-repo, sandbox).
+          Which gap is the product — and whether one name covers both — is why
+          this notebook exists.
         </p>
       </section>
 
       <section id="field">
-        <h2>Who else is in the field</h2>
+        <h2>In the field</h2>
         <p>
-          Annotated, not ranked. Read them as bets on different slices of the
-          pressure above — not as a feature matrix we intend to match.
+          Annotated bets on slices of the pressure above. Not a feature matrix.
+          Not a ranking.
         </p>
         <ul class="peers">
           {
             PEERS.map((p) => (
               <li>
-                <div>
+                <div class="peer-name">
                   {p.url ? (
                     <a href={p.url} target="_blank" rel="noreferrer">
                       {p.name}
@@ -134,7 +123,7 @@ import { PEERS } from "../data/landscape.js";
                   ) : (
                     <span>{p.name}</span>
                   )}
-                  <div class="layer">{p.layer}</div>
+                  <span class="layer">{p.layer}</span>
                 </div>
                 <p>{p.note}</p>
               </li>
@@ -143,24 +132,58 @@ import { PEERS } from "../data/landscape.js";
         </ul>
       </section>
 
+      <section id="not">
+        <h2>Not this</h2>
+        <p>
+          Easy to confuse with the layer above harnesses. Worth learning from.
+          Wrong category if you treat them as the same product.
+        </p>
+        <ul class="peers peers-adjacent">
+          {
+            ADJACENT.map((p) => (
+              <li>
+                <div class="peer-name">
+                  {p.url ? (
+                    <a href={p.url} target="_blank" rel="noreferrer">
+                      {p.name}
+                    </a>
+                  ) : (
+                    <span>{p.name}</span>
+                  )}
+                  <span class="layer">{p.layer}</span>
+                </div>
+                <p>{p.note}</p>
+              </li>
+            ))
+          }
+        </ul>
+        <p>
+          A knowledge base answers <em>where is X / what is Z</em>. A
+          meta-harness (in our working sense) owns continuity, scope, and
+          constraint around agents that act. LifeOS borrows Cerebras-style
+          meet-data-where-it-lives and hybrid retrieve — and rejects
+          doc-warehouse-as-the-product.
+        </p>
+      </section>
+
       <section id="open">
         <h2>Still open</h2>
         <ol class="questions">
           <li>
             Is the durable asset the wrap around coding agents, or the world
-            model + walker that happens to dispatch them?
+            model and walker that dispatch them?
           </li>
           <li>
             What must survive a crashed harness for the layer above to have
             earned its keep?
           </li>
           <li>
-            For LifeOS, which missing surface forces a real placement call first:
-            session handoff, policy sandbox, or cross-repo work?
+            For LifeOS: session handoff, policy sandbox, or cross-repo — which
+            missing surface forces a placement call first?
           </li>
           <li>
-            When — if ever — does this stop being a private OS and become
-            something other operators should run?
+            When, if ever, does this stop being a private OS and become something
+            other operators should run?
           </li>
         </ol>
       </section>
@@ -169,9 +192,9 @@ import { PEERS } from "../data/landscape.js";
 
   <footer class="site-footer">
     <p>
-      Built beside LifeOS. Peers including{" "}
-      <a href="https://metaharness.tools/#top">metaharness.tools</a> are
-      citations. MIT.
+      Beside{" "}
+      <a href="https://github.com/Angelguirao/personal-ai-os">LifeOS</a>. Peers
+      are citations. MIT.
     </p>
   </footer>
 </BaseLayout>
