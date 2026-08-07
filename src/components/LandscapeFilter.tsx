@@ -106,7 +106,7 @@ function Chip({
       className={cn(
         "min-h-10 rounded-md border px-3 py-1.5 text-left text-sm transition-colors duration-150",
         active
-          ? "border-accent-strong/40 bg-accent-soft/70 text-foreground"
+          ? "border-foreground/25 bg-secondary text-foreground"
           : "border-border/50 text-muted hover:border-border hover:text-foreground",
       )}
     >

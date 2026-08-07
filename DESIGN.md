@@ -10,6 +10,8 @@ This research site shares the **LifeOS Industrial** personal skin.
 
 Public field notes on a forming concept (meta-harness) — not a product marketing clone of peer sites. Industrial zinc + rare amber; Space Grotesk / DM Sans / JetBrains Mono.
 
+**Accent discipline:** amber (`#d97706`) is a rare 1–2px signal only. Never use amber-700 / cream-yellow soft fills as chrome — they read as terracotta. Eyebrows, chips, buttons, and selection stay cool zinc.
+
 ## Motion (this surface)
 
 - Section enter: opacity + `translateY` only, ease-out, ~400–500ms, respect `prefers-reduced-motion`.
