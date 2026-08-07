@@ -32,17 +32,11 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
   </header>
 
   <main id="main">
-    <section class="hero" id="why">
+    <section class="hero">
       <h1 class="brand">meta-harness</h1>
       <p class="lede">
         The coding agent is the muscle. Something else has to be the shop —
         or you are.
-      </p>
-      <p class="hero-why">
-        A harness runs one loop in one tree. Cancel-order needs three. You
-        stitch PRs by hand. Then the chat dies — and the why dies with it.
-        <a href="https://metaharness.tools/">metaharness.tools</a> named the
-        gap; two shops are forming inside it.
       </p>
       <div class="stack" aria-label="Shop over muscle">
         <div class="stack-row">
@@ -52,7 +46,7 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
               PARTS.map((p, i) => (
                 <>
                   {i > 0 ? " · " : ""}
-                  <a href={`#organ-${p.id}`}>{p.label}</a>
+                  <a href={`#organ-${p.id}`} data-organ={p.id}>{p.label}</a>
                 </>
               ))
             }
@@ -68,13 +62,23 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
       </div>
     </section>
 
+    <section class="prose" id="why" aria-labelledby="why-title">
+      <h2 id="why-title" class="sr-only">Why</h2>
+      <p>
+        A harness runs one loop in one tree. Cancel-order needs three. You
+        stitch PRs by hand. Then the chat dies — and the why dies with it.
+        <a href="https://metaharness.tools/">metaharness.tools</a> named the
+        gap; two shops are forming inside it.
+      </p>
+    </section>
+
     <section class="organs" id="organs" aria-labelledby="organs-title">
       <h2 id="organs-title">Organs</h2>
       <p class="section-dek">If it’s missing, this breaks.</p>
       <ul class="organ-list">
         {
           PARTS.map((part) => (
-            <li id={`organ-${part.id}`}>
+            <li id={`organ-${part.id}`} data-organ-row={part.id}>
               <span class="organ-name">{part.label}</span>
               <span class="organ-miss">{part.miss}</span>
             </li>
@@ -87,7 +91,7 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
       <h2 id="shops-title">Two shops</h2>
       <p class="section-dek">Same layer. Different center of gravity.</p>
       <div class="shop-grid">
-        <article class="shop">
+        <article class="shop" data-organs={poly.organs.join(" ")}>
           <header class="shop-head">
             <a
               class="shop-name"
@@ -104,14 +108,16 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
               poly.organs.map((id, i) => (
                 <>
                   {i > 0 ? " · " : ""}
-                  <a href={`#organ-${id}`}>{id}</a>
+                  <a href={`#organ-${id}`} data-organ={id}>
+                    {id}
+                  </a>
                 </>
               ))
             }
           </p>
         </article>
         <div class="shop-vs" aria-hidden="true">vs</div>
-        <article class="shop">
+        <article class="shop" data-organs={omni.organs.join(" ")}>
           <header class="shop-head">
             <a
               class="shop-name"
@@ -128,7 +134,9 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
               omni.organs.map((id, i) => (
                 <>
                   {i > 0 ? " · " : ""}
-                  <a href={`#organ-${id}`}>{id}</a>
+                  <a href={`#organ-${id}`} data-organ={id}>
+                    {id}
+                  </a>
                 </>
               ))
             }
@@ -138,13 +146,72 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
 
       <aside class="compose" aria-labelledby="compose-title">
         <h3 id="compose-title" class="compose-title">One way to compose</h3>
-        <pre class="compose-pre"><code>Polygraph     scope · continuity
-Beads         work
-Cerebras-like retrieve
-Omnigent      swap · constraint   ← if you need rails across CLIs
-
-TBD today     control plane + durable meaning
-              (scope · handoff · sandbox still thin)</code></pre>
+        <ul class="compose-stack">
+          <li>
+            <a class="compose-who" href={poly.url} target="_blank" rel="noreferrer"
+              >Polygraph</a
+            >
+            <span class="compose-organs">
+              {
+                poly.organs.map((id, i) => (
+                  <>
+                    {i > 0 ? " · " : ""}
+                    <a href={`#organ-${id}`} data-organ={id}>
+                      {id}
+                    </a>
+                  </>
+                ))
+              }
+            </span>
+          </li>
+          <li>
+            <a
+              class="compose-who"
+              href="https://beads.gascity.com/"
+              target="_blank"
+              rel="noreferrer">Beads</a
+            >
+            <span class="compose-organs">
+              <a href="#organ-work" data-organ="work">work</a>
+            </span>
+          </li>
+          <li>
+            <a
+              class="compose-who"
+              href="https://www.cerebras.ai/blog/how-we-built-our-knowledge-base"
+              target="_blank"
+              rel="noreferrer">Cerebras-like</a
+            >
+            <span class="compose-organs">
+              <a href="#organ-retrieve" data-organ="retrieve">retrieve</a>
+            </span>
+          </li>
+          <li>
+            <a class="compose-who" href={omni.url} target="_blank" rel="noreferrer"
+              >Omnigent</a
+            >
+            <span class="compose-organs">
+              {
+                ["swap", "constraint"].map((id, i) => (
+                  <>
+                    {i > 0 ? " · " : ""}
+                    <a href={`#organ-${id}`} data-organ={id}>
+                      {id}
+                    </a>
+                  </>
+                ))
+              }
+            </span>
+            <span class="compose-aside">if you need rails across CLIs</span>
+          </li>
+          <li class="compose-tbd">
+            <span class="compose-who">TBD today</span>
+            <span class="compose-organs">control plane + durable meaning</span>
+            <span class="compose-aside"
+              >scope · handoff · sandbox still thin</span
+            >
+          </li>
+        </ul>
         <p class="compose-note">
           Organs ship separately. The bet is which thin gap becomes the product —
           or whether the world model stays the asset.
@@ -169,7 +236,18 @@ TBD today     control plane + durable meaning
                   {p.name}
                 </a>
                 <span class="peer-by">{p.laneTitle}</span>
-                <span class="peer-organs">{p.organs.join(" · ")}</span>
+                <span class="peer-organs">
+                  {
+                    p.organs.map((id, i) => (
+                      <>
+                        {i > 0 ? " · " : ""}
+                        <a href={`#organ-${id}`} data-organ={id}>
+                          {id}
+                        </a>
+                      </>
+                    ))
+                  }
+                </span>
               </div>
               <p class="peer-hook">{p.hook}</p>
             </li>
@@ -270,5 +348,44 @@ TBD today     control plane + durable meaning
 
     sync();
     window.addEventListener("scroll", sync, { passive: true });
+
+    const paintLit = (ids) => {
+      document.querySelectorAll("[data-organ-row]").forEach((row) => {
+        const id = row.getAttribute("data-organ-row");
+        row.classList.toggle("is-lit", id != null && ids.includes(id));
+      });
+      document.querySelectorAll("[data-organ]").forEach((tag) => {
+        const id = tag.getAttribute("data-organ");
+        tag.classList.toggle("is-lit", id != null && ids.includes(id));
+      });
+    };
+
+    const clearLitSoon = () => {
+      requestAnimationFrame(() => {
+        const over = document.querySelector(
+          "[data-organ]:hover, .shop[data-organs]:hover",
+        );
+        if (!over && !document.activeElement?.hasAttribute?.("data-organ")) {
+          paintLit([]);
+        }
+      });
+    };
+
+    document.querySelectorAll("[data-organ]").forEach((el) => {
+      const id = el.getAttribute("data-organ");
+      if (!id) return;
+      el.addEventListener("pointerenter", () => paintLit([id]));
+      el.addEventListener("pointerleave", clearLitSoon);
+      el.addEventListener("focus", () => paintLit([id]));
+      el.addEventListener("blur", clearLitSoon);
+    });
+
+    document.querySelectorAll(".shop[data-organs]").forEach((shop) => {
+      const ids = (shop.getAttribute("data-organs") || "")
+        .split(/\s+/)
+        .filter(Boolean);
+      shop.addEventListener("pointerenter", () => paintLit(ids));
+      shop.addEventListener("pointerleave", clearLitSoon);
+    });
   </script>
 </BaseLayout>

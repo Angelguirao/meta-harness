@@ -37,7 +37,7 @@ typography:
 
 **Night lab / research strip.** Notebook, not SaaS. Cool blue-black atmosphere + faint grid. IBM Plex carries identity (same family as aie-sessions, inverted). Amber only on the punch rule, open-bet key, and mark highlights.
 
-Narrow reading measure (~38rem). Brand-led hero with shop/muscle stack. Hierarchy: Why → Organs → **Two shops** (Polygraph vs Omnigent) → neighbors → quiet “not this” → TBD. No coverage matrices. Amber only on punch and TBD bet. Our stack is **TBD** — never LifeOS on this public surface.
+Narrow reading measure (~38rem). Brand-led hero (brand + lede + shop/muscle stack in first viewport). Hierarchy: hero → why (below fold) → Organs → **Two shops** (Polygraph vs Omnigent) → compose sketch → neighbors → quiet “not this” → TBD. Organ tags cross-light matching rows. No coverage matrices. Amber only on punch and TBD bet. Our stack is **TBD** — never LifeOS on this public surface.
 
 ## Colors
 

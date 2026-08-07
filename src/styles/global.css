@@ -151,6 +151,17 @@ main {
   max-width: var(--max);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 .hero {
   margin-bottom: 3rem;
   padding-bottom: 2.25rem;
@@ -196,7 +207,7 @@ main {
 }
 
 .lede {
-  margin: 0 0 1rem;
+  margin: 0 0 1.5rem;
   max-width: 26rem;
   font-size: 1.22rem;
   line-height: 1.4;
@@ -204,18 +215,8 @@ main {
   text-wrap: pretty;
 }
 
-.hero-why {
-  margin: 0 0 1.5rem;
-  max-width: var(--measure);
-  font-size: 0.98rem;
-  line-height: 1.55;
-  color: var(--muted);
-  text-wrap: pretty;
-}
-
-.hero-why a {
-  color: var(--ink);
-  text-underline-offset: 0.15em;
+.prose#why {
+  margin-top: -0.5rem;
 }
 
 .cursor {
@@ -280,9 +281,16 @@ main {
     border-color 0.15s ease;
 }
 
-.stack-v a:hover {
+.stack-v a:hover,
+.stack-v a.is-lit,
+.shop-organs a:hover,
+.shop-organs a.is-lit,
+.compose-organs a:hover,
+.compose-organs a.is-lit,
+.peer-organs a:hover,
+.peer-organs a.is-lit {
   color: var(--ink);
-  border-bottom-color: var(--line);
+  border-bottom-color: var(--accent);
 }
 
 .prose,
@@ -411,20 +419,74 @@ main {
   margin: 0 0 0.85rem;
 }
 
-.compose-pre {
-  margin: 0 0 0.85rem;
-  padding: 1rem 1.05rem;
-  background: rgba(18, 18, 22, 0.55);
+.compose-stack {
+  list-style: none;
+  margin: 0 0 0.95rem;
+  padding: 0;
   border: 1px solid var(--line);
-  overflow-x: auto;
+  background: rgba(18, 18, 22, 0.55);
 }
 
-.compose-pre code {
+.compose-stack li {
+  display: grid;
+  gap: 0.15rem 1rem;
+  padding: 0.7rem 1.05rem;
+  border-bottom: 1px solid var(--line);
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  line-height: 1.65;
-  color: var(--muted);
-  white-space: pre;
+  line-height: 1.5;
+}
+
+.compose-stack li:last-child {
+  border-bottom: 0;
+}
+
+@media (min-width: 560px) {
+  .compose-stack li {
+    grid-template-columns: 7.5rem 1fr;
+    align-items: baseline;
+  }
+
+  .compose-stack li .compose-aside {
+    grid-column: 2;
+  }
+}
+
+.compose-who {
+  color: var(--ink);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a.compose-who:hover {
+  color: var(--accent);
+}
+
+.compose-organs {
+  color: var(--dim);
+}
+
+.compose-organs a {
+  color: var(--dim);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.compose-aside {
+  color: var(--dim);
+  font-size: 0.68rem;
+}
+
+.compose-aside::before {
+  content: "← ";
+  color: var(--dim);
+}
+
+.compose-tbd .compose-who {
+  color: var(--accent);
 }
 
 .compose-note {
@@ -455,11 +517,9 @@ main {
   color: var(--dim);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-}
-
-.shop-organs a:hover {
-  color: var(--ink);
-  border-bottom-color: var(--line);
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .shops-note {
@@ -554,12 +614,18 @@ h2 {
   transition: background 0.2s ease;
 }
 
-.organ-list li:target {
+.organ-list li:target,
+.organ-list li.is-lit {
   background: rgba(217, 119, 6, 0.06);
 }
 
-.organ-list li:target .organ-name {
+.organ-list li:target .organ-name,
+.organ-list li.is-lit .organ-name {
   color: var(--accent);
+}
+
+.shop:hover {
+  background: rgba(255, 255, 255, 0.025);
 }
 
 @media (min-width: 560px) {
@@ -574,6 +640,7 @@ h2 {
   font-size: 0.78rem;
   font-weight: 500;
   color: var(--ink);
+  transition: color 0.15s ease;
 }
 
 .organ-miss {
@@ -641,6 +708,15 @@ h2 {
   font-size: 0.68rem;
   color: var(--dim);
   margin-left: auto;
+}
+
+.peer-organs a {
+  color: var(--dim);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 @media (max-width: 559px) {
