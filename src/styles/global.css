@@ -59,6 +59,22 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+  background-image:
+    linear-gradient(rgba(39, 39, 42, 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(39, 39, 42, 0.55) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(
+    ellipse 85% 55% at 50% -5%,
+    #000 0%,
+    transparent 72%
+  );
+}
+
 .top,
 main,
 .foot {
@@ -216,16 +232,8 @@ main {
   margin: 0 0 1.2rem;
 }
 
-.brand-meta {
-  color: color-mix(in srgb, var(--ink) 72%, var(--dim));
-}
-
 .brand-hyphen {
   color: var(--accent);
-}
-
-.brand-harness {
-  color: var(--ink);
 }
 
 .lede {
@@ -689,12 +697,31 @@ h2 {
   font-size: 0.78rem;
   font-weight: 500;
   color: var(--ink);
-  transition: color 0.15s ease;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  justify-self: start;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.organ-name:hover,
+.organ-name.is-lit {
+  color: var(--accent);
+  border-bottom-color: color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .organ-miss {
   font-size: 0.95rem;
   color: var(--muted);
+}
+
+.lane-block {
+  margin-bottom: 1.35rem;
+}
+
+.lane-block:last-of-type {
+  margin-bottom: 0;
 }
 
 .lane-title {
@@ -704,7 +731,7 @@ h2 {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--dim);
-  margin: 0 0 0.15rem;
+  margin: 0 0 0.55rem;
 }
 
 .peer-list-dense {
@@ -744,12 +771,6 @@ h2 {
 
 .peer-name:hover {
   color: var(--accent);
-}
-
-.peer-by {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--dim);
 }
 
 .peer-organs {
@@ -827,24 +848,6 @@ h2 {
 .tbd-open dd {
   color: var(--ink);
   font-weight: 500;
-}
-
-.tbd-open-q {
-  margin: 1.5rem 0 0;
-  padding-left: 1.15rem;
-  max-width: var(--measure);
-}
-
-.tbd-open-q li {
-  margin-bottom: 0.65rem;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.tbd-open-q li::marker {
-  color: var(--dim);
-  font-family: var(--font-mono);
-  font-size: 0.85em;
 }
 
 .foot {

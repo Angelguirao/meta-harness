@@ -54,7 +54,7 @@ Narrow reading measure (~38rem). Brand-led hero (brand + lede + shop/muscle stac
 
 - Brand once in hero (header is quiet meta).
 - Two-shops pair is the intellectual center — side-by-side from 640px.
-- Neighbor peers as hairline lists; optimize/adjacent visually quieter.
+- Neighbor peers grouped by lane; optimize/adjacent as one quiet elsewhere line.
 - No scroll theater beyond short hero rise + punch rule-in.
 
 ## Do's and Don'ts

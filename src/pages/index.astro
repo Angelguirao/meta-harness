@@ -11,11 +11,11 @@ import {
 const tbd = PEERS.find((p) => p.self);
 const [poly, omni] = TWO_SHOPS;
 
-const neighbors = LANES.filter((l) => !l.quiet).flatMap((l) =>
-  peersInLane(l.id).map((p) => ({ ...p, laneTitle: l.title })),
-);
+const neighborLanes = LANES.filter((l) => !l.quiet)
+  .map((l) => ({ ...l, peers: peersInLane(l.id) }))
+  .filter((l) => l.peers.length);
 const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
-  peersInLane(l.id).map((p) => ({ ...p, laneTitle: l.title })),
+  peersInLane(l.id),
 );
 ---
 
@@ -33,7 +33,7 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
 
   <main id="main">
     <section class="hero">
-      <h1 class="brand"><span class="brand-meta">meta</span><span class="brand-hyphen">-</span><span class="brand-harness">harness</span></h1>
+      <h1 class="brand">meta<span class="brand-hyphen">-</span>harness</h1>
       <p class="lede">
         The coding agent is the muscle. Something else has to be the shop —
         or you are.
@@ -81,7 +81,11 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
         {
           PARTS.map((part) => (
             <li id={`organ-${part.id}`} data-organ-row={part.id}>
-              <span class="organ-name">{part.label}</span>
+              <a
+                class="organ-name"
+                href={`#organ-${part.id}`}
+                data-organ={part.id}>{part.label}</a
+              >
               <span class="organ-miss">{part.miss}</span>
             </li>
           ))
@@ -196,38 +200,40 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
     <section class="field" id="field" aria-labelledby="field-title">
       <h2 id="field-title">Around the shop</h2>
       <p class="section-dek">Neighbors — not the same job as the two above.</p>
-      <ul class="peer-list peer-list-dense">
-        {
-          neighbors.map((p) => (
-            <li>
-              <div class="peer-head">
-                <a
-                  class="peer-name"
-                  href={p.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {p.name}
-                </a>
-                <span class="peer-by">{p.laneTitle}</span>
-                <span class="peer-organs">
-                  {
-                    p.organs.map((id, i) => (
-                      <>
-                        {i > 0 ? " · " : ""}
-                        <a href={`#organ-${id}`} data-organ={id}>
-                          {id}
-                        </a>
-                      </>
-                    ))
-                  }
-                </span>
-              </div>
-              <p class="peer-hook">{p.hook}</p>
-            </li>
-          ))
-        }
-      </ul>
+      {
+        neighborLanes.map((lane) => (
+          <div class="lane-block">
+            <h3 class="lane-title">{lane.title}</h3>
+            <ul class="peer-list peer-list-dense">
+              {lane.peers.map((p) => (
+                <li>
+                  <div class="peer-head">
+                    <a
+                      class="peer-name"
+                      href={p.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {p.name}
+                    </a>
+                    <span class="peer-organs">
+                      {p.organs.map((id, i) => (
+                        <>
+                          {i > 0 ? " · " : ""}
+                          <a href={`#organ-${id}`} data-organ={id}>
+                            {id}
+                          </a>
+                        </>
+                      ))}
+                    </span>
+                  </div>
+                  <p class="peer-hook">{p.hook}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
       <p class="elsewhere-line">
         Elsewhere:{" "}
         {
@@ -294,7 +300,7 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
       <a href="https://github.com/andrewyng/openworker">OpenWorker</a>
     </p>
     <p class="foot-meta">
-      Updated 2026-08-07 · labels move · MIT ·
+      Updated 2026-08-07 · research notes · MIT ·
       <a href="https://github.com/Angelguirao/meta-harness">source</a>
     </p>
   </footer>
