@@ -183,11 +183,117 @@ main {
 
 .prose,
 .organs,
+.shops,
 .field,
 .tbd,
 .open {
   margin-bottom: 2.85rem;
   scroll-margin-top: 3.25rem;
+}
+
+/* —— Two shops —— */
+.shop-grid {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+  margin-bottom: 1.15rem;
+}
+
+@media (min-width: 640px) {
+  .shop-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.shop {
+  padding: 1.15rem 0 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 640px) {
+  .shop:first-child {
+    padding-right: 1.35rem;
+    border-right: 1px solid var(--line);
+  }
+
+  .shop:last-child {
+    padding-left: 1.35rem;
+  }
+}
+
+.shop-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.65rem;
+  margin-bottom: 0.55rem;
+}
+
+.shop-name {
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.shop-name:hover {
+  color: var(--accent);
+}
+
+.shop-by {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--dim);
+}
+
+.shop-claim {
+  margin: 0 0 0.55rem;
+  font-weight: 500;
+  font-size: 1.02rem;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.shop-hook {
+  margin: 0 0 0.7rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.shop-organs {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  color: var(--dim);
+}
+
+.shops-note {
+  margin: 0;
+  max-width: var(--measure);
+  font-size: 0.92rem;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.shops-note em {
+  font-style: italic;
+  color: color-mix(in srgb, var(--ink) 85%, var(--muted));
+}
+
+.quiet-block {
+  margin-top: 2.25rem;
+  padding-top: 0.25rem;
+  opacity: 0.78;
+}
+
+.lane-quiet .peer-organs {
+  display: none;
 }
 
 h2 {

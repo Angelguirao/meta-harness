@@ -1,9 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { PARTS, PEERS, LANES, peersInLane } from "../data/landscape.js";
+import {
+  PARTS,
+  PEERS,
+  LANES,
+  TWO_SHOPS,
+  peersInLane,
+} from "../data/landscape.js";
 
 const tbd = PEERS.find((p) => p.self);
-const fieldLanes = LANES.filter((l) => peersInLane(l.id).length > 0);
+const mainLanes = LANES.filter((l) => !l.quiet && peersInLane(l.id).length);
+const quietLanes = LANES.filter((l) => l.quiet && peersInLane(l.id).length);
 ---
 
 <BaseLayout>
@@ -12,6 +19,7 @@ const fieldLanes = LANES.filter((l) => peersInLane(l.id).length > 0);
     <nav class="top-nav" aria-label="On this page">
       <a href="#why">why</a>
       <a href="#organs">organs</a>
+      <a href="#shops">shops</a>
       <a href="#field">field</a>
       <a href="#tbd">tbd</a>
       <a href="https://github.com/Angelguirao/meta-harness">github</a>
@@ -34,27 +42,26 @@ muscle   claude code · codex · pi · open code · …</code></pre>
       <p>
         A harness runs one loop in one tree. Cancel-order needs API + web +
         design-system — three trees. You clone, paste context, land three PRs.
-        That stitching is the job
-        <a href="https://metaharness.tools/">metaharness.tools</a> calls a
+        That stitching is what
+        <a href="https://metaharness.tools/">metaharness.tools</a> means by
         meta-harness.
       </p>
       <p>
-        Second failure: git keeps the what; the session keeps the why. Chat
-        ends, decision vanishes, next Tuesday starts cold.
+        And when the chat dies, the why dies with it. Git kept the patch. Nobody
+        kept the decision. Next Tuesday starts cold.
       </p>
       <p>
-        The word splits two ways. <strong>Orchestration</strong> sits above
-        many harnesses (cross-repo, memory, swap, policy).
-        <strong>Optimization</strong> searches over harness <em>code</em>
-        (Stanford). This notebook is about the first — read as a
-        <strong>bundle of organs</strong>, not one SKU.
+        Same word, two jobs: <strong>orchestration</strong> (shop above the
+        muscle) vs <strong>optimization</strong> (search over harness code).
+        This page maps the shop — as a
+        <strong>bundle of organs</strong>, not one product shape.
       </p>
-      <p class="punch">Maps the field. Not a product. Not a pitch.</p>
+      <p class="punch">Field notes. Not a pitch.</p>
     </section>
 
     <section class="organs" id="organs" aria-labelledby="organs-title">
       <h2 id="organs-title">Organs</h2>
-      <p class="section-dek">Missing organ → failure mode.</p>
+      <p class="section-dek">If it’s missing, this breaks.</p>
       <ul class="organ-list">
         {
           PARTS.map((part) => (
@@ -67,14 +74,44 @@ muscle   claude code · codex · pi · open code · …</code></pre>
       </ul>
     </section>
 
-    <section class="field" id="field" aria-labelledby="field-title">
-      <h2 id="field-title">Field</h2>
+    <section class="shops" id="shops" aria-labelledby="shops-title">
+      <h2 id="shops-title">Two shops</h2>
       <p class="section-dek">
-        Primary-source hooks. Tags = our organ frame, not their marketing.
+        The orchestration lane, today, is basically these two — different
+        centers of gravity.
+      </p>
+      <div class="shop-grid">
+        {
+          TWO_SHOPS.map((s) => (
+            <article class="shop">
+              <header class="shop-head">
+                <a class="shop-name" href={s.url} target="_blank" rel="noreferrer">
+                  {s.name}
+                </a>
+                <span class="shop-by">{s.by}</span>
+              </header>
+              <p class="shop-claim">{s.claim}</p>
+              <p class="shop-hook">{s.hook}</p>
+              <p class="shop-organs">{s.organs.join(" · ")}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="shops-note">
+        Same layer. Polygraph starts from <em>repos + memory</em>. Omnigent
+        starts from <em>harness swap + policy</em>. Most other names below are
+        organs, org OS, or a different job.
+      </p>
+    </section>
+
+    <section class="field" id="field" aria-labelledby="field-title">
+      <h2 id="field-title">Around the shop</h2>
+      <p class="section-dek">
+        Useful neighbors. Not interchangeable with the two above.
       </p>
 
       {
-        fieldLanes.map((lane) => (
+        mainLanes.map((lane) => (
           <div class="lane">
             <h3 class="lane-title">{lane.title}</h3>
             <ul class="peer-list">
@@ -100,6 +137,38 @@ muscle   claude code · codex · pi · open code · …</code></pre>
             </ul>
           </div>
         ))
+      }
+
+      {
+        quietLanes.length > 0 && (
+          <div class="quiet-block">
+            {quietLanes.map((lane) => (
+              <div class="lane lane-quiet">
+                <h3 class="lane-title">{lane.title}</h3>
+                <ul class="peer-list">
+                  {peersInLane(lane.id).map((p) => (
+                    <li>
+                      <div class="peer-head">
+                        <a
+                          class="peer-name"
+                          href={p.url}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {p.name}
+                        </a>
+                        {p.by !== p.name ? (
+                          <span class="peer-by">{p.by}</span>
+                        ) : null}
+                      </div>
+                      <p class="peer-hook">{p.hook}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )
       }
     </section>
 

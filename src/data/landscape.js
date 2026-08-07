@@ -48,35 +48,38 @@ export const PARTS = [
   },
 ];
 
-/** @type {{ id: Lane; title: string }[]} */
-export const LANES = [
-  { id: "orchestration", title: "Orchestration" },
-  { id: "org-os", title: "Org / workspace OS" },
-  { id: "work-graph", title: "Work graph" },
-  { id: "fleet", title: "Fleet harness" },
-  { id: "retrieve", title: "Retrieve" },
-  { id: "optimize", title: "Optimization (different job)" },
-  { id: "adjacent", title: "Adjacent" },
-];
-
-/** @type {Peer[]} */
-export const PEERS = [
+/** Primary orchestration peers — the contrast that defines the lane. */
+export const TWO_SHOPS = [
   {
     name: "Polygraph",
     by: "Nx",
-    lane: "orchestration",
     organs: ["scope", "continuity"],
-    hook: "Synthetic monorepo graph across repos; durable sessions you can hand off.",
+    claim: "See across repos. Remember across sessions.",
+    hook: "Indexes your repos into a dependency graph (synthetic monorepo), coordinates cross-repo PRs, durable sessions you can hand off.",
     url: "https://trypolygraph.com/",
   },
   {
     name: "Omnigent",
     by: "Databricks",
-    lane: "orchestration",
     organs: ["swap", "constraint", "continuity"],
-    hook: "One runner over Claude Code, Codex, Pi — policies and sandbox in code, live shared sessions.",
+    claim: "Swap the muscle. Enforce the rails.",
+    hook: "One runner over Claude Code, Codex, Pi, SDKs — contextual policies and OS sandbox in code, live shareable sessions.",
     url: "https://omnigent.ai/",
   },
+];
+
+/** @type {{ id: Lane; title: string; quiet?: boolean }[]} */
+export const LANES = [
+  { id: "org-os", title: "Org / workspace OS" },
+  { id: "work-graph", title: "Work graph" },
+  { id: "fleet", title: "Fleet harness" },
+  { id: "retrieve", title: "Retrieve organ" },
+  { id: "optimize", title: "Not orchestration", quiet: true },
+  { id: "adjacent", title: "Adjacent", quiet: true },
+];
+
+/** @type {Peer[]} */
+export const PEERS = [
   {
     name: "Paperclip",
     by: "Paperclip",
@@ -122,7 +125,7 @@ export const PEERS = [
     by: "Cerebras",
     lane: "retrieve",
     organs: ["retrieve"],
-    hook: "Ingest where data lives → distill → retrieve → cite. An organ, not the whole shop.",
+    hook: "Ingest where data lives → distill → retrieve → cite. An organ inside a stack, not the shop.",
     url: "https://www.cerebras.ai/blog/how-we-built-our-knowledge-base",
   },
   {
@@ -130,7 +133,7 @@ export const PEERS = [
     by: "Lee et al.",
     lane: "optimize",
     organs: ["swap"],
-    hook: "Outer loop that rewrites harness code from full traces — not orchestration.",
+    hook: "Outer loop that rewrites harness code from full traces — optimization, not the shop.",
     url: "https://yoonholee.com/meta-harness/",
   },
   {
@@ -146,7 +149,7 @@ export const PEERS = [
     by: "Andrew Ng",
     lane: "adjacent",
     organs: ["constraint", "swap"],
-    hook: "Local desktop coworker for finished everyday work — not a coding meta-harness.",
+    hook: "Local desktop coworker for finished everyday work — different job entirely.",
     url: "https://github.com/andrewyng/openworker",
   },
   {

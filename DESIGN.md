@@ -37,25 +37,25 @@ typography:
 
 **Night lab / research strip.** Notebook, not SaaS. Cool blue-black atmosphere + faint grid. IBM Plex carries identity (same family as aie-sessions, inverted). Amber only on the punch rule, open-bet key, and mark highlights.
 
-Narrow reading measure (~40rem). Brand-led hero, short essay, organ miss-list, peer hooks grouped by lane. No coverage matrices, no marketing cards. Amber only on punch and TBD bet. Our stack is labeled TBD — never LifeOS on this public surface.
+Narrow reading measure (~38rem). Brand-led hero with shop/muscle stack. Hierarchy: Why → Organs → **Two shops** (Polygraph vs Omnigent) → neighbors → quiet “not this” → TBD. No coverage matrices. Amber only on punch and TBD bet. Our stack is **TBD** — never LifeOS on this public surface.
 
 ## Colors
 
-- **Canvas `#0A0A0A` / raise `#121212`:** Night ground with cool top wash.
+- **Canvas `#09090B`:** Night ground with cool top wash.
 - **Ink / muted:** Reading contrast.
-- **Accent `#D97706`:** Punch rule, open bet, mark — never nav chrome or matrix labels.
+- **Accent `#D97706`:** Punch rule, open bet, mark, active nav — never chrome paint.
 
 ## Typography
 
 - **IBM Plex Sans** for brand and body.
-- **IBM Plex Mono** for meta, section labels, owns column, schematic.
+- **IBM Plex Mono** for meta, section labels, organ tags, stack.
 
 ## Layout
 
-- Schematic plane above the brand (edge-to-edge bleed).
-- Prose ~60ch; field table and LifeOS cut can use the wider shell (~52rem).
-- Organs as failure-mode list, not marketing cards.
-- No scroll theater beyond one short hero rise.
+- Brand once in hero (header is quiet meta).
+- Two-shops pair is the intellectual center — side-by-side from 640px.
+- Neighbor peers as hairline lists; optimize/adjacent visually quieter.
+- No scroll theater beyond short hero rise + punch rule-in.
 
 ## Do's and Don'ts
 
