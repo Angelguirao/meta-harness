@@ -5,120 +5,198 @@ import { PARTS, PEERS } from "../data/landscape.js";
 
 <BaseLayout>
   <header class="top">
-    <span class="top-meta">lifeos research · v0</span>
-    <a class="top-link" href="https://github.com/Angelguirao/meta-harness"
-      >github</a
-    >
+    <span class="top-meta">lifeos · research notes · v0</span>
+    <nav class="top-nav" aria-label="On this page">
+      <a href="#scene">scene</a>
+      <a href="#bundle">bundle</a>
+      <a href="#field">field</a>
+      <a href="#lifeos">lifeos</a>
+      <a href="https://github.com/Angelguirao/meta-harness">source</a>
+    </nav>
   </header>
+
+  <div class="hero-bleed" aria-hidden="true">
+    <pre class="schematic"><code>┌─ shop ──────────────────────────────────────┐
+│  continuity   scope   constraint   work     │
+│  retrieve     swap                          │
+│       │                                     │
+│       ▼                                     │
+│  ┌─ muscle ─────────────────────────────┐   │
+│  │  claude code · codex · deep agents   │   │
+│  └──────────────────────────────────────┘   │
+└─────────────────────────────────────────────┘</code></pre>
+  </div>
 
   <main id="main">
     <section class="hero">
       <h1 class="brand">meta-harness</h1>
       <p class="lede">
-        The coding agent is the employee. Something else has to be the shop —
-        or you are.
+        Working name for the shop above the coding agent — the stuff that
+        survives when the chat dies.
+      </p>
+      <p class="dek">
+        Not a product pitch. Notes from running
+        <a href="https://github.com/Angelguirao/personal-ai-os">LifeOS</a>
+        next to everyone else who is building this layer.
       </p>
     </section>
 
-    <section class="scene" aria-labelledby="scene-title">
-      <h2 id="scene-title" class="sr">A Tuesday</h2>
+    <section class="scene" id="scene" aria-labelledby="scene-title">
+      <h2 id="scene-title">Tuesday, still broken</h2>
       <p>
-        You ask Claude Code to cancel an order. It needs the API, the web app,
-        and a design-system dialog. Three repos. You clone, branch, paste
-        context, babysit PRs so they land together.
+        Ticket: cancel a stuck order. Needs the payments API, the customer web
+        app, and a design-system confirm dialog. Three repos. Claude Code can
+        edit one tree at a time. You clone, branch, paste context, babysit
+        three PRs so they land in the same deploy.
       </p>
       <p>
-        Last week you already decided retries belong in the gateway — in a chat
-        that no longer exists. Git has the diff. Nobody has the why. Your
-        other laptop ran the same dead end yesterday.
+        Last Thursday you already decided retries belong in the gateway — in a
+        chat that is gone. The branch has the patch. Nothing queryable has the
+        decision. Your other laptop burned the same afternoon yesterday.
       </p>
       <p class="punch">
-        That gap — not “better prompts” — is what this notebook is about.
+        That gap is the category. Better prompts are not it.
       </p>
     </section>
 
-    <section class="bundle" aria-labelledby="bundle-title">
+    <section class="define" aria-labelledby="define-title">
+      <h2 id="define-title">Working definition</h2>
+      <p>
+        A <strong>harness</strong> is one agent loop in one session — Claude
+        Code, Codex, Deep Agents. A <strong>meta-harness</strong>, as we use
+        the word here, is not a single SKU. It is a
+        <strong>bundle of organs</strong> that make those loops usable across
+        time, repos, and risk: continuity, scope, constraint, work graph,
+        retrieve, swap.
+      </p>
+      <p>
+        Peers ship different subsets hard.
+        <a href="https://metaharness.tools">metaharness.tools</a> is a useful
+        map of the conversation — not our dictionary. We learn the label by
+        placing LifeOS next to the field.
+      </p>
+    </section>
+
+    <section class="bundle" id="bundle" aria-labelledby="bundle-title">
       <div class="section-head">
-        <h2 id="bundle-title">The bundle</h2>
-        <p>
-          Not one product shape. Organs. Peers ship different subsets hard.
-        </p>
+        <h2 id="bundle-title">If this organ is missing</h2>
+        <p>Each line is a failure mode, not a feature slogan.</p>
       </div>
       <ul class="matrix">
         {
           PARTS.map((part) => (
             <li>
               <span class="matrix-id">{part.label}</span>
-              <span class="matrix-blurb">{part.blurb}</span>
+              <span class="matrix-blurb">{part.miss}</span>
             </li>
           ))
         }
       </ul>
     </section>
 
-    <section class="field" aria-labelledby="field-title">
+    <section class="field" id="field" aria-labelledby="field-title">
       <div class="section-head">
-        <h2 id="field-title">Who owns what</h2>
-        <p>Center of gravity — not a feature scorecard.</p>
+        <h2 id="field-title">Field notes</h2>
+        <p>Center of gravity — who owns which organ hard.</p>
       </div>
-      <table class="owners">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Owns hard</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            PEERS.map((p) => (
-              <tr>
-                <th scope="row">
-                  {p.url ? (
-                    <a href={p.url} target="_blank" rel="noreferrer">
-                      {p.name}
-                    </a>
-                  ) : (
-                    p.name
-                  )}
-                </th>
-                <td>{p.owns}</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+      <div class="owners-wrap">
+        <table class="owners">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Owns hard</th>
+              <th scope="col">Read as</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              PEERS.map((p) => (
+                <tr>
+                  <th scope="row">
+                    {p.url ? (
+                      <a href={p.url} target="_blank" rel="noreferrer">
+                        {p.name}
+                      </a>
+                    ) : (
+                      p.name
+                    )}
+                  </th>
+                  <td class="owns">{p.owns}</td>
+                  <td>{p.note}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
       <p class="note">
-        <mark>Cerebras Knowledge</mark> is retrieve, done well. It can live
-        inside a fuller stack. It is not continuity + scope + constraint by
-        itself — same as a tracker that only does work, or a sandbox that only
-        does constraint.
+        <mark>Cerebras Knowledge</mark> is retrieve done well. It can sit inside
+        a fuller stack. Continuity + scope + constraint are still someone
+        else’s job — same pattern as a tracker that only does work, or a
+        sandbox that only does constraint.
       </p>
     </section>
 
-    <section class="lifeos" aria-labelledby="lifeos-title">
+    <section class="lifeos" id="lifeos" aria-labelledby="lifeos-title">
       <div class="section-head">
-        <h2 id="lifeos-title">LifeOS cut</h2>
+        <h2 id="lifeos-title">Where LifeOS sits</h2>
         <p>
           <a href="https://github.com/Angelguirao/personal-ai-os">personal-ai-os</a>
-          — what we actually run.
+          — what we actually run, not what we wish we shipped.
         </p>
       </div>
-      <pre class="cut" aria-label="LifeOS cut of the bundle"><code>world model     folio · ledger · trackers          ← meaning
-walker          PersonalOS OPEVL                    ← phases
-work / run / session                                ← coordination
-muscle          Fly Deep Agents · opt. Claude/Codex ← harness
-
-heavy:  meaning · walker · work
-thin:   cross-repo scope · session handoff · OS sandbox
-open:   which thin gap becomes the product</code></pre>
+      <div class="cut" role="group" aria-label="LifeOS inventory">
+        <div class="cut-row">
+          <span class="cut-k">heavy today</span>
+          <span class="cut-v"
+            >world model (folio · ledger · trackers) · OPEVL walker · Work /
+            Run / Session coordination</span
+          >
+        </div>
+        <div class="cut-row">
+          <span class="cut-k">muscle</span>
+          <span class="cut-v"
+            >Fly Deep Agents; Claude Code / Codex optional — swappable in
+            doctrine, sticky in practice</span
+          >
+        </div>
+        <div class="cut-row">
+          <span class="cut-k">thin</span>
+          <span class="cut-v"
+            >cross-repo scope · session handoff that agents trust · OS-level
+            sandbox</span
+          >
+        </div>
+        <div class="cut-row cut-row-open">
+          <span class="cut-k">open bet</span>
+          <span class="cut-v"
+            >which thin gap becomes the product — or whether the asset is the
+            world model that dispatches wraps</span
+          >
+        </div>
+      </div>
+      <p class="note">
+        Working thesis: control plane + world model first. Meta-harness organs
+        attach as substrates for Session and Run — not a rename, not a claim
+        that we are Omnigent.
+      </p>
     </section>
 
     <section class="open" aria-labelledby="open-title">
-      <h2 id="open-title">Open</h2>
+      <h2 id="open-title">Still open</h2>
       <ol>
-        <li>Which organs stay thin forever in LifeOS?</li>
-        <li>Is the asset the wrap, or the world model that dispatches wraps?</li>
-        <li>Handoff, sandbox, or cross-repo — what forces the next bet?</li>
+        <li>
+          After a cross-repo cancel-order, what should still be queryable next
+          Tuesday without re-explaining?
+        </li>
+        <li>
+          If we only harden one thin organ next, is it handoff, sandbox, or
+          scope?
+        </li>
+        <li>
+          Would we still need LifeOS if Omnigent + Beads + a knowledge organ
+          covered the week — or is the world model the irreplaceable piece?
+        </li>
       </ol>
     </section>
   </main>

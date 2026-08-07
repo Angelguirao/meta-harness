@@ -3,64 +3,62 @@ version: alpha
 name: Meta-harness Field Notes
 description: >
   Dark industrial research notes on the layer above agent harnesses.
-  Cool zinc night canvas, rare amber marks, Space Grotesk + JetBrains Mono.
-  Not PersonalOS desk chrome. Not cream editorial. Not Holzen Nox.
+  Cool night canvas, IBM Plex Sans + Mono, rare amber marks.
+  Inverted sibling of aie-sessions ledger type — not PersonalOS desk, not cream editorial.
 colors:
-  primary: "#FAFAFA"
-  background: "#0C0C0C"
-  background-breathe: "#141414"
-  foreground: "#FAFAFA"
+  primary: "#F4F4F5"
+  background: "#0A0A0A"
+  background-breathe: "#121212"
+  foreground: "#F4F4F5"
   muted: "#A1A1AA"
   accent: "#D97706"
-  accent-soft: "rgba(217, 119, 6, 0.12)"
+  accent-soft: "rgba(217, 119, 6, 0.2)"
   accent-strong: "#F59E0B"
-  surface: "#141414"
+  surface: "#121212"
   border: "#27272A"
 typography:
   display:
-    fontFamily: Space Grotesk
-    fontSize: 3rem
+    fontFamily: IBM Plex Sans
+    fontSize: 3.5rem
     fontWeight: 600
-    letterSpacing: -0.03em
+    letterSpacing: -0.035em
   body-md:
-    fontFamily: DM Sans
+    fontFamily: IBM Plex Sans
     fontSize: 1.0625rem
     fontWeight: 400
     lineHeight: 1.65
   mono:
-    fontFamily: JetBrains Mono
-    fontSize: 0.8125rem
-    fontWeight: 400
+    fontFamily: IBM Plex Mono
+    fontSize: 0.78rem
+    fontWeight: 500
 ---
 
 ## Overview
 
-**Night lab / research strip.** This site is a notebook, not a desk and not a SaaS landing page. Dark zinc canvas, hairline structure, mono for the parts matrix and peer table. Amber appears only as a mark or a single rule — never as chrome paint.
+**Night lab / research strip.** Notebook, not SaaS. Cool blue-black atmosphere + faint grid. IBM Plex carries identity (same family as aie-sessions, inverted). Amber only on the punch rule, open-bet key, and mark highlights.
 
-Peers in spirit: Warp, terminal docs, gstack — not Anthropic cream, not PersonalOS light steward chrome.
+Hero opens with a full-bleed mono schematic of shop → muscle, then brand + working definition.
 
 ## Colors
 
-- **Canvas `#0C0C0C` / surface `#141414`:** Night ground.
-- **Ink `#FAFAFA` / muted `#A1A1AA`:** Reading contrast on dark.
-- **Border `#27272A`:** Hairlines only.
-- **Accent `#D97706`:** Rare — mark highlights, one stack rule. Never buttons, nav, or fills.
+- **Canvas `#0A0A0A` / raise `#121212`:** Night ground with cool top wash.
+- **Ink / muted:** Reading contrast.
+- **Accent `#D97706`:** Punch rule, open bet, mark — never nav chrome or matrix labels.
 
 ## Typography
 
-- **Display:** Space Grotesk, upright, heavy tracking cut.
-- **Body:** DM Sans.
-- **Matrix / peers / meta:** JetBrains Mono — the personality layer.
+- **IBM Plex Sans** for brand and body.
+- **IBM Plex Mono** for meta, section labels, owns column, schematic.
 
 ## Layout
 
-- Brand once in the hero (large). Header is quiet meta + source.
-- Measure ~58–62ch for prose.
-- Parts as a mono grid, not marketing cards.
-- No scroll-reveal theater. Optional one short rise on hero if motion is on.
+- Schematic plane above the brand (edge-to-edge bleed).
+- Prose ~60ch; field table and LifeOS cut can use the wider shell (~52rem).
+- Organs as failure-mode list, not marketing cards.
+- No scroll theater beyond one short hero rise.
 
 ## Do's and Don'ts
 
-**Do** keep amber scarce; let mono carry structure; write concrete operator scenes.
+**Do** write concrete operator failures; keep amber scarce; let Plex Mono structure the lab.
 
-**Don't** cream, terracotta, purple glow, chip filters, duplicate brand in sticky + hero, numbered “AI insight” lists, light PersonalOS clone.
+**Don't** Space Grotesk / cream / terracotta / purple glow / chip filters / slogan organs / rounded feature cards / light PersonalOS clone.

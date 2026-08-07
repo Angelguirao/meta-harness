@@ -1,23 +1,23 @@
 /*
-  Meta-harness field notes — night industrial.
-  See DESIGN.md. Amber is mark/rule only.
+  Meta-harness — night industrial research strip.
+  IBM Plex. Amber is mark / punch rule only.
 */
 
 :root {
-  --bg: #0c0c0c;
-  --bg-raise: #141414;
-  --ink: #fafafa;
+  --bg: #0a0a0a;
+  --bg-raise: #121212;
+  --ink: #f4f4f5;
   --muted: #a1a1aa;
   --dim: #71717a;
   --line: #27272a;
+  --line-soft: #1c1c1f;
   --accent: #d97706;
-  --mark: rgba(217, 119, 6, 0.22);
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --measure: 58ch;
-  --gutter: clamp(1.25rem, 4vw, 2.5rem);
-  --max: 40rem;
+  --mark: rgba(217, 119, 6, 0.2);
+  --font: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --measure: 60ch;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --max: 52rem;
 }
 
 * {
@@ -34,7 +34,7 @@ body {
   min-height: 100dvh;
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-body);
+  font-family: var(--font);
   font-size: 1.0625rem;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -61,16 +61,44 @@ body {
   text-decoration: none;
 }
 
-.grain {
+/* Cool blue-black gradient + faint grid — not flat AI black */
+.atmosphere {
   pointer-events: none;
   position: fixed;
   inset: 0;
   z-index: 0;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background:
+    linear-gradient(180deg, #0e1218 0%, var(--bg) 42%, #0a0a0a 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 47px,
+      var(--line-soft) 47px,
+      var(--line-soft) 48px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 47px,
+      var(--line-soft) 47px,
+      var(--line-soft) 48px
+    );
+  opacity: 1;
+}
+
+.atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% -10%,
+    rgba(217, 119, 6, 0.06),
+    transparent 55%
+  );
 }
 
 .top,
+.hero-bleed,
 main,
 .foot {
   position: relative;
@@ -79,48 +107,83 @@ main,
 
 .top {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
   justify-content: space-between;
   align-items: baseline;
-  padding: 1rem var(--gutter);
+  padding: 0.9rem var(--gutter);
   border-bottom: 1px solid var(--line);
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(8px);
 }
 
 .top-meta,
-.top-link {
+.top-nav {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  color: var(--dim);
+}
+
+.top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.top-nav a {
   color: var(--dim);
   text-decoration: none;
 }
 
-.top-link:hover {
+.top-nav a:hover {
   color: var(--ink);
+}
+
+.hero-bleed {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-raise);
+  overflow-x: auto;
+}
+
+.schematic {
+  margin: 0;
+  padding: 1.75rem var(--gutter);
+  max-width: calc(var(--max) + 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+.schematic code {
+  font-family: var(--font-mono);
+  font-size: clamp(0.62rem, 1.8vw, 0.78rem);
+  line-height: 1.45;
+  color: var(--dim);
+  white-space: pre;
 }
 
 main {
   max-width: calc(var(--max) + 2 * var(--gutter));
   margin: 0 auto;
-  padding: clamp(2.75rem, 9vw, 4.5rem) var(--gutter) 3.5rem;
+  padding: clamp(2.25rem, 7vw, 3.5rem) var(--gutter) 3.5rem;
 }
 
 .hero {
-  margin-bottom: 3rem;
-  padding-bottom: 2.5rem;
+  margin-bottom: 2.75rem;
+  padding-bottom: 2.25rem;
   border-bottom: 1px solid var(--line);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .hero {
-    animation: rise 0.55s ease-out both;
+    animation: rise 0.5s ease-out both;
   }
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -129,70 +192,98 @@ main {
 }
 
 .brand {
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-weight: 600;
-  font-size: clamp(2.85rem, 11vw, 4.25rem);
-  line-height: 0.98;
-  letter-spacing: -0.04em;
-  margin: 0 0 1.35rem;
+  font-size: clamp(2.6rem, 9vw, 3.75rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  margin: 0 0 1.15rem;
   text-wrap: balance;
 }
 
 .lede {
-  margin: 0;
-  max-width: 28rem;
-  font-size: 1.25rem;
+  margin: 0 0 0.85rem;
+  max-width: 34rem;
+  font-size: 1.2rem;
   line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.dek {
+  margin: 0;
+  max-width: var(--measure);
+  font-size: 0.95rem;
   color: var(--muted);
   text-wrap: pretty;
 }
 
-.sr {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+.dek a {
+  color: var(--ink);
+  text-underline-offset: 0.15em;
 }
 
-.scene {
-  margin-bottom: 3.25rem;
+.scene,
+.define,
+.bundle,
+.field,
+.lifeos {
+  margin-bottom: 3rem;
 }
 
-.scene p {
+.scene h2,
+.define h2,
+.open h2 {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 0 0 1rem;
+}
+
+.scene p,
+.define p {
   margin: 0 0 1rem;
   max-width: var(--measure);
-  color: color-mix(in srgb, var(--ink) 88%, var(--muted));
+  color: color-mix(in srgb, var(--ink) 90%, var(--muted));
   text-wrap: pretty;
 }
 
+.define a {
+  color: var(--ink);
+  text-underline-offset: 0.15em;
+}
+
+.define strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
 .punch {
-  margin-top: 1.25rem !important;
+  margin-top: 1.35rem !important;
   padding-left: 1rem;
   border-left: 2px solid var(--accent);
   color: var(--ink) !important;
-  font-family: var(--font-display);
   font-weight: 500;
   font-size: 1.05rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   line-height: 1.4;
 }
 
 .section-head {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.15rem;
 }
 
 .section-head h2 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--dim);
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.45rem;
 }
 
 .section-head p {
@@ -207,93 +298,92 @@ main {
   text-underline-offset: 0.15em;
 }
 
-.bundle,
-.field,
-.lifeos {
-  margin-bottom: 3.25rem;
-}
-
 .matrix {
   list-style: none;
   margin: 0;
   padding: 0;
   border-top: 1px solid var(--line);
-  display: grid;
-  gap: 0;
-}
-
-@media (min-width: 640px) {
-  .matrix {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 .matrix li {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  padding: 1rem 0.85rem 1rem 0;
+  display: grid;
+  gap: 0.35rem 1.25rem;
+  padding: 1rem 0;
   border-bottom: 1px solid var(--line);
 }
 
-@media (min-width: 640px) {
-  .matrix li:nth-child(odd) {
-    padding-right: 1.25rem;
-    border-right: 1px solid var(--line);
-  }
-
-  .matrix li:nth-child(even) {
-    padding-left: 1.25rem;
+@media (min-width: 720px) {
+  .matrix li {
+    grid-template-columns: 8.5rem 1fr;
+    align-items: baseline;
   }
 }
 
 .matrix-id {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink);
 }
 
 .matrix-blurb {
-  font-size: 0.92rem;
-  line-height: 1.45;
+  font-size: 0.95rem;
+  line-height: 1.5;
   color: var(--muted);
+  max-width: 42rem;
+}
+
+.owners-wrap {
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+  border-top: 1px solid var(--line);
 }
 
 .owners {
   width: 100%;
+  min-width: 36rem;
   border-collapse: collapse;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   line-height: 1.45;
-  margin-bottom: 1.25rem;
 }
 
 .owners th,
 .owners td {
   text-align: left;
-  padding: 0.7rem 0.75rem 0.7rem 0;
+  padding: 0.75rem 1rem 0.75rem 0;
   border-bottom: 1px solid var(--line);
-  vertical-align: baseline;
+  vertical-align: top;
 }
 
 .owners thead th {
+  font-family: var(--font-mono);
   color: var(--dim);
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-size: 0.65rem;
+  padding-top: 0.5rem;
 }
 
 .owners tbody th {
   font-weight: 500;
   color: var(--ink);
-  padding-right: 1.25rem;
   white-space: nowrap;
+  padding-right: 1.5rem;
 }
 
-.owners tbody td {
+.owners .owns {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   color: var(--muted);
+  white-space: nowrap;
+  padding-right: 1.5rem;
+}
+
+.owners tbody td:last-child {
+  color: var(--muted);
+  max-width: 28rem;
 }
 
 .owners a {
@@ -318,37 +408,54 @@ mark {
   font-weight: 600;
   padding: 0.05em 0.2em;
   margin: 0 -0.05em;
-  border-radius: 0.2em;
+  border-radius: 0.15em;
   background: var(--mark);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
 
 .cut {
-  margin: 0;
-  padding: 1.1rem 1.15rem;
-  background: var(--bg-raise);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  overflow-x: auto;
+  margin: 0 0 1.15rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(18, 18, 18, 0.65);
 }
 
-.cut code {
+.cut-row {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.cut-row:last-child {
+  border-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .cut-row {
+    grid-template-columns: 7.5rem 1fr;
+    gap: 1.25rem;
+    align-items: baseline;
+  }
+}
+
+.cut-k {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  line-height: 1.7;
-  color: var(--muted);
-  white-space: pre;
-}
-
-.open h2 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--dim);
-  margin: 0 0 1rem;
+}
+
+.cut-row-open .cut-k {
+  color: var(--accent);
+}
+
+.cut-v {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--muted);
 }
 
 .open ol {
@@ -358,7 +465,7 @@ mark {
 }
 
 .open li {
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.75rem;
   color: var(--muted);
   padding-left: 0.25rem;
 }
