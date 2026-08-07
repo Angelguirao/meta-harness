@@ -19,32 +19,32 @@ export const PARTS = [
   {
     id: "continuity",
     label: "continuity",
-    miss: "Why dies with the chat. Git keeps the patch.",
+    miss: "The why dies with the chat. Git only has the patch.",
   },
   {
     id: "scope",
     label: "scope",
-    miss: "Cross-repo work makes you the integration bus.",
+    miss: "Cross-repo work — you are the integration bus.",
   },
   {
     id: "constraint",
     label: "constraint",
-    miss: "Spend and risk stay in the prompt.",
+    miss: "Spend and risk live in the prompt, not in code.",
   },
   {
     id: "work",
     label: "work",
-    miss: "Deps live somewhere agents can’t trust after reset.",
+    miss: "Deps sit in a board agents can’t trust after reset.",
   },
   {
     id: "retrieve",
     label: "retrieve",
-    miss: "Answers from memory and lucky grep.",
+    miss: "Answers from memory and lucky grep, not citations.",
   },
   {
     id: "swap",
     label: "swap",
-    miss: "Glued to one CLI; changing muscle rewrites the shop.",
+    miss: "Glued to one CLI — changing muscle rewrites the shop.",
   },
 ];
 
