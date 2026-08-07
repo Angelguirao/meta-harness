@@ -33,13 +33,13 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
 
   <main id="main">
     <section class="hero">
-      <h1 class="brand">meta-harness</h1>
+      <h1 class="brand"><span class="brand-meta">meta</span><span class="brand-hyphen">-</span><span class="brand-harness">harness</span></h1>
       <p class="lede">
         The coding agent is the muscle. Something else has to be the shop —
         or you are.
       </p>
       <div class="stack" aria-label="Shop over muscle">
-        <div class="stack-row">
+        <div class="stack-row stack-shop">
           <span class="stack-k">shop</span>
           <span class="stack-v">
             {
@@ -52,7 +52,7 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
             }
           </span>
         </div>
-        <div class="stack-row">
+        <div class="stack-row stack-muscle">
           <span class="stack-k">muscle</span>
           <span class="stack-v"
             >claude code · codex · pi · open code · …<span class="cursor" aria-hidden="true"
@@ -64,11 +64,13 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
 
     <section class="prose" id="why" aria-labelledby="why-title">
       <h2 id="why-title" class="sr-only">Why</h2>
-      <p>
+      <p class="punch">
         A harness runs one loop in one tree. Cancel-order needs three. You
         stitch PRs by hand. Then the chat dies — and the why dies with it.
+      </p>
+      <p class="why-cite">
         <a href="https://metaharness.tools/">metaharness.tools</a> named the
-        gap; two shops are forming inside it.
+        gap. Two shops are forming inside it.
       </p>
     </section>
 
@@ -143,27 +145,17 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
           </p>
         </article>
       </div>
+      <p class="shops-note">
+        <em>Polygraph</em> owns the graph across trees.
+        <em>Omnigent</em> owns the runner across CLIs.
+      </p>
 
       <aside class="compose" aria-labelledby="compose-title">
-        <h3 id="compose-title" class="compose-title">One way to compose</h3>
+        <h3 id="compose-title" class="compose-title">One assembly</h3>
+        <p class="compose-lead">
+          Neither shop covers every organ. One way to fill the rest:
+        </p>
         <ul class="compose-stack">
-          <li>
-            <a class="compose-who" href={poly.url} target="_blank" rel="noreferrer"
-              >Polygraph</a
-            >
-            <span class="compose-organs">
-              {
-                poly.organs.map((id, i) => (
-                  <>
-                    {i > 0 ? " · " : ""}
-                    <a href={`#organ-${id}`} data-organ={id}>
-                      {id}
-                    </a>
-                  </>
-                ))
-              }
-            </span>
-          </li>
           <li>
             <a
               class="compose-who"
@@ -186,26 +178,8 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
               <a href="#organ-retrieve" data-organ="retrieve">retrieve</a>
             </span>
           </li>
-          <li>
-            <a class="compose-who" href={omni.url} target="_blank" rel="noreferrer"
-              >Omnigent</a
-            >
-            <span class="compose-organs">
-              {
-                ["swap", "constraint"].map((id, i) => (
-                  <>
-                    {i > 0 ? " · " : ""}
-                    <a href={`#organ-${id}`} data-organ={id}>
-                      {id}
-                    </a>
-                  </>
-                ))
-              }
-            </span>
-            <span class="compose-aside">if you need rails across CLIs</span>
-          </li>
           <li class="compose-tbd">
-            <span class="compose-who">TBD today</span>
+            <a class="compose-who" href="#tbd">TBD</a>
             <span class="compose-organs">control plane + durable meaning</span>
             <span class="compose-aside"
               >scope · handoff · sandbox still thin</span
@@ -363,11 +337,11 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
     const clearLitSoon = () => {
       requestAnimationFrame(() => {
         const over = document.querySelector(
-          "[data-organ]:hover, .shop[data-organs]:hover",
+          "[data-organ]:hover, [data-organ-row]:hover, .shop[data-organs]:hover",
         );
-        if (!over && !document.activeElement?.hasAttribute?.("data-organ")) {
-          paintLit([]);
-        }
+        const hash = location.hash.match(/^#organ-([\w-]+)$/);
+        if (over || document.activeElement?.hasAttribute?.("data-organ")) return;
+        paintLit(hash ? [hash[1]] : []);
       });
     };
 
@@ -387,5 +361,19 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
       shop.addEventListener("pointerenter", () => paintLit(ids));
       shop.addEventListener("pointerleave", clearLitSoon);
     });
+
+    document.querySelectorAll("[data-organ-row]").forEach((row) => {
+      const id = row.getAttribute("data-organ-row");
+      if (!id) return;
+      row.addEventListener("pointerenter", () => paintLit([id]));
+      row.addEventListener("pointerleave", clearLitSoon);
+    });
+
+    const syncHash = () => {
+      const m = location.hash.match(/^#organ-([\w-]+)$/);
+      paintLit(m ? [m[1]] : []);
+    };
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
   </script>
 </BaseLayout>
