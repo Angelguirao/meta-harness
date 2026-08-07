@@ -8,6 +8,7 @@ import {
   peersInLane,
 } from "../data/landscape.js";
 
+/** @type {typeof PEERS} */
 const tbd = PEERS.find((p) => p.self);
 const [poly, omni] = TWO_SHOPS;
 
@@ -39,7 +40,7 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
         The coding agent is the muscle. Something else has to be the shop —
         or you are.
       </p>
-      <div class="stack" aria-hidden="true">
+      <div class="stack" aria-label="Shop over muscle">
         <div class="stack-row">
           <span class="stack-k">shop</span>
           <span class="stack-v">
@@ -154,6 +155,21 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
         Polygraph starts from <em>repos + memory</em>. Omnigent starts from{" "}
         <em>harness swap + policy</em>. Neither is the whole organ bundle.
       </p>
+
+      <aside class="compose" aria-labelledby="compose-title">
+        <h3 id="compose-title" class="compose-title">One way to compose</h3>
+        <pre class="compose-pre"><code>Polygraph     scope · continuity
+Beads         work
+Cerebras-like retrieve
+Omnigent      swap · constraint   ← if you need rails across CLIs
+
+TBD today     control plane + durable meaning
+              (scope · handoff · sandbox still thin)</code></pre>
+        <p class="compose-note">
+          Organs can be bought separately. The open question is which thin gap
+          becomes the product — or whether the world model stays the asset.
+        </p>
+      </aside>
     </section>
 
     <section class="field" id="field" aria-labelledby="field-title">
