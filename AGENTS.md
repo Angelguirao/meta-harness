@@ -9,3 +9,4 @@ Night research strip — IBM Plex, scarce amber, narrow measure.
 - Hooks from primary sources only.
 - Our stack = **TBD** (private). No private repo links. No internal product names.
 - OpenWorker = adjacent coworker, not coding meta-harness.
+- HappyRobot / Sierra / Agentforce = adjacent enterprise worker platforms, not coding meta-harness.
