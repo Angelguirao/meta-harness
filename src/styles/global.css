@@ -357,7 +357,7 @@ main {
   scroll-margin-top: 3.25rem;
 }
 
-/* —— Two shops (uses full main width) —— */
+/* —— Full shops (uses full main width) —— */
 .shop-panel {
   margin-bottom: 1.35rem;
   border: 1px solid var(--line);
@@ -372,8 +372,12 @@ main {
 
 @media (min-width: 720px) {
   .shop-grid {
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: repeat(3, 1fr);
     align-items: stretch;
+  }
+
+  .shop + .shop {
+    border-left: 1px solid var(--line);
   }
 }
 
@@ -381,35 +385,9 @@ main {
   padding: 1.25rem 1.1rem 1.35rem;
 }
 
-@media (min-width: 720px) {
-  .shop:first-of-type {
-    border-right: 0;
-  }
-}
-
-.shop-vs {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  padding: 0.55rem 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-@media (min-width: 720px) {
-  .shop-vs {
-    border-top: 0;
-    border-bottom: 0;
-    border-left: 1px solid var(--line);
-    border-right: 1px solid var(--line);
-    min-height: 100%;
-    padding: 1rem 0.5rem;
-    align-self: stretch;
+@media (max-width: 719px) {
+  .shop + .shop {
+    border-top: 1px solid var(--line);
   }
 }
 
@@ -418,8 +396,12 @@ main {
     animation: rise 0.55s ease-out both;
   }
 
-  .shop:last-of-type {
-    animation-delay: 0.08s;
+  .shop:nth-of-type(2) {
+    animation-delay: 0.06s;
+  }
+
+  .shop:nth-of-type(3) {
+    animation-delay: 0.12s;
   }
 }
 
@@ -738,7 +720,16 @@ h2 {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--dim);
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.35rem;
+}
+
+.lane-dek {
+  margin: 0 0 0.65rem;
+  max-width: var(--measure);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--muted);
+  text-wrap: pretty;
 }
 
 .peer-list-dense {

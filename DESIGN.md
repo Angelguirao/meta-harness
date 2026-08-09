@@ -37,7 +37,7 @@ typography:
 
 **Night lab / research strip.** Notebook, not SaaS. Cool blue-black atmosphere + faint grid. IBM Plex carries identity (same family as aie-sessions, inverted). Amber only on the punch rule, open-bet key, and mark highlights.
 
-Narrow reading measure (~38rem). Brand-led hero (brand + lede + shop/muscle stack in first viewport). Hierarchy: hero → why punch → Organs → **Two shops** + contrast → fill-the-rest → neighbors → quiet elsewhere → TBD + coda (“you are it”). Organ tags and rows cross-light. Amber on brand hyphen, punch, cursor, TBD bet. Our stack is **TBD** — never LifeOS on this public surface. Bet lives once (TBD), not repeated above.
+Narrow reading measure (~38rem). Brand-led hero (brand + lede + shop/muscle stack in first viewport). Hierarchy: hero → why punch → Organs → **Full shops** (multi-organ meta-harnesses; vertical irrelevant) + fill-the-rest → Field by precise layer → quiet elsewhere → TBD + coda (“you are it”). Organ tags and rows cross-light. Amber on brand hyphen, punch, cursor, TBD bet. Our stack is **TBD** — never LifeOS on this public surface. Bet lives once (TBD), not repeated above.
 
 ## Colors
 
@@ -53,8 +53,8 @@ Narrow reading measure (~38rem). Brand-led hero (brand + lede + shop/muscle stac
 ## Layout
 
 - Brand once in hero (header is quiet meta).
-- Two-shops pair is the intellectual center — side-by-side from 640px.
-- Neighbor peers grouped by lane; optimize/adjacent as one quiet elsewhere line.
+- Full-shops panel is the intellectual center — three columns from 720px (Polygraph · Omnigent · HappyRobot).
+- Field peers grouped by precise layer (shop / control / framework / observe / …); optimize/adjacent as one quiet elsewhere line.
 - No scroll theater beyond short hero rise + punch rule-in.
 
 ## Do's and Don'ts

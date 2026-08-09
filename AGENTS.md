@@ -8,5 +8,12 @@ Night research strip — IBM Plex, scarce amber, narrow measure.
 - Essay + one-line peer hooks. No coverage-matrix soup.
 - Hooks from primary sources only.
 - Our stack = **TBD** (private). No private repo links. No internal product names.
-- OpenWorker = adjacent coworker, not coding meta-harness.
-- HappyRobot / Sierra / Agentforce = adjacent enterprise worker platforms, not coding meta-harness.
+
+**Taxonomy (layer claim, not vertical)**
+- **shop / meta-harness** — multi-organ claim over muscle. Coding vs ops vs CX does **not** decide the lane. HappyRobot is a shop.
+- **control** — run/session/HITL/deploy APIs (Agno AgentOS, LangSmith Deployment).
+- **framework** — libraries that build the loop (LangGraph, LangChain, deepagents).
+- **observe** — traces/evals (LangSmith).
+- **work / fleet / retrieve** — single-organ or fleet surfaces.
+- **optimize** — searches harness *code*.
+- **adjacent** — nearby product that does **not** claim the shop (OpenWorker). Never use “different job” as a synonym for “non-coding vertical.”

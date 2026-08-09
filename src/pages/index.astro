@@ -4,12 +4,11 @@ import {
   PARTS,
   PEERS,
   LANES,
-  TWO_SHOPS,
+  FULL_SHOPS,
   peersInLane,
 } from "../data/landscape.js";
 
 const tbd = PEERS.find((p) => p.self);
-const [poly, omni] = TWO_SHOPS;
 
 const neighborLanes = LANES.filter((l) => !l.quiet)
   .map((l) => ({ ...l, peers: peersInLane(l.id) }))
@@ -20,7 +19,7 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
 
 const sources = [
   { name: "metaharness.tools", url: "https://metaharness.tools/" },
-  ...TWO_SHOPS.map((s) => ({ name: s.name, url: s.url })),
+  ...FULL_SHOPS.map((s) => ({ name: s.name, url: s.url })),
   ...PEERS.filter((p) => !p.self && p.url).map((p) => ({
     name: p.name === "Cerebras Knowledge" ? "Cerebras" : p.name,
     url: p.url,
@@ -43,8 +42,8 @@ const sources = [
     <section class="hero">
       <h1 class="brand">meta<span class="brand-hyphen">-</span>harness</h1>
       <p class="lede">
-        The coding agent is the muscle. Something else has to be the shop —
-        or you are.
+        The harness is the muscle. Something else has to be the shop — or you
+        are.
       </p>
       <div class="stack" aria-label="Shop over muscle">
         <div class="stack-row stack-shop">
@@ -63,8 +62,9 @@ const sources = [
         <div class="stack-row stack-muscle">
           <span class="stack-k">muscle</span>
           <span class="stack-v"
-            >claude code · codex · pi · open code · …<span class="cursor" aria-hidden="true"
-            ></span></span
+            >claude code · deepagents · voice workers · …<span
+              class="cursor"
+              aria-hidden="true"></span></span
           >
         </div>
       </div>
@@ -73,12 +73,13 @@ const sources = [
     <section class="prose" id="why" aria-labelledby="why-title">
       <h2 id="why-title" class="sr-only">Why</h2>
       <p class="punch">
-        A harness runs one loop in one tree. Cancel-order needs three. You
-        stitch PRs by hand. Then the chat dies — and the why dies with it.
+        A harness runs one loop. Real work crosses sessions, systems, and
+        hands. You stitch it yourself — then the chat dies, and the why dies
+        with it.
       </p>
       <p class="why-cite">
         <a href="https://metaharness.tools/">metaharness.tools</a> named the
-        gap. Two shops are forming inside it.
+        gap. Full shops are forming inside it — coding or not.
       </p>
     </section>
 
@@ -102,72 +103,53 @@ const sources = [
     </section>
 
     <section class="shops" id="shops" aria-labelledby="shops-title">
-      <h2 id="shops-title">Two shops</h2>
-      <p class="section-dek">Same layer. Different center of gravity.</p>
+      <h2 id="shops-title">Full shops</h2>
+      <p class="section-dek">
+        Meta-harnesses that claim multiple organs. Vertical is not the test.
+      </p>
       <div class="shop-panel">
         <div class="shop-grid">
-          <article class="shop" data-organs={poly.organs.join(" ")}>
-            <header class="shop-head">
-              <a
-                class="shop-name"
-                href={poly.url}
-                target="_blank"
-                rel="noreferrer">{poly.name}</a
-              >
-              <span class="shop-by">{poly.by}</span>
-            </header>
-            <p class="shop-claim">{poly.claim}</p>
-            <p class="shop-hook">{poly.hook}</p>
-            <p class="shop-organs">
-              {
-                poly.organs.map((id, i) => (
-                  <>
-                    {i > 0 ? " · " : ""}
-                    <a href={`#organ-${id}`} data-organ={id}>
-                      {id}
-                    </a>
-                  </>
-                ))
-              }
-            </p>
-          </article>
-          <div class="shop-vs" aria-hidden="true">vs</div>
-          <article class="shop" data-organs={omni.organs.join(" ")}>
-            <header class="shop-head">
-              <a
-                class="shop-name"
-                href={omni.url}
-                target="_blank"
-                rel="noreferrer">{omni.name}</a
-              >
-              <span class="shop-by">{omni.by}</span>
-            </header>
-            <p class="shop-claim">{omni.claim}</p>
-            <p class="shop-hook">{omni.hook}</p>
-            <p class="shop-organs">
-              {
-                omni.organs.map((id, i) => (
-                  <>
-                    {i > 0 ? " · " : ""}
-                    <a href={`#organ-${id}`} data-organ={id}>
-                      {id}
-                    </a>
-                  </>
-                ))
-              }
-            </p>
-          </article>
+          {
+            FULL_SHOPS.map((shop) => (
+              <article class="shop" data-organs={shop.organs.join(" ")}>
+                <header class="shop-head">
+                  <a
+                    class="shop-name"
+                    href={shop.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {shop.name}
+                  </a>
+                  <span class="shop-by">{shop.by}</span>
+                </header>
+                <p class="shop-claim">{shop.claim}</p>
+                <p class="shop-hook">{shop.hook}</p>
+                <p class="shop-organs">
+                  {shop.organs.map((id, i) => (
+                    <>
+                      {i > 0 ? " · " : ""}
+                      <a href={`#organ-${id}`} data-organ={id}>
+                        {id}
+                      </a>
+                    </>
+                  ))}
+                </p>
+              </article>
+            ))
+          }
         </div>
         <p class="shops-note">
           <span><em>Polygraph</em> owns the graph across trees.</span>
           <span><em>Omnigent</em> owns the runner across CLIs.</span>
+          <span><em>HappyRobot</em> owns the ops platform + context.</span>
         </p>
       </div>
 
       <aside class="compose" aria-labelledby="compose-title">
         <h3 id="compose-title" class="compose-title">Fill the rest</h3>
         <p class="compose-lead">
-          Neither shop is a full shop. Organs still ship separately:
+          No featured shop covers every organ. Specialists still ship alone:
         </p>
         <ul class="compose-stack">
           <li>
@@ -205,12 +187,15 @@ const sources = [
     </section>
 
     <section class="field" id="field" aria-labelledby="field-title">
-      <h2 id="field-title">Around the shop</h2>
-      <p class="section-dek">Neighbors — not the same job as the two above.</p>
+      <h2 id="field-title">Field</h2>
+      <p class="section-dek">
+        Layers around the shop — by claim, not by industry.
+      </p>
       {
         neighborLanes.map((lane) => (
           <div class="lane-block">
             <h3 class="lane-title">{lane.title}</h3>
+            <p class="lane-dek">{lane.dek}</p>
             <ul class="peer-list peer-list-dense">
               {lane.peers.map((p) => (
                 <li>
@@ -254,7 +239,7 @@ const sources = [
           ))
         }
         {" "}
-        — optimization or adjacent, not the shop.
+        — harness-code search, or adjacent without a shop claim.
       </p>
     </section>
 
@@ -266,7 +251,7 @@ const sources = [
           <dl class="tbd-cut">
             <div>
               <dt>lane</dt>
-              <dd>Org OS — not Polygraph, not Omnigent.</dd>
+              <dd>Shop — world model + control plane, not a single organ.</dd>
             </div>
             <div>
               <dt>heavy</dt>
