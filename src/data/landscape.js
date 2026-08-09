@@ -1,5 +1,5 @@
 /**
- * Landscape data — hooks from primary sources (2026-08-07).
+ * Landscape data — hooks from primary sources (2026-08-09).
  * Keep hooks ≤12 words.
  *
  * @typedef {'orchestration' | 'org-os' | 'work-graph' | 'fleet' | 'retrieve' | 'optimize' | 'adjacent'} Lane
@@ -103,6 +103,14 @@ export const PEERS = [
     organs: ["swap", "constraint"],
     hook: "Private agent platform — runs, HITL, BYOC.",
     url: "https://www.agno.com/",
+  },
+  {
+    name: "LifeOS",
+    by: "Miessler",
+    lane: "org-os",
+    organs: ["continuity", "swap"],
+    hook: "Intent engineering on Claude Code / Cursor / Codex.",
+    url: "https://ourlifeos.ai/",
   },
   {
     name: "Beads",
