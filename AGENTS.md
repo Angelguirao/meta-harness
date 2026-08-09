@@ -7,7 +7,7 @@ Night research strip — IBM Plex, scarce amber, narrow measure.
 **Content**
 - Essay + one-line peer hooks. No coverage-matrix soup.
 - Hooks from primary sources only.
-- Our stack = **TBD** (private). No private repo links. No internal product names.
+- Do not invent a coy private self-slot on the page. Do not name private stack products here.
 
 **Taxonomy (layer claim, not vertical)**
 - **shop / meta-harness** — multi-organ claim over muscle. Coding vs ops vs CX does **not** decide the lane. HappyRobot is a shop.

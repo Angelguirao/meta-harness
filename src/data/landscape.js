@@ -14,7 +14,6 @@
  *   organs: string[];
  *   hook: string;
  *   url: string;
- *   self?: boolean;
  * }} Peer
  * @typedef {{
  *   name: string;
@@ -304,20 +303,9 @@ export const PEERS = [
     hook: "Desktop coworker — does not claim the shop.",
     url: "https://github.com/andrewyng/openworker",
   },
-
-  // —— self ——
-  {
-    name: "TBD",
-    by: "private",
-    lane: "shop",
-    organs: ["work", "continuity"],
-    hook: "Private. Control plane heavy; scope thin.",
-    url: "",
-    self: true,
-  },
 ];
 
 /** @param {Lane} lane */
 export function peersInLane(lane) {
-  return PEERS.filter((p) => p.lane === lane && !p.self);
+  return PEERS.filter((p) => p.lane === lane);
 }

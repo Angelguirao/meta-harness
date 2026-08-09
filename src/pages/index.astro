@@ -8,8 +8,6 @@ import {
   peersInLane,
 } from "../data/landscape.js";
 
-const tbd = PEERS.find((p) => p.self);
-
 const neighborLanes = LANES.filter((l) => !l.quiet)
   .map((l) => ({ ...l, peers: peersInLane(l.id) }))
   .filter((l) => l.peers.length);
@@ -20,7 +18,7 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
 const sources = [
   { name: "metaharness.tools", url: "https://metaharness.tools/" },
   ...FULL_SHOPS.map((s) => ({ name: s.name, url: s.url })),
-  ...PEERS.filter((p) => !p.self && p.url).map((p) => ({
+  ...PEERS.filter((p) => p.url).map((p) => ({
     name: p.name === "Cerebras Knowledge" ? "Cerebras" : p.name,
     url: p.url,
   })),
@@ -34,7 +32,6 @@ const sources = [
       <a href="#organs">organs</a>
       <a href="#shops">shops</a>
       <a href="#field">field</a>
-      <a href="#tbd">tbd</a>
     </nav>
   </header>
 
@@ -175,13 +172,6 @@ const sources = [
             </span>
             <span class="compose-aside">pattern, not a product slot</span>
           </li>
-          <li class="compose-tbd">
-            <a class="compose-who" href="#tbd">TBD</a>
-            <span class="compose-organs">control plane + durable meaning</span>
-            <span class="compose-aside"
-              >scope · handoff · sandbox still thin</span
-            >
-          </li>
         </ul>
       </aside>
     </section>
@@ -241,38 +231,8 @@ const sources = [
         {" "}
         — harness-code search, or adjacent without a shop claim.
       </p>
+      <p class="coda">Until the shop exists, you are it.</p>
     </section>
-
-    {
-      tbd && (
-        <section class="tbd" id="tbd" aria-labelledby="tbd-title">
-          <h2 id="tbd-title">TBD</h2>
-          <p class="section-dek">Private. Unlinked. Unclaimed.</p>
-          <dl class="tbd-cut">
-            <div>
-              <dt>lane</dt>
-              <dd>Shop — world model + control plane, not a single organ.</dd>
-            </div>
-            <div>
-              <dt>heavy</dt>
-              <dd>Control plane + durable meaning.</dd>
-            </div>
-            <div>
-              <dt>thin</dt>
-              <dd>Scope · trusted handoff · OS sandbox.</dd>
-            </div>
-            <div class="tbd-open">
-              <dt>bet</dt>
-              <dd>
-                Harden one thin organ — or keep the world model that dispatches
-                wraps.
-              </dd>
-            </div>
-          </dl>
-          <p class="coda">Until the shop exists, you are it.</p>
-        </section>
-      )
-    }
   </main>
 
   <footer class="foot">

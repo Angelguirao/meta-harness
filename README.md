@@ -1,10 +1,10 @@
 # meta-harness
 
-Research notes on the layer above coding agents.
+Research notes on the layer above agent harnesses.
 
 **Live:** [meta-harness.vercel.app](https://meta-harness.vercel.app)
 
-Peers are cited from primary sources. Our own stack is referred to as **TBD** (private) — not linked here.
+Peers are cited from primary sources.
 
 ```bash
 npm install
