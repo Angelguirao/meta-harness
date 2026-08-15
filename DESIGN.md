@@ -2,7 +2,7 @@
 version: alpha
 name: Meta-harness Field Notes
 description: >
-  Dark industrial research notes on the layer above agent harnesses.
+  Dark industrial research notes on the operator OS above agent harnesses.
   Cool night canvas, IBM Plex Sans + Mono, rare amber marks.
   Inverted sibling of aie-sessions ledger type — not PersonalOS desk, not cream editorial.
 colors:
@@ -35,30 +35,30 @@ typography:
 
 ## Overview
 
-**Night lab / research strip.** Notebook, not SaaS. Cool blue-black atmosphere + faint grid. IBM Plex carries identity (same family as aie-sessions, inverted). Amber only on the punch rule, open-bet key, and mark highlights.
+**Night lab / research strip.** Notebook, not SaaS. Cool blue-black atmosphere + faint grid. IBM Plex carries identity (same family as aie-sessions, inverted). Amber only on the punch rule, brand hyphen, and mark highlights.
 
-Narrow reading measure (~38rem). Brand-led hero (brand + lede + shop/muscle stack in first viewport). Hierarchy: hero → why punch → Organs → **Full shops** (multi-organ meta-harnesses; vertical irrelevant) + fill-the-rest → Field by precise layer → quiet elsewhere → coda (“you are it”). Organ tags and rows cross-light. Amber on brand hyphen, punch, cursor. No private self-slot on the public page.
+Narrow reading measure (~38rem); features may use a slightly wider measure. Brand-led hero (brand + definition lede + os/muscle stack). Hierarchy: hero → definition punch → **Operator OS** (core peers) → **Features** (approach prose under each wedge) → Field by layer → coda. No organ chips. No coverage-matrix. No private self-slot.
 
 ## Colors
 
 - **Canvas `#09090B`:** Night ground with cool top wash.
 - **Ink / muted:** Reading contrast.
-- **Accent `#D97706`:** Punch rule, open bet, mark, active nav — never chrome paint.
+- **Accent `#D97706`:** Punch rule, brand hyphen, cursor, active nav — never chrome paint.
 
 ## Typography
 
 - **IBM Plex Sans** for brand and body.
-- **IBM Plex Mono** for meta, section labels, organ tags, stack.
+- **IBM Plex Mono** for meta, section labels, approach project names, stack.
 
 ## Layout
 
 - Brand once in hero (header is quiet meta).
-- Full-shops panel is the intellectual center — three columns from 720px (Polygraph · Omnigent · HappyRobot).
-- Field peers grouped by precise layer (shop / control / framework / observe / …); optimize/adjacent as one quiet elsewhere line.
-- No scroll theater beyond short hero rise + punch rule-in.
+- Features section is the intellectual center — feature title + dek + project → approach lines.
+- Field peers grouped by precise layer (control / fleet / substrate / …); optimize/adjacent as one quiet elsewhere line.
+- Motion: short hero rise, punch rule-in, staggered core-OS list — respect reduced-motion.
 
 ## Do's and Don'ts
 
-**Do** write concrete operator failures; keep amber scarce; let Plex Mono structure the lab.
+**Do** write concrete operator failures; keep amber scarce; let Plex Mono structure the lab; cite approaches in prose.
 
-**Don't** Space Grotesk / cream / terracotta / purple glow / chip filters / slogan organs / rounded feature cards / light PersonalOS clone.
+**Don't** Space Grotesk / cream / terracotta / purple glow / organ chips / slogan organs / rounded feature cards / Y/N coverage matrices / light PersonalOS clone.

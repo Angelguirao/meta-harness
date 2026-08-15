@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import {
-  PARTS,
+  CORE_OS,
+  CORE_WATCH,
+  FEATURES,
   PEERS,
   LANES,
-  FULL_SHOPS,
+  REFERENCES,
   peersInLane,
 } from "../data/landscape.js";
 
@@ -16,8 +18,9 @@ const elsewhere = LANES.filter((l) => l.quiet).flatMap((l) =>
 );
 
 const sources = [
-  { name: "metaharness.tools", url: "https://metaharness.tools/" },
-  ...FULL_SHOPS.map((s) => ({ name: s.name, url: s.url })),
+  ...REFERENCES.map((r) => ({ name: r.name, url: r.url })),
+  ...CORE_OS.map((s) => ({ name: s.name, url: s.url })),
+  { name: CORE_WATCH.name, url: CORE_WATCH.url },
   ...PEERS.filter((p) => p.url).map((p) => ({
     name: p.name === "Cerebras Knowledge" ? "Cerebras" : p.name,
     url: p.url,
@@ -27,10 +30,11 @@ const sources = [
 
 <BaseLayout>
   <header class="top">
-    <span class="top-meta">field notes · v0</span>
+    <span class="top-meta">field notes · operator OS</span>
     <nav class="top-nav" aria-label="On this page">
-      <a href="#organs">organs</a>
-      <a href="#shops">shops</a>
+      <a href="#define">define</a>
+      <a href="#os">os</a>
+      <a href="#features">features</a>
       <a href="#field">field</a>
     </nav>
   </header>
@@ -39,147 +43,122 @@ const sources = [
     <section class="hero">
       <h1 class="brand">meta<span class="brand-hyphen">-</span>harness</h1>
       <p class="lede">
-        The harness is the muscle. Something else has to be the shop — or you
-        are.
+        An operator OS for a fleet of agents — define roles, assign work,
+        isolate permissions, walk away. The harness underneath is muscle.
       </p>
-      <div class="stack" aria-label="Shop over muscle">
+      <div class="stack" aria-label="OS over muscle">
         <div class="stack-row stack-shop">
-          <span class="stack-k">shop</span>
-          <span class="stack-v">
-            {
-              PARTS.map((p, i) => (
-                <>
-                  {i > 0 ? " · " : ""}
-                  <a href={`#organ-${p.id}`} data-organ={p.id}>{p.label}</a>
-                </>
-              ))
-            }
-          </span>
+          <span class="stack-k">os</span>
+          <span class="stack-v"
+            >roles · work · policy · sessions · memory<span
+              class="cursor"
+              aria-hidden="true"></span></span
+          >
         </div>
         <div class="stack-row stack-muscle">
           <span class="stack-k">muscle</span>
           <span class="stack-v"
-            >claude code · deepagents · voice workers · …<span
-              class="cursor"
-              aria-hidden="true"></span></span
+            >claude code · codex · pi · voice workers · …</span
           >
         </div>
       </div>
     </section>
 
-    <section class="prose" id="why" aria-labelledby="why-title">
-      <h2 id="why-title" class="sr-only">Why</h2>
+    <section class="prose" id="define" aria-labelledby="define-title">
+      <h2 id="define-title" class="sr-only">Definition</h2>
       <p class="punch">
-        A harness runs one loop. Real work crosses sessions, systems, and
-        hands. You stitch it yourself — then the chat dies, and the why dies
-        with it.
+        A harness runs one loop. Real work crosses agents, sessions, and hands.
+        Without an OS above it, you are the scheduler, the vault, and the
+        memory — until the chat dies.
       </p>
       <p class="why-cite">
         <a href="https://metaharness.tools/">metaharness.tools</a> named the
-        gap. Full shops are forming inside it — coding or not.
+        gap. Operator OSes are forming inside it — coding or not. Vertical does
+        not decide membership.
       </p>
     </section>
 
-    <section class="organs" id="organs" aria-labelledby="organs-title">
-      <h2 id="organs-title">Organs</h2>
-      <p class="section-dek">If it’s missing, this breaks.</p>
-      <ul class="organ-list">
+    <section class="core-os" id="os" aria-labelledby="os-title">
+      <h2 id="os-title">Operator OS</h2>
+      <p class="section-dek">
+        Same lane under the definition — claim multi-agent fleet control, not
+        just a better loop.
+      </p>
+      <ul class="peer-list peer-list-dense core-list">
         {
-          PARTS.map((part) => (
-            <li id={`organ-${part.id}`} data-organ-row={part.id}>
-              <a
-                class="organ-name"
-                href={`#organ-${part.id}`}
-                data-organ={part.id}>{part.label}</a
-              >
-              <span class="organ-miss">{part.miss}</span>
+          CORE_OS.map((os) => (
+            <li>
+              <div class="peer-head">
+                <a
+                  class="peer-name"
+                  href={os.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {os.name}
+                </a>
+                <span class="peer-by">{os.by}</span>
+              </div>
+              <p class="peer-claim">{os.claim}</p>
+              <p class="peer-hook">{os.hook}</p>
             </li>
           ))
         }
       </ul>
+      <p class="watch-line">
+        Watch:{" "}
+        <a href={CORE_WATCH.url} target="_blank" rel="noreferrer"
+          >{CORE_WATCH.name}</a
+        >
+        {" — "}
+        {CORE_WATCH.hook}
+      </p>
     </section>
 
-    <section class="shops" id="shops" aria-labelledby="shops-title">
-      <h2 id="shops-title">Full shops</h2>
+    <section class="features" id="features" aria-labelledby="features-title">
+      <h2 id="features-title">Features</h2>
       <p class="section-dek">
-        Meta-harnesses that claim multiple organs. Vertical is not the test.
+        How each OS approaches the surface — prose, not a coverage matrix.
       </p>
-      <div class="shop-panel">
-        <div class="shop-grid">
-          {
-            FULL_SHOPS.map((shop) => (
-              <article class="shop" data-organs={shop.organs.join(" ")}>
-                <header class="shop-head">
+      {
+        FEATURES.map((feat) => (
+          <div class="feature-block" id={feat.id}>
+            <h3 class="feature-title">{feat.title}</h3>
+            <p class="feature-dek">{feat.dek}</p>
+            <ul class="approach-list">
+              {feat.approaches.map((a) => (
+                <li>
                   <a
-                    class="shop-name"
-                    href={shop.url}
+                    class="approach-who"
+                    href={a.url}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {shop.name}
+                    {a.name}
                   </a>
-                  <span class="shop-by">{shop.by}</span>
-                </header>
-                <p class="shop-claim">{shop.claim}</p>
-                <p class="shop-hook">{shop.hook}</p>
-                <p class="shop-organs">
-                  {shop.organs.map((id, i) => (
-                    <>
-                      {i > 0 ? " · " : ""}
-                      <a href={`#organ-${id}`} data-organ={id}>
-                        {id}
-                      </a>
-                    </>
-                  ))}
-                </p>
-              </article>
-            ))
-          }
-        </div>
-        <p class="shops-note">
-          <span><em>Polygraph</em> owns the graph across trees.</span>
-          <span><em>Omnigent</em> owns the runner across CLIs.</span>
-          <span><em>HappyRobot</em> owns the ops platform + context.</span>
-        </p>
-      </div>
-
-      <aside class="compose" aria-labelledby="compose-title">
-        <h3 id="compose-title" class="compose-title">Fill the rest</h3>
-        <p class="compose-lead">
-          No featured shop covers every organ. Specialists still ship alone:
-        </p>
-        <ul class="compose-stack">
-          <li>
-            <a
-              class="compose-who"
-              href="https://beads.gascity.com/"
-              target="_blank"
-              rel="noreferrer">Beads</a
-            >
-            <span class="compose-organs">
-              <a href="#organ-work" data-organ="work">work</a>
-            </span>
-          </li>
-          <li>
-            <a
-              class="compose-who"
-              href="https://www.cerebras.ai/blog/how-we-built-our-knowledge-base"
-              target="_blank"
-              rel="noreferrer">Cerebras</a
-            >
-            <span class="compose-organs">
-              <a href="#organ-retrieve" data-organ="retrieve">retrieve</a>
-            </span>
-            <span class="compose-aside">pattern, not a product slot</span>
-          </li>
-        </ul>
-      </aside>
+                  <span class="approach-how">{a.approach}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+      <p class="features-note">
+        Blueprint only:{" "}
+        <a
+          href="https://gist.github.com/iannuttall/8152098b5ce8e6c1a7499ee561ed93f4"
+          target="_blank"
+          rel="noreferrer">Postma / Ian Nuttall AgentOS</a
+        >
+        — fullest written spec of roles, Kanban, goals, deny-by-default, and
+        ephemeral sessions. Not a shipped peer.
+      </p>
     </section>
 
     <section class="field" id="field" aria-labelledby="field-title">
       <h2 id="field-title">Field</h2>
       <p class="section-dek">
-        Layers around the shop — by claim, not by industry.
+        Layers around the OS — by claim, not by industry.
       </p>
       {
         neighborLanes.map((lane) => (
@@ -198,16 +177,7 @@ const sources = [
                     >
                       {p.name}
                     </a>
-                    <span class="peer-organs">
-                      {p.organs.map((id, i) => (
-                        <>
-                          {i > 0 ? " · " : ""}
-                          <a href={`#organ-${id}`} data-organ={id}>
-                            {id}
-                          </a>
-                        </>
-                      ))}
-                    </span>
+                    <span class="peer-by">{p.by}</span>
                   </div>
                   <p class="peer-hook">{p.hook}</p>
                 </li>
@@ -229,9 +199,10 @@ const sources = [
           ))
         }
         {" "}
-        — harness-code search, or adjacent without a shop claim.
+        — harness-code search, company brain, CX/CRM platforms, personal intent
+        layers, desktop coworkers.
       </p>
-      <p class="coda">Until the shop exists, you are it.</p>
+      <p class="coda">Until the OS exists, you are it.</p>
     </section>
   </main>
 
@@ -246,7 +217,7 @@ const sources = [
       }
     </p>
     <p class="foot-meta">
-      Updated 2026-08-09 · field notes · MIT ·
+      Updated 2026-08-15 · field notes · MIT ·
       <a href="https://github.com/Angelguirao/meta-harness">source</a>
     </p>
   </footer>
@@ -297,58 +268,5 @@ const sources = [
       sync();
       window.addEventListener("scroll", sync, { passive: true });
     }
-
-    const paintLit = (ids) => {
-      document.querySelectorAll("[data-organ-row]").forEach((row) => {
-        const id = row.getAttribute("data-organ-row");
-        row.classList.toggle("is-lit", id != null && ids.includes(id));
-      });
-      document.querySelectorAll("[data-organ]").forEach((tag) => {
-        const id = tag.getAttribute("data-organ");
-        tag.classList.toggle("is-lit", id != null && ids.includes(id));
-      });
-    };
-
-    const clearLitSoon = () => {
-      requestAnimationFrame(() => {
-        const over = document.querySelector(
-          "[data-organ]:hover, [data-organ-row]:hover, .shop[data-organs]:hover",
-        );
-        const hash = location.hash.match(/^#organ-([\w-]+)$/);
-        if (over || document.activeElement?.hasAttribute?.("data-organ")) return;
-        paintLit(hash ? [hash[1]] : []);
-      });
-    };
-
-    document.querySelectorAll("[data-organ]").forEach((el) => {
-      const id = el.getAttribute("data-organ");
-      if (!id) return;
-      el.addEventListener("pointerenter", () => paintLit([id]));
-      el.addEventListener("pointerleave", clearLitSoon);
-      el.addEventListener("focus", () => paintLit([id]));
-      el.addEventListener("blur", clearLitSoon);
-    });
-
-    document.querySelectorAll(".shop[data-organs]").forEach((shop) => {
-      const ids = (shop.getAttribute("data-organs") || "")
-        .split(/\s+/)
-        .filter(Boolean);
-      shop.addEventListener("pointerenter", () => paintLit(ids));
-      shop.addEventListener("pointerleave", clearLitSoon);
-    });
-
-    document.querySelectorAll("[data-organ-row]").forEach((row) => {
-      const id = row.getAttribute("data-organ-row");
-      if (!id) return;
-      row.addEventListener("pointerenter", () => paintLit([id]));
-      row.addEventListener("pointerleave", clearLitSoon);
-    });
-
-    const syncHash = () => {
-      const m = location.hash.match(/^#organ-([\w-]+)$/);
-      paintLit(m ? [m[1]] : []);
-    };
-    syncHash();
-    window.addEventListener("hashchange", syncHash);
   </script>
 </BaseLayout>
