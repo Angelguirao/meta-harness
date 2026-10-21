@@ -37,7 +37,7 @@ typography:
 
 **Night lab / research strip.** Notebook, not SaaS. Cool blue-black atmosphere + faint grid. IBM Plex carries identity (same family as aie-sessions, inverted). Amber only on the punch rule, brand hyphen, and mark highlights.
 
-Narrow reading measure (~38rem); features may use a slightly wider measure. Brand-led hero (brand + definition lede + os/muscle stack). Hierarchy: hero → definition punch → **Operator OS** (core peers) → **Features** (approach prose under each wedge) → Field by layer → coda. No organ chips. No coverage-matrix. No private self-slot.
+Narrow reading measure (~38rem); features may use a slightly wider measure. Brand-led hero (brand + purpose lede — this is a field map, not a runtime — + os/muscle stack). Hierarchy: hero → definition punch + why the map → **Operator OS** (core peers) → **Features** (approach prose under each wedge) → Field by layer → coda. No organ chips. No coverage-matrix. No private self-slot.
 
 ## Colors
 
