@@ -48,6 +48,9 @@ Publish **OOCS v0.1**, aligned with existing feature IDs
 - Evidence model: source URL, optional quote/anchor, last-verified date
 - Conformance levels: `claimed` / `documented` / `evidenced`
 
+**In progress:** draft lives under `packages/spec/` (prose, ID registry from
+`FEATURES.md`, catalog-entry schema, `npm run validate:spec`).
+
 **Exit criteria:** a third party can author a valid catalog entry from the spec alone.
 
 ---

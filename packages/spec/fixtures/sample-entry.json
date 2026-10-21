@@ -1,0 +1,20 @@
+{
+  "projectId": "paperclip",
+  "name": "Paperclip",
+  "lane": "core",
+  "covers": [
+    {
+      "featureId": "agent.catalog",
+      "level": "evidenced",
+      "evidence": {
+        "url": "https://paperclip.ing/",
+        "quote": "Agents are hired into an org with titles and roles.",
+        "accessed": "2026-08-15"
+      }
+    },
+    {
+      "featureId": "work.tasks",
+      "level": "documented"
+    }
+  ]
+}

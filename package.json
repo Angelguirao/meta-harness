@@ -9,7 +9,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "spec:extract": "node packages/spec/scripts/extract-feature-ids.mjs",
+    "validate:spec": "node packages/spec/scripts/validate-entry.mjs"
   },
   "dependencies": {
     "@angelguirao/personal-tokens": "file:packages/personal-tokens",
